@@ -1,3 +1,10 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #page-container {
   width: 100%;
   height: 100%;
@@ -6,23 +13,15 @@
   -ms-scroll-snap-type: y mandatory;
 }
 
-#page-container > div {
+#page-container > section {
+  position: relative;
   scroll-snap-align: start;
   min-width: 100%;
   min-height: 100%;
 }
 
-/* Below here is styling, not important for the actual example, just to make it look nice. No need to look down here! */
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 #carousel-1 {
-  background-color: #e34747;
+  background-color: #222222;
 }
 
 #carousel-2 {
