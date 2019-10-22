@@ -11,7 +11,7 @@ $mobile-width: 420px;
     right: 0;
   }
 
-  .wrapper {
+  #catOnTheMoon-wrapper {
     height: 400px;
     width: 600px;
 
@@ -163,7 +163,7 @@ $mobile-width: 420px;
     right: 0;
   }
 
-  .wrapper:hover .cat {
+  #catOnTheMoon-wrapper:hover .cat {
     bottom: 240px;
   }
 

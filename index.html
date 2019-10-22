@@ -11,13 +11,14 @@
 
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/catOnTheMoon.css" />
+    <link rel="stylesheet" href="css/orbit.css" />
   </head>
 
   <body>
     <div id="page-container">
       <!-- First Screen - Cat On The Moon -->
       <div id="carousel-1">
-        <div class="wrapper">
+        <div id="catOnTheMoon-wrapper">
           <div class="cat">
             <span class="eyes left"></span>
             <span class="eyes right"></span>
@@ -36,12 +37,20 @@
           </div>
         </div>
       </div>
+
+      <!-- Second Screen - Orbit -->
       <div id="carousel-2">
-        <div>
-          Item 2
+        <div id="blackhole">
+          <div class="centerHover"><span>已经多久了？</span></div>
+          <div id="orbit-text" class="hidden">2019</div>
         </div>
       </div>
+
+      <!-- Third Screen -->
       <div id="carousel-3">Item 3</div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/orbit.js"></script>
   </body>
 </html>

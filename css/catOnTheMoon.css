@@ -7,13 +7,13 @@
   left: 0;
   right: 0; }
 
-#carousel-1 .wrapper {
+#carousel-1 #catOnTheMoon-wrapper {
   height: 400px;
   width: 600px;
   margin: auto;
   font-family: "Clicker Script", cursive; }
   @media screen and (max-width: 420px) {
-    #carousel-1 .wrapper {
+    #carousel-1 #catOnTheMoon-wrapper {
       height: 50%;
       width: 50%; } }
 
@@ -140,7 +140,7 @@
   left: 0;
   right: 0; }
 
-#carousel-1 .wrapper:hover .cat {
+#carousel-1 #catOnTheMoon-wrapper:hover .cat {
   bottom: 240px; }
 
 @-webkit-keyframes clouds /*Safari and Chrome*/ {
