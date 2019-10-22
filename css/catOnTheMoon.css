@@ -1,77 +1,81 @@
-.wrapper {
-  height: 400px;
-  width: 600px;
-  margin: auto;
-  font-family: "Clicker Script", cursive;
-}
-
-section div {
+#carousel-1 div {
   display: block;
   position: absolute;
   margin: auto;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-}
+  right: 0; }
 
-.cloud {
+#carousel-1 .wrapper {
+  height: 400px;
+  width: 600px;
+  margin: auto;
+  font-family: "Clicker Script", cursive; }
+  @media screen and (max-width: 420px) {
+    #carousel-1 .wrapper {
+      height: 50%;
+      width: 50%; } }
+
+#carousel-1 section div {
+  display: block;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
+#carousel-1 .cloud {
   background: #bda1b8;
   width: 90px;
   height: 42px;
   -webkit-animation: clouds 40s infinite;
-  margin-left: 0;
-}
+  margin-left: 0; }
 
-.cloud:before {
+#carousel-1 .cloud:before {
   border-radius: 50%;
-  box-shadow: 20px -20px 0 0 #bda1b8, 90px 0 0 0 #bda1b8,
-    60px -27px 0 8px #bda1b8;
+  box-shadow: 20px -20px 0 0 #bda1b8, 90px 0 0 0 #bda1b8, 60px -27px 0 8px #bda1b8;
   content: "";
   position: absolute;
   width: 48px;
   height: 48px;
   left: -22px;
   bottom: 0;
-  background: #bda1b8;
-}
+  background: #bda1b8; }
 
-.cloud:nth-child(1) {
+#carousel-1 .cloud:nth-child(1) {
   top: auto;
   bottom: 120px;
-  opacity: 0.85;
-}
+  opacity: 0.85; }
 
-.cloud:nth-child(2) {
+#carousel-1 .cloud:nth-child(2) {
   right: auto;
   left: 320px;
-  opacity: 0.5;
-}
+  opacity: 0.5; }
 
-.cloud:nth-child(3) {
+#carousel-1 .cloud:nth-child(3) {
   bottom: auto;
   top: 120px;
   right: auto;
   left: 80px;
-  opacity: 0.75;
-}
-.cloud:nth-child(4) {
+  opacity: 0.75; }
+
+#carousel-1 .cloud:nth-child(4) {
   bottom: auto;
   top: 20px;
   right: auto;
   left: 320px;
-  opacity: 0.65;
-}
+  opacity: 0.65; }
 
-.moon {
+#carousel-1 .moon {
   height: 120px;
   width: 120px;
   background: #666666;
   border-radius: 60px;
-  box-shadow: 0 0 60px 1px #444444;
-}
+  box-shadow: 0 0 60px 1px #444444; }
 
-.moon:before {
+#carousel-1 .moon:before {
   border-radius: 60px;
   box-shadow: 10px -50px 0 0 #444, 50px 0 0 0 #444, 50px -37px 0 10px #444;
   content: "";
@@ -80,59 +84,52 @@ section div {
   height: 20px;
   left: 30px;
   bottom: 10px;
-  background: #444;
-}
+  background: #444; }
 
-.cat {
+#carousel-1 .cat {
   background: #eeeeee;
   height: 60px;
   top: auto;
   bottom: 200px;
   width: 60px;
   z-index: 0;
-  -webkit-transition: all linear 1s;
-}
+  -webkit-transition: all linear 1s; }
 
-.cat:before,
-.cat:after {
+#carousel-1 .cat:before,
+#carousel-1 .cat:after {
   width: 0;
   height: 0;
   top: -10px;
   position: absolute;
-  content: "";
-}
+  content: ""; }
 
-.cat:before {
+#carousel-1 .cat:before {
   border-left: 0px solid transparent;
   border-right: 15px solid transparent;
   border-bottom: 15px solid #eee;
-  left: 0;
-}
+  left: 0; }
 
-.cat:after {
+#carousel-1 .cat:after {
   border-right: 0px solid transparent;
   border-left: 15px solid transparent;
   border-bottom: 15px solid #eee;
-  right: 0;
-}
+  right: 0; }
 
-.cat .eyes {
+#carousel-1 .cat .eyes {
   position: absolute;
   height: 8px;
   width: 8px;
   background: #333;
   border-radius: 100%;
-  top: 15px;
-}
+  top: 15px; }
 
-.cat .eyes.left {
-  left: 12px;
-}
-.cat .eyes.right {
-  right: 12px;
-}
+#carousel-1 .cat .eyes.left {
+  left: 12px; }
 
-.cat .mouth {
+#carousel-1 .cat .eyes.right {
+  right: 12px; }
+
+#carousel-1 .cat .mouth {
   position: absolute;
   height: 4px;
   width: 60%;
@@ -141,27 +138,19 @@ section div {
   top: 28px;
   margin: auto;
   left: 0;
-  right: 0;
-}
+  right: 0; }
 
-.wrapper:hover .cat {
-  bottom: 240px;
-}
+#carousel-1 .wrapper:hover .cat {
+  bottom: 240px; }
 
 @-webkit-keyframes clouds /*Safari and Chrome*/ {
   0 {
-    margin-left: 0;
-  }
+    margin-left: 0; }
   25% {
-    margin-left: 100px;
-  }
+    margin-left: 100px; }
   50% {
-    margin-left: 0;
-  }
+    margin-left: 0; }
   75% {
-    margin-left: 30px;
-  }
+    margin-left: 30px; }
   100% {
-    margin-left: 0;
-  }
-}
+    margin-left: 0; } }
