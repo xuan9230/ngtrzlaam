@@ -147,8 +147,17 @@ function blackhole(element) {
     $(".fullpage").addClass("open");
     setTimeout(function() {
       $(".header .welcome").removeClass("gone");
-      $("#orbit-text").removeClass("hidden");
     }, 500);
+
+    setTimeout(function() {
+      $("#orbit-text-1").removeClass("hidden");
+      $("#orbit-text-1").addClass("display-orbit-text");
+    }, 1000);
+
+    setTimeout(function() {
+      $("#orbit-text-2").removeClass("hidden");
+      $("#orbit-text-2").addClass("display-orbit-text");
+    }, 5000);
   });
   $(".centerHover").on("mouseover", function() {
     if (expanse == false) {

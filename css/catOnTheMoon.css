@@ -140,9 +140,6 @@
   left: 0;
   right: 0; }
 
-#carousel-1 #catOnTheMoon-wrapper:hover .cat {
-  bottom: 240px; }
-
 @-webkit-keyframes clouds /*Safari and Chrome*/ {
   0 {
     margin-left: 0; }

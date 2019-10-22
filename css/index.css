@@ -10,7 +10,7 @@ body {
   height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
-  -ms-scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 #page-container > div {
