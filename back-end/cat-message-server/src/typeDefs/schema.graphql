@@ -1,0 +1,14 @@
+type Query {
+  info: String!
+  feed: [Message!]!
+}
+
+type Mutation {
+  post(body: String!, time: String!): Message!
+}
+
+type Message {
+  id: ID!
+  body: String!
+  time: String!
+}

@@ -1,0 +1,16 @@
+mutation {
+  post(
+    body: "asd"
+    time: "123123"
+  ) {
+    body
+    time
+  }
+}
+query {
+  feed {
+    body
+    id
+    time
+  }
+}
