@@ -1,0 +1,18 @@
+# mutation {
+#   createMessage(
+#     body: "asd"
+#     time: "123123"
+#   ) {
+#     body
+#     time
+#   }
+# }
+query {
+  message(id: "message-0") {
+    body
+    time
+  }
+  messages {
+    body
+  }
+}

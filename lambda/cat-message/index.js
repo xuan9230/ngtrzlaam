@@ -1,5 +1,4 @@
 const AWS = require("aws-sdk");
-const ddb = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async event => {
   const requestBody = JSON.parse(event.body);
@@ -12,18 +11,9 @@ exports.handler = async event => {
     };
 
   try {
-    const res = await ddb
-      .put({
-        TableName: "Messages",
-        Item: {
-          MessageId: "123",
-          body: messageBody
-        }
-      })
-      .promise();
     return {
       statusCode: 200,
-      body: JSON.stringify("Created message")
+      body: JSON.stringify("Response from lambda")
     };
   } catch (err) {
     console.log("err", err);

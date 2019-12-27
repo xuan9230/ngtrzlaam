@@ -1,11 +1,10 @@
 type Query {
   info: String!
-  message(id: ID!): Message
-  messages: [Message!]!
+  feed: [Message!]!
 }
 
 type Mutation {
-  createMessage(body: String!, time: String!): Message!
+  post(body: String!, time: String!): Message!
 }
 
 type Message {

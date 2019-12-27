@@ -1,13 +1,29 @@
-const messages = [];
+const messages = [
+  {
+    id: `message-0`,
+    body: `First message`,
+    time: "some time"
+  },
+  {
+    id: `message-1`,
+    body: `Second message`,
+    time: "anoter time"
+  }
+];
 let idCount = messages.length;
 
 export default {
   Query: {
     info: () => "dummy info",
-    feed: () => messages
+    message: (parent, args) => messages.find(m => m.id === args.id),
+    messages: () => messages
+  },
+  Message: {
+    // Trivia resolvers are omitted
+    time: parent => `2020-${parent.time}`
   },
   Mutation: {
-    post: (parent, args) => {
+    createMessage: (parent, args) => {
       const { body, time } = args;
 
       const message = {
