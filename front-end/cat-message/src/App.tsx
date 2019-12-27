@@ -1,44 +1,80 @@
 import React, { useState, useEffect } from "react";
-import axios, { AxiosResponse } from "axios";
-import { Message } from "./types";
+import { QueryRenderer } from "react-relay";
+import { graphql } from "babel-plugin-relay/macro";
+import Message from "./components/Message";
+import environment from "./environment";
+import { RootProps } from "./types";
 
-const testQuery = `
-query {
-  feed {
-    body
-    time
+const testQuery = graphql`
+  query AppQuery {
+    messages {
+      body
+      time
+    }
   }
-}
 `;
 
 const App: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  function render({
+    error,
+    props
+  }: {
+    error: Error | null;
+    props: RootProps | unknown;
+  }) {
+    if (error) {
+      return <div>Error!</div>;
+    }
+    if (!props) {
+      return <div>Loading...</div>;
+    }
 
-  async function fetchFeed(query: string, variables?: object) {
-    const res: AxiosResponse = await axios.post("http://localhost:4000", {
-      query,
-      variables
-    });
-    const { data } = res.data;
-    setMessages(data.feed);
+    const { messages } = props as RootProps;
+    return (
+      <>
+        {messages.map(m => (
+          <Message {...m} />
+        ))}
+      </>
+    );
   }
 
-  useEffect(() => {
-    fetchFeed(testQuery);
-  }, []);
-
-  if (!(messages && messages.length))
-    return <div>No message. Spark your cat!</div>;
-
   return (
-    <div>
-      {messages.map(message => (
-        <div>
-          {message.body}, posted at {message.time}
-        </div>
-      ))}
-    </div>
+    <QueryRenderer
+      environment={environment}
+      query={testQuery}
+      variables={{}}
+      render={render}
+    />
   );
+
+  // const [messages, setMessages] = useState<Message[]>([]);
+
+  // async function fetchFeed(query: string, variables?: object) {
+  //   const res: AxiosResponse = await axios.post("http://localhost:4000", {
+  //     query,
+  //     variables
+  //   });
+  //   const { data } = res.data;
+  //   setMessages(data.feed);
+  // }
+
+  // useEffect(() => {
+  //   fetchFeed(testQuery);
+  // }, []);
+
+  // if (!(messages && messages.length))
+  //   return <div>No message. Spark your cat!</div>;
+
+  // return (
+  //   <div>
+  //     {messages.map(message => (
+  //       <div>
+  //         {message.body}, posted at {message.time}
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
 };
 
 export default App;
