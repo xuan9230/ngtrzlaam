@@ -1,12 +1,14 @@
 /* tslint:disable */
-/* @relayHash df8a31eed915fc657f12114e1488e27f */
+/* eslint-disable */
+/* @relayHash 62c350f236924900997346ee2e58efb9 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type AppQueryVariables = {};
 export type AppQueryResponse = {
     readonly messages: ReadonlyArray<{
         readonly body: string;
-        readonly time: string;
+        readonly author: string;
+        readonly id: string;
     }>;
 };
 export type AppQuery = {
@@ -20,27 +22,47 @@ export type AppQuery = {
 query AppQuery {
   messages {
     body
-    time
+    author
     id
   }
 }
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "body",
-  "args": null,
-  "storageKey": null
-},
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "time",
-  "args": null,
-  "storageKey": null
-};
+var v0 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "messages",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Message",
+    "plural": true,
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "body",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "author",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "id",
+        "args": null,
+        "storageKey": null
+      }
+    ]
+  }
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -49,57 +71,22 @@ return {
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "messages",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Message",
-        "plural": true,
-        "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/)
-        ]
-      }
-    ]
+    "selections": (v0/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "AppQuery",
     "argumentDefinitions": [],
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "messages",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Message",
-        "plural": true,
-        "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/),
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      }
-    ]
+    "selections": (v0/*: any*/)
   },
   "params": {
     "operationKind": "query",
     "name": "AppQuery",
     "id": null,
-    "text": "query AppQuery {\n  messages {\n    body\n    time\n    id\n  }\n}\n",
+    "text": "query AppQuery {\n  messages {\n    body\n    author\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'e7f44f2b1d2a55257a7fd4bbe9ea39c1';
+(node as any).hash = 'a2e7a89dfd6fca16bfd92a0a8e4e75e7';
 export default node;

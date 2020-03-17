@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { QueryRenderer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import Message from "./components/Message";
-import environment from "./environment";
+import environment from "./relay-environment";
 import { RootProps } from "./types";
 
 const testQuery = graphql`
   query AppQuery {
     messages {
       body
-      time
+      author
+      id
     }
   }
 `;
