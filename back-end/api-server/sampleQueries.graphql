@@ -1,0 +1,16 @@
+# mutation {
+#   createMessage(input: {
+#     body: "sms",
+#     author: "Q"
+#   }) {
+#     body
+#   }
+# }
+
+{
+  messages {
+    body
+    author
+    id
+  }
+}

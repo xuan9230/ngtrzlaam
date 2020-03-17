@@ -4,12 +4,18 @@ type Query {
   messages: [Message!]!
 }
 
+input MessageInput {
+  body: String
+  author: String
+}
+
 type Mutation {
-  createMessage(body: String!, time: String!): Message!
+  createMessage(input: MessageInput): Message
+  updateMessage(id: ID!, input: MessageInput): Message
 }
 
 type Message {
   id: ID!
   body: String!
-  time: String!
+  author: String!
 }
