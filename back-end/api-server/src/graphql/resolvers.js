@@ -23,7 +23,9 @@ const resolvers = {
     }
   },
   Message: {
-    Author: message => fakeDB.authors[message.author_id]
+    Author: (message, _, context) => {
+      return context.dataloaders.authorById.load(message.author_id);
+    }
   },
   Author: {
     Messages: author => {
