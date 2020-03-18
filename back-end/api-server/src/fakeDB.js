@@ -6,11 +6,13 @@ const fakeDB = {
     m_1: {
       id: "m_1",
       body: "ee",
+      date: new Date("2020-03-03"),
       author_id: "a_1"
     },
     m_2: {
       id: "m_2",
       body: "asd",
+      date: new Date("2020-03-04"),
       author_id: "a_2"
     }
   },

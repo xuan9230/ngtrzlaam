@@ -3,9 +3,12 @@ input MessageInput {
   author_id: ID
 }
 
+scalar Date
+
 type Message {
   id: ID!
   body: String!
+  date: Date
   Author: Author
 }
 
