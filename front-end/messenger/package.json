@@ -1,14 +1,13 @@
 {
-  "name": "cat-message",
+  "name": "messenger",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-relay": "^9.0.0",
-    "relay-runtime": "^9.0.0",
     "react-scripts": "3.2.0",
+    "relay-runtime": "^9.0.0",
     "typescript": "^3.7.4"
   },
   "scripts": {

@@ -1,16 +1,17 @@
-# mutation {
-#   createMessage(input: {
-#     body: "sms",
-#     author: "Q"
-#   }) {
-#     body
-#   }
-# }
-
-{
-  messages {
-    body
-    author
+query AppQuery {
+  Messages {
     id
+    body
+    Author {
+      name
+      id
+    }
+  }
+
+  Author(id: "a_1") {
+    name
+    Messages {
+      body
+    }
   }
 }

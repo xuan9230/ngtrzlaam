@@ -1,21 +1,29 @@
-type Query {
-  info: String!
-  message(id: ID!): Message
-  messages: [Message!]!
-}
-
 input MessageInput {
   body: String
-  author: String
-}
-
-type Mutation {
-  createMessage(input: MessageInput): Message
-  updateMessage(id: ID!, input: MessageInput): Message
+  author_id: ID
 }
 
 type Message {
   id: ID!
   body: String!
-  author: String!
+  Author: Author
+}
+
+type Author {
+  id: ID!
+  name: String!
+  Messages: [Message!]!
+}
+
+type Query {
+  info: String!
+  Message(id: ID!): Message
+  Messages: [Message!]!
+  Author(id: ID!): Author
+  Authors: [Author!]!
+}
+
+type Mutation {
+  createMessage(input: MessageInput): Message
+  updateMessage(id: ID!, input: MessageInput): Message
 }
