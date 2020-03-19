@@ -1,13 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 62c350f236924900997346ee2e58efb9 */
+/* @relayHash d2b573d9e1e4aa45a7eacb44d99fbcf5 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type AppQueryVariables = {};
 export type AppQueryResponse = {
-    readonly messages: ReadonlyArray<{
-        readonly body: string;
-        readonly author: string;
+    readonly Messages: ReadonlyArray<{
         readonly id: string;
     }>;
 };
@@ -20,9 +18,7 @@ export type AppQuery = {
 
 /*
 query AppQuery {
-  messages {
-    body
-    author
+  Messages {
     id
   }
 }
@@ -33,26 +29,12 @@ var v0 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "messages",
+    "name": "Messages",
     "storageKey": null,
     "args": null,
     "concreteType": "Message",
     "plural": true,
     "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "body",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "author",
-        "args": null,
-        "storageKey": null
-      },
       {
         "kind": "ScalarField",
         "alias": null,
@@ -83,10 +65,10 @@ return {
     "operationKind": "query",
     "name": "AppQuery",
     "id": null,
-    "text": "query AppQuery {\n  messages {\n    body\n    author\n    id\n  }\n}\n",
+    "text": "query AppQuery {\n  Messages {\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'a2e7a89dfd6fca16bfd92a0a8e4e75e7';
+(node as any).hash = '1f080b2436e44b5b760ac9abc1c40ab9';
 export default node;

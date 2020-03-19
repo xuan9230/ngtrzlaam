@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "react-relay": "^9.0.0",
+    "react": "^0.0.0-experimental-aae83a4b9",
+    "react-dom": "^0.0.0-experimental-aae83a4b9",
+    "react-relay": "^0.0.0-experimental-8cc94ddc",
     "react-scripts": "3.2.0",
     "relay-runtime": "^9.0.0",
     "typescript": "^3.7.4"

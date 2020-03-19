@@ -1,53 +1,50 @@
-import React from "react";
-import { QueryRenderer } from "react-relay";
+import React, { Suspense } from "react";
+import {
+  RelayEnvironmentProvider,
+  preloadQuery,
+  usePreloadedQuery
+} from "react-relay/hooks";
 import { graphql } from "babel-plugin-relay/macro";
-import Message from "./components/Message";
-import environment from "./relay-environment";
-import { RootProps } from "./types";
 
-const testQuery = graphql`
+import MessageItem from "./components/MessageItem";
+import environment from "./relay-environment";
+import { Message } from "./types";
+
+const TestQuery = graphql`
   query AppQuery {
-    messages {
-      body
-      author
+    Messages {
       id
     }
   }
 `;
 
-const App: React.FC = () => {
-  function render({
-    error,
-    props
-  }: {
-    error: Error | null;
-    props: RootProps | unknown;
-  }) {
-    if (error) {
-      return <div>Error!</div>;
-    }
-    if (!props) {
-      return <div>Loading...</div>;
-    }
+// Immediately load the query as our app starts. For a real app, we'd move this
+// into our routing configuration, preloading data as we transition to new routes.
+const preloadedQuery = preloadQuery(environment, TestQuery, {
+  /* query variables */
+});
 
-    const { messages } = props as RootProps;
-    return (
-      <>
-        {messages.map(m => (
-          <Message {...m} />
-        ))}
-      </>
-    );
-  }
+function App({ preloadedQuery }: any) {
+  const data = usePreloadedQuery(TestQuery, preloadedQuery);
 
+  console.log(data);
   return (
-    <QueryRenderer
-      environment={environment}
-      query={testQuery}
-      variables={{}}
-      render={render}
-    />
+    <div>
+      {(data as { Messages: Message[] }).Messages.map(msg => (
+        <MessageItem {...msg} />
+      ))}
+    </div>
   );
-};
+}
 
-export default App;
+function AppRoot() {
+  return (
+    <RelayEnvironmentProvider environment={environment}>
+      <Suspense fallback={"Loading..."}>
+        <App preloadedQuery={preloadedQuery} />
+      </Suspense>
+    </RelayEnvironmentProvider>
+  );
+}
+
+export default AppRoot;
