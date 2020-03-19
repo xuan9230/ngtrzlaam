@@ -6,7 +6,7 @@ import {
 } from "react-relay/hooks";
 import { graphql } from "babel-plugin-relay/macro";
 
-import MessageItem from "./components/MessageItem";
+import MessageItem from "./MessageItem";
 import environment from "./relay-environment";
 import { Message } from "./types";
 
@@ -14,6 +14,7 @@ const TestQuery = graphql`
   query AppQuery {
     Messages {
       id
+      ...MessageItem_message
     }
   }
 `;
@@ -30,8 +31,8 @@ function App({ preloadedQuery }: any) {
   console.log(data);
   return (
     <div>
-      {(data as { Messages: Message[] }).Messages.map(msg => (
-        <MessageItem {...msg} />
+      {(data as { Messages: Message[] }).Messages.map(message => (
+        <MessageItem message={message} onClick={() => {}} />
       ))}
     </div>
   );

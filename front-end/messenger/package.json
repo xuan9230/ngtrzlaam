@@ -39,6 +39,7 @@
     "@types/relay-runtime": "^6.0.11",
     "babel-plugin-relay": "^9.0.0",
     "graphql": "^14.6.0",
+    "graphql-compiler": "^1.7.0",
     "relay-compiler": "^9.0.0",
     "relay-compiler-language-typescript": "^12.0.0",
     "relay-config": "^9.0.0"
