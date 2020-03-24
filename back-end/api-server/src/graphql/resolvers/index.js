@@ -1,27 +1,19 @@
-const {
-  Query: MessageQuery,
-  Mutation: MessageMutation,
-  Message
-} = require("./Message");
-const {
-  Query: AuthorQuery,
-  Mutation: AuthorMutation,
-  Author
-} = require("./Author");
+const { Query: CatQuery, Mutation: CatMutation, Cat } = require("./Cat");
+const { Query: UserQuery, Mutation: UserMutation, User } = require("./User");
 const { Date } = require("./Date");
 
 const resolvers = {
   Query: {
-    ...MessageQuery,
-    ...AuthorQuery
+    ...CatQuery,
+    ...UserQuery
   },
   Mutation: {
-    ...MessageMutation,
-    ...AuthorMutation
+    ...CatMutation,
+    ...UserMutation
   },
   Date,
-  Message,
-  Author
+  Cat,
+  User
 };
 
 module.exports = resolvers;

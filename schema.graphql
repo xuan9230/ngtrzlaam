@@ -1,32 +1,37 @@
-input MessageInput {
-  body: String
-  author_id: ID
+type Cat {
+  id: ID!
+  name: String!
+  knowledge: Int!
+  health: Int!
+  cuteness: Int!
+  birthday: Date!
+  Owner: User!
+}
+
+type User {
+  id: ID!
+  name: String!
+  Cats: [Cat]
 }
 
 scalar Date
 
-type Message {
-  id: ID!
-  body: String!
-  date: Date
-  Author: Author
-}
-
-type Author {
-  id: ID!
-  name: String!
-  Messages: [Message!]!
-}
-
 type Query {
-  info: String!
-  Message(id: ID!): Message
-  Messages: [Message!]!
-  Author(id: ID!): Author
-  Authors: [Author!]!
+  Cat(id: ID!): Cat
+  Cats(ownerId: ID!): [Cat]
+  User(id: ID!): User
+  Users: [User!]!
+}
+
+input CatInput {
+  knowledge: Int
+  mood: Int
+  cuteness: Int
+  birthday: Date
+  ownerId: ID
 }
 
 type Mutation {
-  createMessage(input: MessageInput): Message
-  updateMessage(id: ID!, input: MessageInput): Message
+  createCat(input: CatInput): Cat
+  updateCat(id: ID!, input: CatInput): Cat
 }

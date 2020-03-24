@@ -2,28 +2,34 @@
  * Fake database
  */
 const fakeDB = {
-  messages: {
-    m_1: {
-      id: "m_1",
-      body: "ee",
-      date: new Date("2020-03-03"),
-      author_id: "a_1"
+  cats: {
+    c_1: {
+      id: "c_1",
+      name: "Furfur",
+      knowledge: 50,
+      health: 50,
+      cuteness: 50,
+      birthday: new Date("2016-07-05"),
+      ownerId: "u_1"
     },
-    m_2: {
-      id: "m_2",
-      body: "asd",
-      date: new Date("2020-03-04"),
-      author_id: "a_2"
+    c_2: {
+      id: "c_2",
+      name: "Xiao Gua",
+      knowledge: 50,
+      health: 50,
+      cuteness: 50,
+      birthday: new Date("2019-04-19"),
+      ownerId: "u_2"
     }
   },
-  authors: {
-    a_1: {
-      id: "a_1",
-      name: "Ace"
+  users: {
+    u_1: {
+      id: "u_1",
+      name: "Connie"
     },
-    a_2: {
-      id: "a_2",
-      name: "Bob"
+    u_2: {
+      id: "u_2",
+      name: "Stan"
     }
   }
 };

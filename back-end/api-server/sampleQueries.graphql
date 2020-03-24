@@ -1,17 +1,18 @@
 query AppQuery {
-  Messages {
+  Cat(id: "c_1") {
     id
-    body
-    Author {
+    name
+    birthday
+    cuteness
+    Owner {
       name
-      id
     }
   }
 
-  Author(id: "a_1") {
+  User(id: "u_1") {
     name
-    Messages {
-      body
+    Cats {
+      name
     }
   }
 }

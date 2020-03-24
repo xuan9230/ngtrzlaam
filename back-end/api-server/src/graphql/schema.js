@@ -11,8 +11,8 @@ const typeDefs = fs.readFileSync(
 );
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
-  logger: { log: e => console.log(e) }
+  resolvers
+  // logger: { log: e => console.log(e) }
 });
 
 module.exports = schema;

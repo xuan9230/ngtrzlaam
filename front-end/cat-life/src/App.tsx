@@ -32,7 +32,7 @@ function App({ preloadedQuery }: any) {
   return (
     <div>
       {(data as { Messages: Message[] }).Messages.map(message => (
-        <MessageItem message={message} onClick={() => {}} />
+        <MessageItem key={message.id} message={message} onClick={() => {}} />
       ))}
     </div>
   );
