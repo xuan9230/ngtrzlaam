@@ -1,7 +1,8 @@
 const fakeDB = require("../../fakeDB");
 
 const Query = {
-  Cats: () => Object.values(fakeDB.cats),
+  Cats: (_, { ownerId }) =>
+    Object.values(fakeDB.cats).filter(cat => cat.ownerId === ownerId),
   Cat: (_, { id }) => fakeDB.cats[id]
 };
 
@@ -22,6 +23,17 @@ const Mutation = {
 
     fakeDB.cats[id] = newCat;
     return newCat;
+  },
+  updateCat: (_, { id, updates: { name, knowledge, health, cuteness } }) => {
+    const cat = fakeDB.cats[id];
+    if (!cat) return; // TODO - error handling
+
+    if (name) cat.name = name;
+    if (knowledge) cat.knowledge = knowledge;
+    if (health) cat.health = health;
+    if (cuteness) cat.cuteness = cuteness;
+
+    return cat;
   }
 };
 
