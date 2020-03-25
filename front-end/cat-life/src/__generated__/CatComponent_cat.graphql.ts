@@ -4,6 +4,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type CatComponent_cat = {
+    readonly id: string;
     readonly knowledge: number;
     readonly health: number;
     readonly cuteness: number;
@@ -28,6 +29,13 @@ const node: ReaderFragment = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -76,5 +84,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = 'd94220352aa73118952cea05844e33a1';
+(node as any).hash = 'bb731cf0a64b354ed0409088164b8ba0';
 export default node;

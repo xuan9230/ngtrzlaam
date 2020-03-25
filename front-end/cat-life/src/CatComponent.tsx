@@ -3,7 +3,6 @@ import { graphql } from "babel-plugin-relay/macro";
 import { commitMutation } from "relay-runtime";
 import { useFragment } from "react-relay/hooks";
 
-import { CatComponent_cat } from "./__generated__/CatComponent_cat.graphql";
 import { Cat } from "./types";
 import environment from "./relay-environment";
 
@@ -38,12 +37,10 @@ function CatComponent({ cat }: { cat: Cat }) {
   function addHealth() {
     return commitMutation(environment, {
       mutation: graphql`
-        mutation CatComponentMutation($input: CatComponent_cat) {
-          updateCat(input: $input) {
-            cat {
-              id
-              health
-            }
+        mutation CatComponentMutation($id: ID!, $updates: CatInput) {
+          updateCat(id: $id, input: $updates) {
+            id
+            health
           }
         }
       `,

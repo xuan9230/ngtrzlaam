@@ -24,9 +24,10 @@ type Query {
 }
 
 input CatInput {
+  name: String
   knowledge: Int
-  mood: Int
   cuteness: Int
+  health: Int
   birthday: Date
   ownerId: ID
 }

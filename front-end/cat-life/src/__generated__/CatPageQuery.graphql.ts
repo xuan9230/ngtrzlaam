@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash fec7ccbdbd6227c4df794a43f68595ab */
+/* @relayHash 9d75ff2cded360e6f3dd6df2a3c008bf */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -32,6 +32,7 @@ query CatPageQuery(
 }
 
 fragment CatComponent_cat on Cat {
+  id
   knowledge
   health
   cuteness
@@ -116,6 +117,7 @@ return {
         "plural": true,
         "selections": [
           (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -156,8 +158,7 @@ return {
               (v2/*: any*/),
               (v3/*: any*/)
             ]
-          },
-          (v3/*: any*/)
+          }
         ]
       }
     ]
@@ -166,7 +167,7 @@ return {
     "operationKind": "query",
     "name": "CatPageQuery",
     "id": null,
-    "text": "query CatPageQuery(\n  $ownerId: ID!\n) {\n  Cats(ownerId: $ownerId) {\n    name\n    ...CatComponent_cat\n    id\n  }\n}\n\nfragment CatComponent_cat on Cat {\n  knowledge\n  health\n  cuteness\n  birthday\n  Owner {\n    name\n    id\n  }\n}\n",
+    "text": "query CatPageQuery(\n  $ownerId: ID!\n) {\n  Cats(ownerId: $ownerId) {\n    name\n    ...CatComponent_cat\n    id\n  }\n}\n\nfragment CatComponent_cat on Cat {\n  id\n  knowledge\n  health\n  cuteness\n  birthday\n  Owner {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

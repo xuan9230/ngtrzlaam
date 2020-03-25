@@ -24,7 +24,7 @@ const Mutation = {
     fakeDB.cats[id] = newCat;
     return newCat;
   },
-  updateCat: (_, { id, updates: { name, knowledge, health, cuteness } }) => {
+  updateCat: (_, { id, input: { name, knowledge, health, cuteness } }) => {
     const cat = fakeDB.cats[id];
     if (!cat) return; // TODO - error handling
 
