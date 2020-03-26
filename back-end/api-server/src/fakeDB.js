@@ -20,6 +20,15 @@ const fakeDB = {
       cuteness: 50,
       birthday: new Date("2019-04-19"),
       ownerId: "u_2"
+    },
+    c_3: {
+      id: "c_3",
+      name: "DD",
+      knowledge: 50,
+      health: 50,
+      cuteness: 50,
+      birthday: new Date("2020-03-20"),
+      ownerId: "u_2"
     }
   },
   users: {

@@ -26,9 +26,6 @@ function CatComponent({ cat }: { cat: Cat }) {
         health
         cuteness
         birthday
-        Owner {
-          name
-        }
       }
     `,
     cat as any
