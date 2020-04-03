@@ -40,6 +40,14 @@ const fakeDB = {
       id: "u_2",
       name: "Stan"
     }
+  },
+  eventHistories: {
+    e_1: {
+      id: "e_1",
+      catId: "c_1",
+      content: "found a treasure!",
+      date: new Date("2020-04-03")
+    }
   }
 };
 

@@ -53,6 +53,9 @@ const Mutation = {
 const Cat = {
   owner: (cat, _, context) => {
     return context.dataloaders.userById.load(cat.ownerId);
+  },
+  eventHistories: (cat, args, { db }) => {
+    return Object.values(db.eventHistories).filter(eh => eh.catId === cat.id);
   }
   // Other fields will fallback to field names
 };

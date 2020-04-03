@@ -6,6 +6,7 @@ type Cat {
   cuteness: Int!
   birthday: Date!
   owner: User!
+  eventHistories: [EventHistory!]!
 }
 
 type User {
@@ -14,11 +15,20 @@ type User {
   cats: [Cat!]!
 }
 
+type EventHistory {
+  id: ID!
+  cat: Cat!
+  content: String!
+  date: Date!
+}
+
 scalar Date
 
 type Query {
   cat(id: ID!): Cat
   cats(ownerId: ID!): [Cat!]!
+  eventHistory(id: ID!): EventHistory
+  eventHistories(catId: ID!): [EventHistory!]!
   user(id: ID!): User
   users: [User!]!
 }
@@ -36,4 +46,5 @@ type Mutation {
   createCat(ownerId: ID!, name: String!): Cat!
   updateCat(id: ID!, data: CatInput): Cat!
   deleteCat(id: ID!): Cat!
+  createEventHistory(catId: ID!, content: String!): EventHistory!
 }
