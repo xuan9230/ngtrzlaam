@@ -2,6 +2,7 @@ const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const cors = require("cors");
 
+const db = require("./fakeDB");
 const schema = require("./graphql/schema");
 const dataloaders = require("./graphql/dataloaders");
 
@@ -13,7 +14,7 @@ app.use(
   graphqlHTTP(req => ({
     schema,
     graphiql: true,
-    context: { dataloaders: dataloaders() }
+    context: { dataloaders: dataloaders(), db }
   }))
 );
 

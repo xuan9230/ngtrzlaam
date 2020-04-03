@@ -5,22 +5,22 @@ type Cat {
   health: Int!
   cuteness: Int!
   birthday: Date!
-  Owner: User!
+  owner: User!
 }
 
 type User {
   id: ID!
   name: String!
-  Cats: [Cat]
+  cats: [Cat!]!
 }
 
 scalar Date
 
 type Query {
-  Cat(id: ID!): Cat
-  Cats(ownerId: ID!): [Cat]
-  User(id: ID!): User
-  Users: [User!]!
+  cat(id: ID!): Cat
+  cats(ownerId: ID!): [Cat!]!
+  user(id: ID!): User
+  users: [User!]!
 }
 
 input CatInput {
@@ -33,6 +33,7 @@ input CatInput {
 }
 
 type Mutation {
-  createCat(input: CatInput): Cat
-  updateCat(id: ID!, input: CatInput): Cat
+  createCat(ownerId: ID!, name: String!): Cat!
+  updateCat(id: ID!, data: CatInput): Cat!
+  deleteCat(id: ID!): Cat!
 }

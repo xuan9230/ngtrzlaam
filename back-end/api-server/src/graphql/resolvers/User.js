@@ -1,15 +1,13 @@
-const fakeDB = require("../../fakeDB");
-
 const Query = {
-  Users: () => Object.values(fakeDB.users),
-  User: (_, { id }) => fakeDB.users[id]
+  users: (_, args, { db }) => Object.values(db.users),
+  user: (_, { id }, { db }) => db.users[id]
 };
 
 const Mutation = {};
 
 const User = {
-  Cats: user => {
-    return Object.values(fakeDB.cats).filter(msg => msg.ownerId === user.id);
+  cats: (user, args, { db }) => {
+    return Object.values(db.cats).filter(msg => msg.ownerId === user.id);
   }
 };
 

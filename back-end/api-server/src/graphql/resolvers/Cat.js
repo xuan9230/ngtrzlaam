@@ -1,15 +1,17 @@
-const fakeDB = require("../../fakeDB");
-
 const Query = {
-  Cats: (_, { ownerId }) =>
-    Object.values(fakeDB.cats).filter(cat => cat.ownerId === ownerId),
-  Cat: (_, { id }) => fakeDB.cats[id]
+  cats: (_, { ownerId }, { db }) =>
+    Object.values(db.cats).filter(cat => cat.ownerId === ownerId),
+  cat: (_, { id }, { db }) => db.cats[id]
 };
 
 const Mutation = {
-  createCat: (_, { ownerId, name }) => {
-    const length = Object.keys(fakeDB.cats).length;
-    const id = `c_${length + 1}}`;
+  createCat: (_, { ownerId, name }, { db }) => {
+    const ownerExists = !!db.users[ownerId];
+    if (!ownerExists) throw new Error("Owner doesn't exist");
+
+    // TODO: name must be unique within a user's cats
+    const length = Object.keys(db.cats).length;
+    const id = `c_${length + 1}`;
 
     const newCat = {
       ownerId,
@@ -21,12 +23,16 @@ const Mutation = {
       id
     };
 
-    fakeDB.cats[id] = newCat;
+    db.cats[id] = newCat;
     return newCat;
   },
-  updateCat: (_, { id, input: { name, knowledge, health, cuteness } }) => {
-    const cat = fakeDB.cats[id];
-    if (!cat) return; // TODO - error handling
+  updateCat: (
+    _,
+    { id, input: { name, knowledge, health, cuteness } },
+    { db }
+  ) => {
+    const cat = db.cats[id];
+    if (!cat) throw new Error("Cat doesn't exist");
 
     if (name) cat.name = name;
     if (knowledge) cat.knowledge = knowledge;
@@ -34,11 +40,18 @@ const Mutation = {
     if (cuteness) cat.cuteness = cuteness;
 
     return cat;
+  },
+  deleteCat: (_, { id }, { db }) => {
+    const catToDelete = db.cat[id];
+    if (!catToDelete) throw new Error("Cat doesn't exist");
+
+    delete db.cat[id];
+    return catToDelete;
   }
 };
 
 const Cat = {
-  Owner: (cat, _, context) => {
+  owner: (cat, _, context) => {
     return context.dataloaders.userById.load(cat.ownerId);
   }
   // Other fields will fallback to field names
