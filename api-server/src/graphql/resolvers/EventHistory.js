@@ -1,5 +1,7 @@
 const Query = {
-  eventHistories: (parent, { catId }, { db }) => {
+  eventHistories: (parent, args, { db }) => {
+    const { catId } = args;
+
     const catExists = !!db.cats[catId];
     if (!catExists) throw new Error("Cat doesn't exist");
     return Object.values(db.eventHistories).filter(eh => eh.catId === catId);

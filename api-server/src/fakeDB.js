@@ -47,6 +47,12 @@ const fakeDB = {
       catId: "c_1",
       content: "found a treasure!",
       date: new Date("2020-04-03")
+    },
+    e_2: {
+      id: "e_2",
+      catId: "c_1",
+      content: "had a fight",
+      date: new Date("2020-04-05")
     }
   }
 };
