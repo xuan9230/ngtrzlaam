@@ -5,7 +5,7 @@ const path = require("path");
 const resolvers = require("./resolvers");
 
 const typeDefs = fs.readFileSync(
-  path.join(__dirname, "../../../../schema.graphql"),
+  path.join(__dirname, "../../../schema.graphql"),
   "utf8"
 );
 const schema = makeExecutableSchema({

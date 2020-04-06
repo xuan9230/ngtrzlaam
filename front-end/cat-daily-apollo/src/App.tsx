@@ -2,7 +2,7 @@ import React from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 
-import UserList from "./UserList";
+import Router from "./Router";
 
 const theme = createMuiTheme({
   palette: {
@@ -14,7 +14,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <UserList />
+      <Router />
     </ThemeProvider>
   );
 }
