@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import TinderCard from "react-tinder-card";
-import { useHistory } from "react-router-dom";
+
+import IconButton from "@material-ui/core/IconButton";
+import DrawerIcon from "@material-ui/icons/Menu";
+
+import SideDrawer from "../components/SideDrawer";
 
 export default function Deck() {
-  const history = useHistory();
+  const [showDrawer, setShowDrawer] = useState(false);
 
   return (
     <div>
-      <button
-        onClick={() => {
-          localStorage.removeItem("user");
-          history.push("/login");
-        }}
-      >
-        Log out
-      </button>
+      <IconButton aria-label="menu" onClick={() => setShowDrawer(true)}>
+        <DrawerIcon />
+      </IconButton>
+      <SideDrawer open={showDrawer} onClose={() => setShowDrawer(false)} />
       {/* 
         // @ts-ignore */}
       <TinderCard onSwipe={() => {}} onCardLeftScreen={() => {}}>
