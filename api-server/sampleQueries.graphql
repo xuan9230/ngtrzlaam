@@ -2,7 +2,7 @@ query AppQuery {
   Cat(id: "c_1") {
     id
     name
-    birthday
+    age
     cuteness
     Owner {
       name

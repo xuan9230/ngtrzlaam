@@ -1,7 +1,7 @@
 const Query = {
   cats: (_, { ownerId }, { db }) =>
-    Object.values(db.cats).filter(cat => cat.ownerId === ownerId),
-  cat: (_, { id }, { db }) => db.cats[id]
+    Object.values(db.cats).filter((cat) => cat.ownerId === ownerId),
+  cat: (_, { id }, { db }) => db.cats[id],
 };
 
 const Mutation = {
@@ -10,6 +10,7 @@ const Mutation = {
     if (!ownerExists) throw new Error("Owner doesn't exist");
 
     // TODO: name must be unique within a user's cats
+    // TODO: get a random img url
     const length = Object.keys(db.cats).length;
     const id = `c_${length + 1}`;
 
@@ -19,8 +20,9 @@ const Mutation = {
       knowledge: 50,
       health: 50,
       cuteness: 50,
-      birthday: new Date(),
-      id
+      age: 0,
+      status: "alive",
+      id,
     };
 
     db.cats[id] = newCat;
@@ -28,7 +30,7 @@ const Mutation = {
   },
   updateCat: (
     _,
-    { id, input: { name, knowledge, health, cuteness } },
+    { id, input: { name, knowledge, health, cuteness, age, status } },
     { db }
   ) => {
     const cat = db.cats[id];
@@ -38,6 +40,8 @@ const Mutation = {
     if (knowledge) cat.knowledge = knowledge;
     if (health) cat.health = health;
     if (cuteness) cat.cuteness = cuteness;
+    if (age) cat.age = age;
+    if (status) cat.status = status;
 
     return cat;
   },
@@ -47,7 +51,7 @@ const Mutation = {
 
     delete db.cat[id];
     return catToDelete;
-  }
+  },
 };
 
 const Cat = {
@@ -55,13 +59,13 @@ const Cat = {
     return context.dataloaders.userById.load(cat.ownerId);
   },
   eventHistories: (cat, args, { db }) => {
-    return Object.values(db.eventHistories).filter(eh => eh.catId === cat.id);
-  }
+    return Object.values(db.eventHistories).filter((eh) => eh.catId === cat.id);
+  },
   // Other fields will fallback to field names
 };
 
 module.exports = {
   Query,
   Mutation,
-  Cat
+  Cat,
 };

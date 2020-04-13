@@ -9,16 +9,24 @@ export type Scalars = {
   Date: any;
 };
 
+export enum CatAttribute {
+  Health = 'health',
+  Cuteness = 'cuteness',
+  Knowledge = 'knowledge'
+}
+
 export type Cat = {
    __typename?: 'Cat';
   id: Scalars['ID'];
   name: Scalars['String'];
-  knowledge: Scalars['Int'];
+  imgUrl: Scalars['String'];
   health: Scalars['Int'];
   cuteness: Scalars['Int'];
-  birthday: Scalars['Date'];
+  knowledge: Scalars['Int'];
+  age: Scalars['Int'];
   owner: User;
   eventHistories: Array<EventHistory>;
+  status: Scalars['String'];
 };
 
 export type User = {
@@ -26,6 +34,20 @@ export type User = {
   id: Scalars['ID'];
   name: Scalars['String'];
   cats: Array<Cat>;
+};
+
+export type EventEffect = {
+   __typename?: 'EventEffect';
+  key?: Maybe<CatAttribute>;
+  delta: Scalars['Int'];
+};
+
+export type Event = {
+   __typename?: 'Event';
+  id: Scalars['ID'];
+  imgUrl: Scalars['String'];
+  content: Scalars['String'];
+  effects: Array<EventEffect>;
 };
 
 export type EventHistory = {
@@ -77,7 +99,6 @@ export type CatInput = {
   knowledge?: Maybe<Scalars['Int']>;
   cuteness?: Maybe<Scalars['Int']>;
   health?: Maybe<Scalars['Int']>;
-  birthday?: Maybe<Scalars['Date']>;
   ownerId?: Maybe<Scalars['ID']>;
 };
 
@@ -112,10 +133,23 @@ export type MutationCreateEventHistoryArgs = {
   content: Scalars['String'];
 };
 
-export type UserListQueryVariables = {};
+export type GetCatsQueryVariables = {
+  ownerId: Scalars['ID'];
+};
 
 
-export type UserListQuery = (
+export type GetCatsQuery = (
+  { __typename?: 'Query' }
+  & { cats: Array<(
+    { __typename?: 'Cat' }
+    & Pick<Cat, 'id' | 'name'>
+  )> }
+);
+
+export type GetUsersQueryVariables = {};
+
+
+export type GetUsersQuery = (
   { __typename?: 'Query' }
   & { users: Array<(
     { __typename?: 'User' }

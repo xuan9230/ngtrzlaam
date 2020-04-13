@@ -1,18 +1,38 @@
+enum CatAttribute {
+  health
+  cuteness
+  knowledge
+}
+
 type Cat {
   id: ID!
   name: String!
-  knowledge: Int!
+  imgUrl: String!
   health: Int!
   cuteness: Int!
-  birthday: Date!
+  knowledge: Int!
+  age: Int!
   owner: User!
   eventHistories: [EventHistory!]!
+  status: String!
 }
 
 type User {
   id: ID!
   name: String!
   cats: [Cat!]!
+}
+
+type EventEffect {
+  key: CatAttribute
+  delta: Int!
+}
+
+type Event {
+  id: ID!
+  imgUrl: String!
+  content: String!
+  effects: [EventEffect!]!
 }
 
 type EventHistory {
@@ -38,7 +58,6 @@ input CatInput {
   knowledge: Int
   cuteness: Int
   health: Int
-  birthday: Date
   ownerId: ID
 }
 
