@@ -21,7 +21,8 @@ const Mutation = {
       health: 50,
       cuteness: 50,
       age: 0,
-      status: "alive",
+      status: "inHouse",
+      imgUrl: "",
       id,
     };
 

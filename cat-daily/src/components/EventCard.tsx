@@ -3,17 +3,18 @@ import TinderCard from "react-tinder-card";
 import styled from "styled-components";
 
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-export default function EventCard() {
+import { Event } from "../generated/graphql";
+
+// img size: 360 * 160
+
+export default function EventCard({ event }: { event: Event }) {
   return (
     <TinderCard
-      onSwipe={direction => {
+      onSwipe={(direction) => {
         console.log("You swiped: " + direction);
       }}
       // @ts-ignore
@@ -22,17 +23,16 @@ export default function EventCard() {
       }}
     >
       <CardContainer>
-        <CardImage
-          image="https://img.gmz88.com/uploadimg/ico/2019/1108/1573177142153102.jpg"
-          title="Contemplative Reptile"
-        />
+        <CardImage image={event.imgUrl} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
+          {event.title && (
+            <Typography gutterBottom variant="h5" component="h2">
+              {event.title}
+            </Typography>
+          )}
+
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {event.content}
           </Typography>
         </CardContent>
       </CardContainer>

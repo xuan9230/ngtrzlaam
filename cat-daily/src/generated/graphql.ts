@@ -46,6 +46,7 @@ export type Event = {
    __typename?: 'Event';
   id: Scalars['ID'];
   imgUrl: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
   content: Scalars['String'];
   effects: Array<EventEffect>;
 };
@@ -53,9 +54,9 @@ export type Event = {
 export type EventHistory = {
    __typename?: 'EventHistory';
   id: Scalars['ID'];
-  cat: Cat;
-  content: Scalars['String'];
   date: Scalars['Date'];
+  cat: Cat;
+  event: Event;
 };
 
 

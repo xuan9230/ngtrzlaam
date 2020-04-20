@@ -4,6 +4,12 @@ enum CatAttribute {
   knowledge
 }
 
+enum CatStatus {
+  inHouse
+  stray
+  finished
+}
+
 type Cat {
   id: ID!
   name: String!
@@ -14,7 +20,7 @@ type Cat {
   age: Int!
   owner: User!
   eventHistories: [EventHistory!]!
-  status: String!
+  status: CatStatus!
 }
 
 type User {
@@ -31,15 +37,19 @@ type EventEffect {
 type Event {
   id: ID!
   imgUrl: String!
+  status: CatStatus!
+  title: String
   content: String!
-  effects: [EventEffect!]!
+  result: String
+  yesEffects: [EventEffect!]!
+  noEffects: [EventEffect!]!
 }
 
 type EventHistory {
   id: ID!
-  cat: Cat!
-  content: String!
   date: Date!
+  cat: Cat!
+  event: Event!
 }
 
 scalar Date
@@ -47,6 +57,7 @@ scalar Date
 type Query {
   cat(id: ID!): Cat
   cats(ownerId: ID!): [Cat!]!
+  events(status: CatStatus!): [Event!]!
   eventHistory(id: ID!): EventHistory
   eventHistories(catId: ID!): [EventHistory!]!
   user(id: ID!): User
