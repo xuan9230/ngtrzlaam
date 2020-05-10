@@ -37,11 +37,17 @@ type EventEffect {
 type Event {
   id: ID!
   imgUrl: String!
+  # Required cat status that this event can happen to
   status: CatStatus!
+  # Event title
   title: String
+  # Event content
   content: String!
+  # Optional result message after user's selection
   result: String
+  # Effects when selecting yes
   yesEffects: [EventEffect!]!
+  # Effects when selecting no
   noEffects: [EventEffect!]!
 }
 

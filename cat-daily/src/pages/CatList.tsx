@@ -8,7 +8,7 @@ import {
   User,
   Cat,
   GetCatsQuery,
-  GetCatsQueryVariables
+  GetCatsQueryVariables,
 } from "../generated/graphql";
 import List from "../components/List";
 
@@ -28,8 +28,8 @@ export default function CatList() {
     GetCatsQueryVariables
   >(CATS_QUERY, {
     variables: {
-      ownerId: user.id
-    }
+      ownerId: user.id,
+    },
   });
   const history = useHistory();
 
@@ -42,6 +42,7 @@ export default function CatList() {
       records={data.cats}
       primaryKey="name"
       onClick={(cat: Cat) => {
+        // TODO: save in local store
         console.log(cat);
         history.push("/deck");
       }}

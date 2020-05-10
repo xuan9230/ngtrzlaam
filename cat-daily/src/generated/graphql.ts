@@ -15,6 +15,12 @@ export enum CatAttribute {
   Knowledge = 'knowledge'
 }
 
+export enum CatStatus {
+  InHouse = 'inHouse',
+  Stray = 'stray',
+  Finished = 'finished'
+}
+
 export type Cat = {
    __typename?: 'Cat';
   id: Scalars['ID'];
@@ -26,7 +32,7 @@ export type Cat = {
   age: Scalars['Int'];
   owner: User;
   eventHistories: Array<EventHistory>;
-  status: Scalars['String'];
+  status: CatStatus;
 };
 
 export type User = {
@@ -46,9 +52,18 @@ export type Event = {
    __typename?: 'Event';
   id: Scalars['ID'];
   imgUrl: Scalars['String'];
+  /** Required cat status that this event can happen to */
+  status: CatStatus;
+  /** Event title */
   title?: Maybe<Scalars['String']>;
+  /** Event content */
   content: Scalars['String'];
-  effects: Array<EventEffect>;
+  /** Optional result message after user's selection */
+  result?: Maybe<Scalars['String']>;
+  /** Effects when selecting yes */
+  yesEffects: Array<EventEffect>;
+  /** Effects when selecting no */
+  noEffects: Array<EventEffect>;
 };
 
 export type EventHistory = {
@@ -64,6 +79,7 @@ export type Query = {
    __typename?: 'Query';
   cat?: Maybe<Cat>;
   cats: Array<Cat>;
+  events: Array<Event>;
   eventHistory?: Maybe<EventHistory>;
   eventHistories: Array<EventHistory>;
   user?: Maybe<User>;
@@ -78,6 +94,11 @@ export type QueryCatArgs = {
 
 export type QueryCatsArgs = {
   ownerId: Scalars['ID'];
+};
+
+
+export type QueryEventsArgs = {
+  status: CatStatus;
 };
 
 

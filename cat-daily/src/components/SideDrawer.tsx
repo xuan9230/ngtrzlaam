@@ -11,7 +11,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 import PetsIcon from "@material-ui/icons/Pets";
-import HistoryIcon from "@material-ui/icons/Timeline";
+// import HistoryIcon from "@material-ui/icons/Timeline";
 
 type DrawerProps = {
   open: boolean;
@@ -31,12 +31,12 @@ export default function SideDrawer({ open, onClose }: DrawerProps) {
           </ListItemIcon>
           <ListItemText primary="猫咪列表" />
         </ListItem>
-        <ListItem button>
+        {/* <ListItem button>
           <ListItemIcon>
             <HistoryIcon />
           </ListItemIcon>
           <ListItemText primary="际遇记录" />
-        </ListItem>
+        </ListItem> */}
       </List>
       <Divider />
       <List>
