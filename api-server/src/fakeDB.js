@@ -64,6 +64,24 @@ const fakeDB = {
       ],
       noEffects: [],
     },
+    e_2: {
+      id: "e_2",
+      imgUrl: "",
+      status: "inHouse",
+      content: "在厨房案板上发现了鲜鱼。吃？",
+      result: "",
+      yesEffects: [
+        {
+          key: "health",
+          delta: 8,
+        },
+        {
+          key: "cuteness",
+          delta: -8,
+        },
+      ],
+      noEffects: [],
+    },
   },
   eventHistories: {
     eh_1: {

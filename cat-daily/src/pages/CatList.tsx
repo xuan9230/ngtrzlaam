@@ -34,7 +34,7 @@ export default function CatList() {
   const history = useHistory();
 
   if (loading) return <LinearProgress />;
-  if (error || !data) return <p>Error :(</p>;
+  if (error || !data) return <p>Error fetching cats:(</p>;
 
   return (
     <List

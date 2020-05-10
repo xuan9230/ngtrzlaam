@@ -168,6 +168,26 @@ export type GetCatsQuery = (
   )> }
 );
 
+export type GetEventsQueryVariables = {
+  status: CatStatus;
+};
+
+
+export type GetEventsQuery = (
+  { __typename?: 'Query' }
+  & { events: Array<(
+    { __typename?: 'Event' }
+    & Pick<Event, 'id' | 'imgUrl' | 'title' | 'status' | 'content' | 'result'>
+    & { yesEffects: Array<(
+      { __typename?: 'EventEffect' }
+      & Pick<EventEffect, 'key' | 'delta'>
+    )>, noEffects: Array<(
+      { __typename?: 'EventEffect' }
+      & Pick<EventEffect, 'key' | 'delta'>
+    )> }
+  )> }
+);
+
 export type GetUsersQueryVariables = {};
 
 
