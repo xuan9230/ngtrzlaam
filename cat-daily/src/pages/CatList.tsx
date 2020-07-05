@@ -11,12 +11,15 @@ import {
   GetCatsQueryVariables,
 } from "../generated/graphql";
 import List from "../components/List";
+import { useDeck } from "../providers/DeckProvider";
+import actionTypes from "../types/actionTypes";
 
 const CATS_QUERY = gql`
   query getCats($ownerId: ID!) {
     cats(ownerId: $ownerId) {
       id
       name
+      status
     }
   }
 `;
@@ -32,6 +35,7 @@ export default function CatList() {
     },
   });
   const history = useHistory();
+  const { dispatch } = useDeck();
 
   if (loading) return <LinearProgress />;
   if (error || !data) return <p>Error fetching cats:(</p>;
@@ -42,8 +46,10 @@ export default function CatList() {
       records={data.cats}
       primaryKey="name"
       onClick={(cat: Cat) => {
-        // TODO: save in local store
-        console.log(cat);
+        dispatch({
+          type: actionTypes.SET_CURRENT_CAT,
+          cat,
+        });
         history.push("/deck");
       }}
     />

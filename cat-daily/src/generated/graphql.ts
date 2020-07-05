@@ -164,7 +164,7 @@ export type GetCatsQuery = (
   { __typename?: 'Query' }
   & { cats: Array<(
     { __typename?: 'Cat' }
-    & Pick<Cat, 'id' | 'name'>
+    & Pick<Cat, 'id' | 'name' | 'status'>
   )> }
 );
 

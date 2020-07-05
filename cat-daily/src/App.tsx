@@ -5,6 +5,7 @@ import { CssBaseline } from "@material-ui/core";
 
 import Router from "./Router";
 import { apolloClient } from "./apollo";
+import { DeckProvider } from "./providers/DeckProvider";
 
 const theme = createMuiTheme({
   palette: {
@@ -17,7 +18,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <ApolloProvider client={apolloClient}>
-        <Router />
+        <DeckProvider>
+          <Router />
+        </DeckProvider>
       </ApolloProvider>
     </ThemeProvider>
   );

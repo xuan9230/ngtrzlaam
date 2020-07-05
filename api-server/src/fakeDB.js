@@ -12,6 +12,8 @@ const fakeDB = {
       age: 5,
       ownerId: "u_1",
       imgUrl: "",
+      status: "inHouse",
+      eventHistories: [],
     },
     c_2: {
       id: "c_2",
@@ -22,6 +24,8 @@ const fakeDB = {
       age: 0,
       ownerId: "u_2",
       imgUrl: "",
+      status: "inHouse",
+      eventHistories: [],
     },
     c_3: {
       id: "c_3",
@@ -32,6 +36,8 @@ const fakeDB = {
       age: 3,
       ownerId: "u_2",
       imgUrl: "",
+      status: "inHouse",
+      eventHistories: [],
     },
   },
   users: {

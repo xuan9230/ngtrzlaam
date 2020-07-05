@@ -5,4 +5,9 @@ export const apolloClient = new ApolloClient({
   link: new HttpLink({
     uri: "http://localhost:6060/graphql",
   }),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: "cache-and-network",
+    },
+  },
 });
