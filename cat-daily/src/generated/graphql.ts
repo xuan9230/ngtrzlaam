@@ -31,7 +31,7 @@ export type Cat = {
   knowledge: Scalars['Int'];
   age: Scalars['Int'];
   owner: User;
-  eventHistories: Array<EventHistory>;
+  eventIds: Array<Scalars['ID']>;
   status: CatStatus;
 };
 
@@ -66,22 +66,12 @@ export type Event = {
   noEffects: Array<EventEffect>;
 };
 
-export type EventHistory = {
-   __typename?: 'EventHistory';
-  id: Scalars['ID'];
-  date: Scalars['Date'];
-  cat: Cat;
-  event: Event;
-};
-
 
 export type Query = {
    __typename?: 'Query';
   cat?: Maybe<Cat>;
   cats: Array<Cat>;
   events: Array<Event>;
-  eventHistory?: Maybe<EventHistory>;
-  eventHistories: Array<EventHistory>;
   user?: Maybe<User>;
   users: Array<User>;
 };
@@ -98,16 +88,6 @@ export type QueryCatsArgs = {
 
 
 export type QueryEventsArgs = {
-  status: CatStatus;
-};
-
-
-export type QueryEventHistoryArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type QueryEventHistoriesArgs = {
   catId: Scalars['ID'];
 };
 
@@ -129,7 +109,6 @@ export type Mutation = {
   createCat: Cat;
   updateCat: Cat;
   deleteCat: Cat;
-  createEventHistory: EventHistory;
 };
 
 
@@ -149,12 +128,6 @@ export type MutationDeleteCatArgs = {
   id: Scalars['ID'];
 };
 
-
-export type MutationCreateEventHistoryArgs = {
-  catId: Scalars['ID'];
-  content: Scalars['String'];
-};
-
 export type GetCatsQueryVariables = {
   ownerId: Scalars['ID'];
 };
@@ -169,7 +142,7 @@ export type GetCatsQuery = (
 );
 
 export type GetEventsQueryVariables = {
-  status: CatStatus;
+  catId: Scalars['ID'];
 };
 
 

@@ -13,7 +13,9 @@ const fakeDB = {
       ownerId: "u_1",
       imgUrl: "",
       status: "inHouse",
-      eventHistories: [],
+      eventIds: {
+        e_1: true,
+      },
     },
     c_2: {
       id: "c_2",
@@ -25,7 +27,7 @@ const fakeDB = {
       ownerId: "u_2",
       imgUrl: "",
       status: "inHouse",
-      eventHistories: [],
+      eventIds: {},
     },
     c_3: {
       id: "c_3",
@@ -37,7 +39,7 @@ const fakeDB = {
       ownerId: "u_2",
       imgUrl: "",
       status: "inHouse",
-      eventHistories: [],
+      eventIds: {},
     },
   },
   users: {
@@ -87,14 +89,6 @@ const fakeDB = {
         },
       ],
       noEffects: [],
-    },
-  },
-  eventHistories: {
-    eh_1: {
-      id: "eh_1",
-      date: new Date("2020-04-03"),
-      catId: "c_1",
-      eventId: "e_1",
     },
   },
 };

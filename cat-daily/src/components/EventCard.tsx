@@ -10,11 +10,17 @@ import IconButton from "@material-ui/core/IconButton";
 import CheckIcon from "@material-ui/icons/CheckCircle";
 import CrossIcon from "@material-ui/icons/Cancel";
 
-import { Event } from "../generated/graphql";
+import { Event, Scalars } from "../generated/graphql";
 
 // img size: 360 * 280
 
-export default function EventCard({ event }: { event: Event }) {
+export default function EventCard({
+  event,
+  onSwipe,
+}: {
+  event: Event;
+  onSwipe: (eventId: Scalars["ID"]) => void;
+}) {
   function onYes() {
     console.log("yes");
   }
@@ -32,6 +38,7 @@ export default function EventCard({ event }: { event: Event }) {
       // @ts-ignore
       onCardLeftScreen={() => {
         console.log("a card left the screen");
+        onSwipe(event.id);
       }}
     >
       <CardContainer>

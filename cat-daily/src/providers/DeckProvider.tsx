@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import { Cat } from "../generated/graphql";
+import { Cat, Event } from "../generated/graphql";
 import actionTypes from "../types/actionTypes";
 
 type DeckState = {
@@ -15,12 +15,30 @@ type DeckState = {
    * Remaining swipe times for today
    */
   remainingSwipes: number;
+  /**
+   * Events
+   */
+  eventMap: {
+    [key: string]: Event;
+  };
 };
 
-type Action = {
+/**
+ * Actions
+ */
+type SetCurrentCatAction = {
   type: typeof actionTypes.SET_CURRENT_CAT;
   cat: Cat;
 };
+
+type SetEventsAction = {
+  type: typeof actionTypes.SET_EVENTS;
+  eventMap: {
+    [key: string]: Event;
+  };
+};
+
+type Action = SetCurrentCatAction | SetEventsAction;
 
 interface DeckContextType {
   state: DeckState;
@@ -35,6 +53,11 @@ function deckReducer(state: DeckState, action: Action): DeckState {
       return {
         ...state,
         cat: action.cat,
+      };
+    case actionTypes.SET_EVENTS:
+      return {
+        ...state,
+        eventMap: action.eventMap,
       };
     default:
       return state;
@@ -53,6 +76,7 @@ function useDeck() {
 function DeckProvider(props: any) {
   const [state, dispatch] = React.useReducer(deckReducer, {
     remainingSwipes: 3,
+    eventMap: {},
   });
 
   const value = React.useMemo(() => ({ state, dispatch }), [state]);
