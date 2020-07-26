@@ -60,7 +60,7 @@ export default function Deck({ cat }: { cat: Cat }) {
   // Put fetch result in state
   useEffect(() => {
     if (data) {
-      console.log("put int state");
+      console.log("put in state");
       const eventMap: {
         [eventId: string]: Event;
       } = {};

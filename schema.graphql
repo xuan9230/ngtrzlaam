@@ -19,6 +19,7 @@ type Cat {
   knowledge: Int!
   age: Int!
   owner: User!
+  # Events the cat has triggered
   eventIds: [ID!]!
   status: CatStatus!
 }
