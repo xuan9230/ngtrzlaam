@@ -74,9 +74,10 @@ const fakeDB = {
     },
     e_2: {
       id: "e_2",
-      imgUrl: "",
+      imgUrl:
+        "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/2.png",
       status: "inHouse",
-      content: "在厨房案板上发现了鲜鱼。吃？",
+      content: "在餐桌上发现了火腿。吃？",
       result: "",
       yesEffects: [
         {

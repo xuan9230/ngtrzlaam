@@ -6453,6 +6453,11 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
+immer@^7.0.7:
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.7.tgz#9dfe713d49bf871cc59aedfce59b1992fa37a977"
+  integrity sha512-Q8yYwVADJXrNfp1ZUAh4XDHkcoE3wpdpb4mC5abDSajs2EbW8+cGdPyAnglMyLnm7EF6ojD2xBFX7L5i4TIytw==
+
 immutable@~3.7.6:
   version "3.7.6"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
@@ -10382,10 +10387,10 @@ react-scripts@3.4.1:
   optionalDependencies:
     fsevents "2.1.2"
 
-react-tinder-card@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-tinder-card/-/react-tinder-card-1.1.1.tgz#72dbffd9b135101a9d894a08db0d40ba3b51234f"
-  integrity sha512-VR64CWbbkcNlnnOXMbMTLFY1hLMTJqP3hGCbhSVhv3sPLC6dO+gut5NL7XZTo+ZZjaWZXJ42rwhiPswW+/GXeQ==
+react-tinder-card@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-tinder-card/-/react-tinder-card-1.2.0.tgz#a0246be105de51154cfea04b5850ff8fea5e953f"
+  integrity sha512-sg2NrBahOcjiVLS1wCJwGkVc8SFScr4xGA6Nr3l+IO29z/ZAERZcqSq9UlAMwOwWKXU1AVZfMyMvhuyNFoK/qg==
   dependencies:
     p-sleep "^1.1.0"
 

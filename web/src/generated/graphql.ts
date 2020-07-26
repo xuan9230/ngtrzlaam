@@ -31,6 +31,7 @@ export type Cat = {
   knowledge: Scalars['Int'];
   age: Scalars['Int'];
   owner: User;
+  /** Events the cat has triggered */
   eventIds: Array<Scalars['ID']>;
   status: CatStatus;
 };

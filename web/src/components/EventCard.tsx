@@ -10,41 +10,42 @@ import IconButton from "@material-ui/core/IconButton";
 import CheckIcon from "@material-ui/icons/CheckCircle";
 import CrossIcon from "@material-ui/icons/Cancel";
 
-import { Event, Scalars } from "../generated/graphql";
+import { Event, EventEffect } from "../generated/graphql";
 
 // img size: 360 * 280
 
 export default function EventCard({
   event,
-  onSwipe,
+  onEventEffects,
 }: {
   event: Event;
-  onSwipe: (eventId: Scalars["ID"]) => void;
+  onEventEffects: (eventEffects: EventEffect[]) => void;
 }) {
   function onYes() {
-    console.log("yes");
+    console.log("yes:", event.yesEffects);
+    onEventEffects(event.yesEffects);
   }
 
   function onNo() {
-    console.log("no");
+    console.log("no:", event.noEffects);
+    onEventEffects(event.noEffects);
   }
 
   return (
-    <TinderCard
+    <StyledCard
       onSwipe={(direction) => {
         if (direction === "right") onYes();
         else if (direction === "left") onNo();
       }}
       // @ts-ignore
-      onCardLeftScreen={() => {
-        console.log("a card left the screen");
-        onSwipe(event.id);
-      }}
+      // onCardLeftScreen={() => {
+      //   onSwipe(event.id);
+      // }}
     >
       <CardContainer>
         <CardImage image={event.imgUrl} />
 
-        <CardContent>
+        <CardInfoContainer>
           {event.title && (
             <Typography gutterBottom variant="h5" component="h2">
               {event.title}
@@ -54,7 +55,7 @@ export default function EventCard({
           <Typography variant="body2" color="textSecondary" component="p">
             {event.content}
           </Typography>
-        </CardContent>
+        </CardInfoContainer>
       </CardContainer>
 
       <ButtonsContainer>
@@ -65,7 +66,7 @@ export default function EventCard({
           <CheckIcon fontSize="large" />
         </IconButton>
       </ButtonsContainer>
-    </TinderCard>
+    </StyledCard>
   );
 }
 
@@ -78,7 +79,18 @@ const CardImage = styled(CardMedia)`
   height: 280px;
 `;
 
+const CardInfoContainer = styled(CardContent)`
+  height: 80px;
+  display: flex;
+  align-items: center;
+`;
+
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-around;
+`;
+
+const StyledCard = styled(TinderCard)`
+  position: absolute;
+  width: 100%;
 `;

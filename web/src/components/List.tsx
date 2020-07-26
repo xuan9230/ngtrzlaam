@@ -18,23 +18,30 @@ type VerticalListProps = {
   records: GenericObject[];
   onClick: Function;
   primaryKey: string;
+  // TODO: use GenericObject instead of Function
+  renderItem?: Function;
 };
 
 export default function VerticalList({
   title,
   records,
   onClick,
-  primaryKey
+  primaryKey,
+  renderItem,
 }: VerticalListProps) {
   return (
     <Container>
       <Title variant="h4">{title}</Title>
       <List>
-        {records.map(record => (
-          <ListItem key={record.id} button onClick={() => onClick(record)}>
-            <StyledText primary={record[primaryKey]} />
-          </ListItem>
-        ))}
+        {records.map((record) =>
+          typeof renderItem === "function" ? (
+            renderItem(record)
+          ) : (
+            <ListItem key={record.id} button onClick={() => onClick(record)}>
+              <StyledText primary={record[primaryKey]} />
+            </ListItem>
+          )
+        )}
       </List>
     </Container>
   );

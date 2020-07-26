@@ -47,8 +47,8 @@ export default function CatList() {
       primaryKey="name"
       onClick={(cat: Cat) => {
         dispatch({
-          type: actionTypes.SET_CURRENT_CAT,
-          cat,
+          type: actionTypes.SET_SELECTED_CAT_ID,
+          catId: cat.id,
         });
         history.push("/deck");
       }}

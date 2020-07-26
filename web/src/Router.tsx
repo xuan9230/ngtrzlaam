@@ -9,7 +9,7 @@ import { useDeck } from "./providers/DeckProvider";
 export default function Router() {
   const user = localStorage.getItem("user");
   const {
-    state: { cat },
+    state: { catId },
   } = useDeck();
 
   return (
@@ -22,7 +22,7 @@ export default function Router() {
           <CatList />
         </Route>
         <Route path="/deck">
-          {!!cat ? <Deck cat={cat} /> : <Redirect to="/cats" />}
+          {!!catId ? <Deck catId={catId} /> : <Redirect to="/cats" />}
         </Route>
         {!!user ? <Redirect to="/cats" /> : <Redirect to="/login" />}
       </Switch>
