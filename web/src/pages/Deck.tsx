@@ -8,7 +8,11 @@ import { LinearProgress } from "@material-ui/core";
 import CatAttributesArea from "./CatAttributesArea";
 import SideDrawer from "../components/SideDrawer";
 
-import { Scalars } from "../generated/graphql";
+import {
+  Scalars,
+  GetCatQuery,
+  GetCatQueryVariables,
+} from "../generated/graphql";
 import { useDeck } from "../providers/DeckProvider";
 import EventSection from "./EventSection";
 import actionTypes from "../types/actionTypes";
@@ -18,13 +22,13 @@ const CAT_DETAILS_QUERY = gql`
     cat(id: $id) {
       id
       name
+      status
       imgUrl
       health
       cuteness
       knowledge
       age
       eventIds
-      status
     }
   }
 `;
@@ -37,7 +41,10 @@ export default function Deck({ catId }: { catId: Scalars["ID"] }) {
   } = useDeck();
 
   // Fetch cat details
-  const { loading, error, data, fetchMore } = useQuery(CAT_DETAILS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery<
+    GetCatQuery,
+    GetCatQueryVariables
+  >(CAT_DETAILS_QUERY, {
     variables: {
       id: catId,
     },
@@ -45,7 +52,7 @@ export default function Deck({ catId }: { catId: Scalars["ID"] }) {
 
   // Put fetch result in state
   useEffect(() => {
-    if (data) {
+    if (data && data.cat) {
       dispatch({
         type: actionTypes.SET_CURRENT_CAT,
         cat: data.cat,

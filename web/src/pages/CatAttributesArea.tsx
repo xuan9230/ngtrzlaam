@@ -26,7 +26,6 @@ export default function CatAttributesArea({ style }: { style?: any }) {
 
   if (!cat) return null;
 
-  console.log(cat);
   return (
     <Container style={style}>
       <Row>

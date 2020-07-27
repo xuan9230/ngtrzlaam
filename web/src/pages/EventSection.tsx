@@ -3,8 +3,9 @@
  */
 
 import React, { useEffect } from "react";
+import produce from "immer";
 import styled from "styled-components";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 import Typography from "@material-ui/core/Typography";
 import { LinearProgress } from "@material-ui/core";
 
@@ -39,6 +40,14 @@ const EVENTS_QUERY = gql`
   }
 `;
 
+// const UPDATE_CAT = gql`
+//   mutation updateCat($id: ID!, data: CatInput) {
+//     updateCat(id: $id, data: $data) {
+//       ...data
+//     }
+//   }
+// `;
+
 export default function EventSection({ catId }: { catId: Scalars["ID"] }) {
   const {
     state: { events },
@@ -55,6 +64,9 @@ export default function EventSection({ catId }: { catId: Scalars["ID"] }) {
     },
   });
 
+  // Update cat
+  // const [updateCat, { data: updatedCat }] = useMutation(UPDATE_CAT)
+
   // Put fetch result in state
   useEffect(() => {
     if (data) {
@@ -68,19 +80,25 @@ export default function EventSection({ catId }: { catId: Scalars["ID"] }) {
   if (error) return <p>Error fetching events:(</p>;
   if (loading || !(events && events.length)) return <LinearProgress />;
 
+  /**
+   * Calculate new cat attributes based on event effects
+   * And update on the server
+   */
+  function updateCat(eventEffects: EventEffect[]) {
+    // const updatedCat = produce(cat, (draftCat) => {
+    //   if (!draftCat) return undefined;
+    //   action.eventEffects.forEach((effect) => {
+    //     const { key, delta } = effect;
+    //     if (!key) throw new Error("Event effect must contain attribute key");
+    //     draftCat[key] = draftCat[key] + delta;
+    //   });
+    // });
+  }
+
   return (
     <CardsContainer>
       {events.map((event) => (
-        <EventCard
-          key={event.id}
-          event={event}
-          onEventEffects={(eventEffects: EventEffect[]) =>
-            dispatch({
-              type: actionTypes.UPDATE_CAT_ATTRIBUTES,
-              eventEffects,
-            })
-          }
-        />
+        <EventCard key={event.id} event={event} onEventEffects={updateCat} />
       ))}
       <Typography variant="body1" style={{ marginTop: 56 }}>
         猫累了，明天再来吧

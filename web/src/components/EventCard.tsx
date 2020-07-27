@@ -37,10 +37,6 @@ export default function EventCard({
         if (direction === "right") onYes();
         else if (direction === "left") onNo();
       }}
-      // @ts-ignore
-      // onCardLeftScreen={() => {
-      //   onSwipe(event.id);
-      // }}
     >
       <CardContainer>
         <CardImage image={event.imgUrl} />
@@ -72,7 +68,6 @@ export default function EventCard({
 
 const CardContainer = styled(Card)`
   align-self: stretch;
-  /* max-width: 345px; */
 `;
 
 const CardImage = styled(CardMedia)`
