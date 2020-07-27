@@ -142,6 +142,19 @@ export type GetCatsQuery = (
   )> }
 );
 
+export type GetCatQueryVariables = {
+  id: Scalars['ID'];
+};
+
+
+export type GetCatQuery = (
+  { __typename?: 'Query' }
+  & { cat?: Maybe<(
+    { __typename?: 'Cat' }
+    & Pick<Cat, 'id' | 'name' | 'imgUrl' | 'health' | 'cuteness' | 'knowledge' | 'age' | 'eventIds' | 'status'>
+  )> }
+);
+
 export type GetEventsQueryVariables = {
   catId: Scalars['ID'];
 };
