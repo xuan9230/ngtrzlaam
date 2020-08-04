@@ -19,7 +19,7 @@ const Mutation = {
       name,
       knowledge: 50,
       health: 50,
-      cuteness: 50,
+      wilderness: 50,
       age: 0,
       status: "inHouse",
       imgUrl: "",
@@ -31,7 +31,7 @@ const Mutation = {
   },
   updateCat: (
     _,
-    { id, input: { name, knowledge, health, cuteness, age, status } },
+    { id, input: { name, knowledge, health, wilderness, age, status } },
     { db }
   ) => {
     const cat = db.cats[id];
@@ -40,7 +40,7 @@ const Mutation = {
     if (name) cat.name = name;
     if (knowledge) cat.knowledge = knowledge;
     if (health) cat.health = health;
-    if (cuteness) cat.cuteness = cuteness;
+    if (wilderness) cat.wilderness = wilderness;
     if (age) cat.age = age;
     if (status) cat.status = status;
 

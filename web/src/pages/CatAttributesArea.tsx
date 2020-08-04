@@ -38,7 +38,7 @@ export default function CatAttributesArea({ style }: { style?: any }) {
       </Row>
       <Row>
         <Typography variant="h6">萌度</Typography>
-        <BorderLinearProgress variant="determinate" value={cat.cuteness} />
+        <BorderLinearProgress variant="determinate" value={cat.wilderness} />
       </Row>
     </Container>
   );

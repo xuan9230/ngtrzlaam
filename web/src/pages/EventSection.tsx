@@ -40,13 +40,16 @@ const EVENTS_QUERY = gql`
   }
 `;
 
-// const UPDATE_CAT = gql`
-//   mutation updateCat($id: ID!, data: CatInput) {
-//     updateCat(id: $id, data: $data) {
-//       ...data
-//     }
-//   }
-// `;
+const UPDATE_CAT = gql`
+  mutation updateCat($id: ID!, data: CatInput) {
+    updateCat(id: $id, data: $data) {
+      id
+      health
+      wilderness
+      knowledge
+    }
+  }
+`;
 
 export default function EventSection({ catId }: { catId: Scalars["ID"] }) {
   const {
@@ -65,7 +68,7 @@ export default function EventSection({ catId }: { catId: Scalars["ID"] }) {
   });
 
   // Update cat
-  // const [updateCat, { data: updatedCat }] = useMutation(UPDATE_CAT)
+  const [updateCat, { data: updatedCat }] = useMutation(UPDATE_CAT);
 
   // Put fetch result in state
   useEffect(() => {

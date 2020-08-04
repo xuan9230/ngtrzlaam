@@ -25,7 +25,7 @@ const CAT_DETAILS_QUERY = gql`
       status
       imgUrl
       health
-      cuteness
+      wilderness
       knowledge
       age
       eventIds

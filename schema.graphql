@@ -1,6 +1,6 @@
 enum CatAttribute {
   health
-  cuteness
+  wilderness
   knowledge
 }
 
@@ -15,7 +15,7 @@ type Cat {
   name: String!
   imgUrl: String!
   health: Int!
-  cuteness: Int!
+  wilderness: Int!
   knowledge: Int!
   age: Int!
   owner: User!
@@ -65,7 +65,7 @@ type Query {
 input CatInput {
   name: String
   knowledge: Int
-  cuteness: Int
+  wilderness: Int
   health: Int
   ownerId: ID
 }

@@ -3,7 +3,7 @@ query AppQuery {
     id
     name
     age
-    cuteness
+    wilderness
     Owner {
       name
     }
