@@ -72,6 +72,6 @@ input CatInput {
 
 type Mutation {
   createCat(ownerId: ID!, name: String!): Cat!
-  updateCat(id: ID!, data: CatInput): Cat!
+  updateCat(id: ID!, updates: CatInput): Cat!
   deleteCat(id: ID!): Cat!
 }

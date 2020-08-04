@@ -3,9 +3,8 @@
  */
 
 import React from "react";
-import produce from "immer";
 
-import { Cat, Event, EventEffect, Scalars } from "../generated/graphql";
+import { Scalars } from "../generated/graphql";
 import actionTypes from "../types/actionTypes";
 
 type DeckState = {
@@ -16,7 +15,7 @@ type DeckState = {
   /**
    * Currently selected cat details
    */
-  cat?: Cat;
+  // cat?: Cat;
   /**
    * Remaining swipe times for today
    */
@@ -24,10 +23,10 @@ type DeckState = {
   /**
    * Events
    */
-  // eventMap: {
-  //   [key: string]: Event;
-  // };
-  events: Event[];
+  // // eventMap: {
+  // //   [key: string]: Event;
+  // // };
+  // events: Event[];
 };
 
 /**
@@ -38,29 +37,28 @@ type SetSelectedCatId = {
   catId: Scalars["ID"];
 };
 
-type SetCurrentCatAction = {
-  type: typeof actionTypes.SET_CURRENT_CAT;
-  cat: Cat;
-};
+// type SetCurrentCatAction = {
+//   type: typeof actionTypes.SET_CURRENT_CAT;
+//   cat: Cat;
+// };
 
-type SetEventsAction = {
-  type: typeof actionTypes.SET_EVENTS;
-  // eventMap: {
-  //   [key: string]: Event;
-  // };
-  events: Event[];
-};
+// type SetEventsAction = {
+//   type: typeof actionTypes.SET_EVENTS;
+//   // eventMap: {
+//   //   [key: string]: Event;
+//   // };
+//   events: Event[];
+// };
 
-type UpdateCatAttributesAction = {
-  type: typeof actionTypes.UPDATE_CAT_ATTRIBUTES;
-  eventEffects: EventEffect[];
-};
+// type UpdateCatAttributesAction = {
+//   type: typeof actionTypes.UPDATE_CAT_ATTRIBUTES;
+//   eventEffects: EventEffect[];
+// };
 
-type Action =
-  | SetSelectedCatId
-  | SetCurrentCatAction
-  | SetEventsAction
-  | UpdateCatAttributesAction;
+type Action = SetSelectedCatId;
+// | SetCurrentCatAction
+// | SetEventsAction
+// | UpdateCatAttributesAction;
 
 interface DeckContextType {
   state: DeckState;
@@ -76,32 +74,32 @@ function deckReducer(state: DeckState, action: Action): DeckState {
         ...state,
         catId: action.catId,
       };
-    case actionTypes.SET_CURRENT_CAT:
-      return {
-        ...state,
-        cat: action.cat,
-      };
-    case actionTypes.SET_EVENTS:
-      return {
-        ...state,
-        events: action.events,
-      };
-    case actionTypes.UPDATE_CAT_ATTRIBUTES:
-      const updatedCat = produce(state.cat, (draftCat) => {
-        if (!draftCat) return undefined;
+    // case actionTypes.SET_CURRENT_CAT:
+    //   return {
+    //     ...state,
+    //     cat: action.cat,
+    //   };
+    // case actionTypes.SET_EVENTS:
+    //   return {
+    //     ...state,
+    //     events: action.events,
+    //   };
+    // case actionTypes.UPDATE_CAT_ATTRIBUTES:
+    //   const updatedCat = produce(state.cat, (draftCat) => {
+    //     if (!draftCat) return undefined;
 
-        action.eventEffects.forEach((effect) => {
-          const { key, delta } = effect;
-          if (!key) throw new Error("Event effect must contain attribute key");
+    //     action.eventEffects.forEach((effect) => {
+    //       const { key, delta } = effect;
+    //       if (!key) throw new Error("Event effect must contain attribute key");
 
-          draftCat[key] = draftCat[key] + delta;
-        });
-      });
+    //       draftCat[key] = draftCat[key] + delta;
+    //     });
+    //   });
 
-      return {
-        ...state,
-        cat: updatedCat,
-      };
+    //   return {
+    //     ...state,
+    //     cat: updatedCat,
+    //   };
     default:
       return state;
   }
@@ -119,7 +117,7 @@ function useDeck() {
 function DeckProvider(props: any) {
   const [state, dispatch] = React.useReducer(deckReducer, {
     remainingSwipes: 3,
-    events: [],
+    // events: [],
   });
 
   const value = React.useMemo(() => ({ state, dispatch }), [state]);

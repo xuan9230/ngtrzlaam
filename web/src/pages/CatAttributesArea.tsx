@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { lighten, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { useDeck } from "../providers/DeckProvider";
+import { Cat } from "../generated/graphql";
 
 const BorderLinearProgress = withStyles({
   root: {
@@ -19,13 +19,13 @@ const BorderLinearProgress = withStyles({
   },
 })(LinearProgress);
 
-export default function CatAttributesArea({ style }: { style?: any }) {
-  const {
-    state: { cat },
-  } = useDeck();
-
-  if (!cat) return null;
-
+export default function CatAttributesArea({
+  style,
+  cat,
+}: {
+  style?: any;
+  cat: Omit<Cat, "owner">;
+}) {
   return (
     <Container style={style}>
       <Row>
@@ -37,7 +37,7 @@ export default function CatAttributesArea({ style }: { style?: any }) {
         <BorderLinearProgress variant="determinate" value={cat.knowledge} />
       </Row>
       <Row>
-        <Typography variant="h6">萌度</Typography>
+        <Typography variant="h6">野性</Typography>
         <BorderLinearProgress variant="determinate" value={cat.wilderness} />
       </Row>
     </Container>

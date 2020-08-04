@@ -2,8 +2,7 @@
  * Event card section for a cat
  */
 
-import React, { useEffect } from "react";
-import produce from "immer";
+import React from "react";
 import styled from "styled-components";
 import { useQuery, gql, useMutation } from "@apollo/client";
 import Typography from "@material-ui/core/Typography";
@@ -12,11 +11,9 @@ import { LinearProgress } from "@material-ui/core";
 import {
   GetEventsQuery,
   GetEventsQueryVariables,
-  Scalars,
   EventEffect,
+  Cat,
 } from "../generated/graphql";
-import { useDeck } from "../providers/DeckProvider";
-import actionTypes from "../types/actionTypes";
 import EventCard from "../components/EventCard";
 
 const EVENTS_QUERY = gql`
@@ -41,8 +38,8 @@ const EVENTS_QUERY = gql`
 `;
 
 const UPDATE_CAT = gql`
-  mutation updateCat($id: ID!, data: CatInput) {
-    updateCat(id: $id, data: $data) {
+  mutation updateCat($id: ID!, $updates: CatInput) {
+    updateCat(id: $id, updates: $updates) {
       id
       health
       wilderness
@@ -51,58 +48,63 @@ const UPDATE_CAT = gql`
   }
 `;
 
-export default function EventSection({ catId }: { catId: Scalars["ID"] }) {
-  const {
-    state: { events },
-    dispatch,
-  } = useDeck();
-
+export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   // Fetch events
-  const { loading, error, data, fetchMore } = useQuery<
+  const { loading: fetchEventsLoading, error, data, fetchMore } = useQuery<
     GetEventsQuery,
     GetEventsQueryVariables
   >(EVENTS_QUERY, {
     variables: {
-      catId,
+      catId: cat.id,
     },
   });
 
   // Update cat
-  const [updateCat, { data: updatedCat }] = useMutation(UPDATE_CAT);
-
-  // Put fetch result in state
-  useEffect(() => {
-    if (data) {
-      dispatch({
-        type: actionTypes.SET_EVENTS,
-        events: data.events,
-      });
-    }
-  }, [data, dispatch]);
+  const [updateCat, { loading: updateCatLoading }] = useMutation(UPDATE_CAT);
 
   if (error) return <p>Error fetching events:(</p>;
-  if (loading || !(events && events.length)) return <LinearProgress />;
+  if (fetchEventsLoading || !(data && data.events)) return <LinearProgress />;
 
   /**
    * Calculate new cat attributes based on event effects
    * And update on the server
    */
-  function updateCat(eventEffects: EventEffect[]) {
-    // const updatedCat = produce(cat, (draftCat) => {
-    //   if (!draftCat) return undefined;
-    //   action.eventEffects.forEach((effect) => {
-    //     const { key, delta } = effect;
-    //     if (!key) throw new Error("Event effect must contain attribute key");
-    //     draftCat[key] = draftCat[key] + delta;
-    //   });
-    // });
+  console.log("cat1", cat.health, cat.knowledge, cat.wilderness);
+  function handleUpdateCat(eventEffects: EventEffect[]) {
+    console.log("cat2", cat.health, cat.knowledge, cat.wilderness);
+    const updates = {
+      health: cat.health,
+      wilderness: cat.wilderness,
+      knowledge: cat.knowledge,
+    };
+
+    eventEffects.forEach((effect) => {
+      const { key, delta } = effect;
+      if (!key) throw new Error("Event effect must contain attribute key");
+
+      updates[key] = updates[key] + delta;
+    });
+
+    updateCat({
+      variables: {
+        id: cat.id,
+        updates,
+      },
+    });
   }
 
   return (
     <CardsContainer>
-      {events.map((event) => (
-        <EventCard key={event.id} event={event} onEventEffects={updateCat} />
-      ))}
+      {data.events.map((event) => {
+        return (
+          <EventCard
+            key={event.id}
+            event={event}
+            handleUpdateCat={handleUpdateCat}
+            cat={cat}
+          />
+        );
+      })}
       <Typography variant="body1" style={{ marginTop: 56 }}>
         猫累了，明天再来吧
       </Typography>

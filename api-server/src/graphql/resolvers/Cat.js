@@ -31,7 +31,7 @@ const Mutation = {
   },
   updateCat: (
     _,
-    { id, input: { name, knowledge, health, wilderness, age, status } },
+    { id, updates: { name, knowledge, health, wilderness, age, status } },
     { db }
   ) => {
     const cat = db.cats[id];

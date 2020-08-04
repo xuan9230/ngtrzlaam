@@ -35,10 +35,10 @@ const CAT_DETAILS_QUERY = gql`
 
 export default function Deck({ catId }: { catId: Scalars["ID"] }) {
   const [showDrawer, setShowDrawer] = useState(false);
-  const {
-    // state: { cat },
-    dispatch,
-  } = useDeck();
+  // const {
+  //   // state: { cat },
+  //   dispatch,
+  // } = useDeck();
 
   // Fetch cat details
   const { loading, error, data, fetchMore } = useQuery<
@@ -51,17 +51,17 @@ export default function Deck({ catId }: { catId: Scalars["ID"] }) {
   });
 
   // Put fetch result in state
-  useEffect(() => {
-    if (data && data.cat) {
-      dispatch({
-        type: actionTypes.SET_CURRENT_CAT,
-        cat: data.cat,
-      });
-    }
-  }, [data, dispatch]);
+  // useEffect(() => {
+  //   if (data && data.cat) {
+  //     dispatch({
+  //       type: actionTypes.SET_CURRENT_CAT,
+  //       cat: data.cat,
+  //     });
+  //   }
+  // }, [data, dispatch]);
 
   if (error) return <p>Error fetching cat:(</p>;
-  if (loading) return <LinearProgress />;
+  if (!(data && data.cat) || loading) return <LinearProgress />;
 
   return (
     <Container>
@@ -71,9 +71,9 @@ export default function Deck({ catId }: { catId: Scalars["ID"] }) {
 
       <SideDrawer open={showDrawer} onClose={() => setShowDrawer(false)} />
 
-      <CatAttributesArea style={{ marginBottom: 16 }} />
+      <CatAttributesArea style={{ marginBottom: 16 }} cat={data.cat} />
 
-      <EventSection catId={catId} />
+      <EventSection cat={data.cat} />
     </Container>
   );
 }
