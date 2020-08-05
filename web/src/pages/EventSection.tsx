@@ -62,6 +62,9 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   // Update cat
   const [updateCat, { loading: updateCatLoading }] = useMutation(UPDATE_CAT);
 
+  const catRef = React.useRef(cat);
+  catRef.current = cat;
+
   if (error) return <p>Error fetching events:(</p>;
   if (fetchEventsLoading || !(data && data.events)) return <LinearProgress />;
 
@@ -69,13 +72,13 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
    * Calculate new cat attributes based on event effects
    * And update on the server
    */
-  console.log("cat1", cat.health, cat.knowledge, cat.wilderness);
   function handleUpdateCat(eventEffects: EventEffect[]) {
-    console.log("cat2", cat.health, cat.knowledge, cat.wilderness);
+    // Need to get cat from ref, as the TinderCard reserves obsolete callback
+    const { health, wilderness, knowledge } = catRef.current;
     const updates = {
-      health: cat.health,
-      wilderness: cat.wilderness,
-      knowledge: cat.knowledge,
+      health,
+      wilderness,
+      knowledge,
     };
 
     eventEffects.forEach((effect) => {
@@ -90,6 +93,14 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
         id: cat.id,
         updates,
       },
+      optimisticResponse: {
+        __typename: "Mutation",
+        updateCat: {
+          id: cat.id,
+          __typename: "Cat",
+          ...updates,
+        },
+      },
     });
   }
 
@@ -101,7 +112,6 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
             key={event.id}
             event={event}
             handleUpdateCat={handleUpdateCat}
-            cat={cat}
           />
         );
       })}

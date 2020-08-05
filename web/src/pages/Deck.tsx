@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,9 +13,7 @@ import {
   GetCatQuery,
   GetCatQueryVariables,
 } from "../generated/graphql";
-import { useDeck } from "../providers/DeckProvider";
 import EventSection from "./EventSection";
-import actionTypes from "../types/actionTypes";
 
 const CAT_DETAILS_QUERY = gql`
   query getCat($id: ID!) {
@@ -35,10 +33,6 @@ const CAT_DETAILS_QUERY = gql`
 
 export default function Deck({ catId }: { catId: Scalars["ID"] }) {
   const [showDrawer, setShowDrawer] = useState(false);
-  // const {
-  //   // state: { cat },
-  //   dispatch,
-  // } = useDeck();
 
   // Fetch cat details
   const { loading, error, data, fetchMore } = useQuery<
@@ -49,16 +43,6 @@ export default function Deck({ catId }: { catId: Scalars["ID"] }) {
       id: catId,
     },
   });
-
-  // Put fetch result in state
-  // useEffect(() => {
-  //   if (data && data.cat) {
-  //     dispatch({
-  //       type: actionTypes.SET_CURRENT_CAT,
-  //       cat: data.cat,
-  //     });
-  //   }
-  // }, [data, dispatch]);
 
   if (error) return <p>Error fetching cat:(</p>;
   if (!(data && data.cat) || loading) return <LinearProgress />;
