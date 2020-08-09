@@ -29,15 +29,22 @@ export default function CatAttributesArea({
   return (
     <Container style={style}>
       <Row>
-        <Typography variant="h6">健康</Typography>
+        <Typography variant="h6" style={{ marginRight: 8 }}>
+          {cat.name}
+        </Typography>
+        <Typography variant="body2">({cat.age} days)</Typography>
+      </Row>
+
+      <Row>
+        <Typography variant="subtitle1">健康</Typography>
         <BorderLinearProgress variant="determinate" value={cat.health} />
       </Row>
       <Row>
-        <Typography variant="h6">知识</Typography>
+        <Typography variant="subtitle1">知识</Typography>
         <BorderLinearProgress variant="determinate" value={cat.knowledge} />
       </Row>
       <Row>
-        <Typography variant="h6">野性</Typography>
+        <Typography variant="subtitle1">野性</Typography>
         <BorderLinearProgress variant="determinate" value={cat.wilderness} />
       </Row>
     </Container>
@@ -47,11 +54,11 @@ export default function CatAttributesArea({
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 `;
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
 `;

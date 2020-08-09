@@ -48,7 +48,7 @@ const CardContainer = styled(Card)`
   align-self: stretch;
 `;
 
-const CardImage = styled(CardMedia)`
+export const CardImage = styled(CardMedia)`
   height: 280px;
 `;
 

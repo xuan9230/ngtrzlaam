@@ -6,8 +6,6 @@ const {
   Event,
 } = require("./Event");
 
-const { Date } = require("./Date");
-
 const resolvers = {
   Query: {
     ...CatQuery,
@@ -19,7 +17,6 @@ const resolvers = {
     ...EventMutation,
     ...UserMutation,
   },
-  Date,
   Cat,
   Event,
   User,

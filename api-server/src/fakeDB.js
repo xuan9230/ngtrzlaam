@@ -11,7 +11,8 @@ const fakeDB = {
       wilderness: 50,
       age: 5,
       ownerId: "u_1",
-      imgUrl: "",
+      imgUrl:
+        "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ff.jpg",
       status: "inHouse",
       eventIds: {
         e_1: true,
@@ -25,7 +26,8 @@ const fakeDB = {
       wilderness: 50,
       age: 0,
       ownerId: "u_2",
-      imgUrl: "",
+      imgUrl:
+        "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ggua.jpg",
       status: "inHouse",
       eventIds: {},
     },
