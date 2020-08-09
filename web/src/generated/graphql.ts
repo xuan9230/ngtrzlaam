@@ -6,7 +6,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Date: any;
 };
 
 export enum CatAttribute {
@@ -67,6 +66,13 @@ export type Event = {
   noEffects: Array<EventEffect>;
 };
 
+export type CatInput = {
+  name?: Maybe<Scalars['String']>;
+  knowledge?: Maybe<Scalars['Int']>;
+  wilderness?: Maybe<Scalars['Int']>;
+  health?: Maybe<Scalars['Int']>;
+  ownerId?: Maybe<Scalars['ID']>;
+};
 
 export type Query = {
    __typename?: 'Query';
@@ -95,14 +101,6 @@ export type QueryEventsArgs = {
 
 export type QueryUserArgs = {
   id: Scalars['ID'];
-};
-
-export type CatInput = {
-  name?: Maybe<Scalars['String']>;
-  knowledge?: Maybe<Scalars['Int']>;
-  wilderness?: Maybe<Scalars['Int']>;
-  health?: Maybe<Scalars['Int']>;
-  ownerId?: Maybe<Scalars['ID']>;
 };
 
 export type Mutation = {

@@ -52,15 +52,7 @@ type Event {
   noEffects: [EventEffect!]!
 }
 
-scalar Date
-
-type Query {
-  cat(id: ID!): Cat
-  cats(ownerId: ID!): [Cat!]!
-  events(catId: ID!): [Event!]!
-  user(id: ID!): User
-  users: [User!]!
-}
+# scalar Date
 
 input CatInput {
   name: String
@@ -70,8 +62,21 @@ input CatInput {
   ownerId: ID
 }
 
+type Query {
+  cat(id: ID!): Cat
+  cats(ownerId: ID!): [Cat!]!
+  events(catId: ID!): [Event!]!
+  user(id: ID!): User
+  users: [User!]!
+}
+
 type Mutation {
   createCat(ownerId: ID!, name: String!): Cat!
   updateCat(id: ID!, updates: CatInput): Cat!
   deleteCat(id: ID!): Cat!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
 }
