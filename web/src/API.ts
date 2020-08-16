@@ -2,37 +2,16 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateCatInput = {
+export type CreateUserInput = {
   id?: string | null,
   name: string,
-  imgUrl: string,
-  health: number,
-  wilderness: number,
-  knowledge: number,
-  age: number,
-  eventIds: Array< string >,
-  status: CatStatus,
 };
 
-export enum CatStatus {
-  inHouse = "inHouse",
-  stray = "stray",
-  finished = "finished",
-}
-
-
-export type ModelCatConditionInput = {
+export type ModelUserConditionInput = {
   name?: ModelStringInput | null,
-  imgUrl?: ModelStringInput | null,
-  health?: ModelIntInput | null,
-  wilderness?: ModelIntInput | null,
-  knowledge?: ModelIntInput | null,
-  age?: ModelIntInput | null,
-  eventIds?: ModelIDInput | null,
-  status?: ModelCatStatusInput | null,
-  and?: Array< ModelCatConditionInput | null > | null,
-  or?: Array< ModelCatConditionInput | null > | null,
-  not?: ModelCatConditionInput | null,
+  and?: Array< ModelUserConditionInput | null > | null,
+  or?: Array< ModelUserConditionInput | null > | null,
+  not?: ModelUserConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -73,6 +52,50 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export enum CatStatus {
+  inHouse = "inHouse",
+  stray = "stray",
+  finished = "finished",
+}
+
+
+export type UpdateUserInput = {
+  id: string,
+  name?: string | null,
+};
+
+export type DeleteUserInput = {
+  id?: string | null,
+};
+
+export type CreateCatInput = {
+  id?: string | null,
+  name: string,
+  imgUrl: string,
+  health: number,
+  wilderness: number,
+  knowledge: number,
+  age: number,
+  userID: string,
+  eventIds: Array< string >,
+  status: CatStatus,
+};
+
+export type ModelCatConditionInput = {
+  name?: ModelStringInput | null,
+  imgUrl?: ModelStringInput | null,
+  health?: ModelIntInput | null,
+  wilderness?: ModelIntInput | null,
+  knowledge?: ModelIntInput | null,
+  age?: ModelIntInput | null,
+  userID?: ModelIDInput | null,
+  eventIds?: ModelIDInput | null,
+  status?: ModelCatStatusInput | null,
+  and?: Array< ModelCatConditionInput | null > | null,
+  or?: Array< ModelCatConditionInput | null > | null,
+  not?: ModelCatConditionInput | null,
 };
 
 export type ModelIntInput = {
@@ -116,32 +139,12 @@ export type UpdateCatInput = {
   wilderness?: number | null,
   knowledge?: number | null,
   age?: number | null,
+  userID?: string | null,
   eventIds?: Array< string > | null,
   status?: CatStatus | null,
 };
 
 export type DeleteCatInput = {
-  id?: string | null,
-};
-
-export type CreateUserInput = {
-  id?: string | null,
-  name: string,
-};
-
-export type ModelUserConditionInput = {
-  name?: ModelStringInput | null,
-  and?: Array< ModelUserConditionInput | null > | null,
-  or?: Array< ModelUserConditionInput | null > | null,
-  not?: ModelUserConditionInput | null,
-};
-
-export type UpdateUserInput = {
-  id: string,
-  name?: string | null,
-};
-
-export type DeleteUserInput = {
   id?: string | null,
 };
 
@@ -194,6 +197,14 @@ export type DeleteEventInput = {
   id?: string | null,
 };
 
+export type ModelUserFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  and?: Array< ModelUserFilterInput | null > | null,
+  or?: Array< ModelUserFilterInput | null > | null,
+  not?: ModelUserFilterInput | null,
+};
+
 export type ModelCatFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
@@ -202,19 +213,12 @@ export type ModelCatFilterInput = {
   wilderness?: ModelIntInput | null,
   knowledge?: ModelIntInput | null,
   age?: ModelIntInput | null,
+  userID?: ModelIDInput | null,
   eventIds?: ModelIDInput | null,
   status?: ModelCatStatusInput | null,
   and?: Array< ModelCatFilterInput | null > | null,
   or?: Array< ModelCatFilterInput | null > | null,
   not?: ModelCatFilterInput | null,
-};
-
-export type ModelUserFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  and?: Array< ModelUserFilterInput | null > | null,
-  or?: Array< ModelUserFilterInput | null > | null,
-  not?: ModelUserFilterInput | null,
 };
 
 export type ModelEventFilterInput = {
@@ -227,6 +231,108 @@ export type ModelEventFilterInput = {
   and?: Array< ModelEventFilterInput | null > | null,
   or?: Array< ModelEventFilterInput | null > | null,
   not?: ModelEventFilterInput | null,
+};
+
+export type CreateUserMutationVariables = {
+  input: CreateUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type CreateUserMutation = {
+  createUser:  {
+    __typename: "User",
+    id: string,
+    name: string,
+    cats:  {
+      __typename: "ModelCatConnection",
+      items:  Array< {
+        __typename: "Cat",
+        id: string,
+        name: string,
+        imgUrl: string,
+        health: number,
+        wilderness: number,
+        knowledge: number,
+        age: number,
+        userID: string,
+        eventIds: Array< string >,
+        status: CatStatus,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateUserMutationVariables = {
+  input: UpdateUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type UpdateUserMutation = {
+  updateUser:  {
+    __typename: "User",
+    id: string,
+    name: string,
+    cats:  {
+      __typename: "ModelCatConnection",
+      items:  Array< {
+        __typename: "Cat",
+        id: string,
+        name: string,
+        imgUrl: string,
+        health: number,
+        wilderness: number,
+        knowledge: number,
+        age: number,
+        userID: string,
+        eventIds: Array< string >,
+        status: CatStatus,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteUserMutationVariables = {
+  input: DeleteUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type DeleteUserMutation = {
+  deleteUser:  {
+    __typename: "User",
+    id: string,
+    name: string,
+    cats:  {
+      __typename: "ModelCatConnection",
+      items:  Array< {
+        __typename: "Cat",
+        id: string,
+        name: string,
+        imgUrl: string,
+        health: number,
+        wilderness: number,
+        knowledge: number,
+        age: number,
+        userID: string,
+        eventIds: Array< string >,
+        status: CatStatus,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
 export type CreateCatMutationVariables = {
@@ -244,27 +350,18 @@ export type CreateCatMutation = {
     wilderness: number,
     knowledge: number,
     age: number,
-    owner:  {
+    userID: string,
+    user:  {
       __typename: "User",
       id: string,
       name: string,
-      cats:  Array< {
-        __typename: "Cat",
-        id: string,
-        name: string,
-        imgUrl: string,
-        health: number,
-        wilderness: number,
-        knowledge: number,
-        age: number,
-        eventIds: Array< string >,
-        status: CatStatus,
-        createdAt: string,
-        updatedAt: string,
-      } >,
+      cats:  {
+        __typename: "ModelCatConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     eventIds: Array< string >,
     status: CatStatus,
     createdAt: string,
@@ -287,27 +384,18 @@ export type UpdateCatMutation = {
     wilderness: number,
     knowledge: number,
     age: number,
-    owner:  {
+    userID: string,
+    user:  {
       __typename: "User",
       id: string,
       name: string,
-      cats:  Array< {
-        __typename: "Cat",
-        id: string,
-        name: string,
-        imgUrl: string,
-        health: number,
-        wilderness: number,
-        knowledge: number,
-        age: number,
-        eventIds: Array< string >,
-        status: CatStatus,
-        createdAt: string,
-        updatedAt: string,
-      } >,
+      cats:  {
+        __typename: "ModelCatConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     eventIds: Array< string >,
     status: CatStatus,
     createdAt: string,
@@ -330,137 +418,20 @@ export type DeleteCatMutation = {
     wilderness: number,
     knowledge: number,
     age: number,
-    owner:  {
+    userID: string,
+    user:  {
       __typename: "User",
       id: string,
       name: string,
-      cats:  Array< {
-        __typename: "Cat",
-        id: string,
-        name: string,
-        imgUrl: string,
-        health: number,
-        wilderness: number,
-        knowledge: number,
-        age: number,
-        eventIds: Array< string >,
-        status: CatStatus,
-        createdAt: string,
-        updatedAt: string,
-      } >,
+      cats:  {
+        __typename: "ModelCatConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     eventIds: Array< string >,
     status: CatStatus,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreateUserMutationVariables = {
-  input: CreateUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type CreateUserMutation = {
-  createUser:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    cats:  Array< {
-      __typename: "Cat",
-      id: string,
-      name: string,
-      imgUrl: string,
-      health: number,
-      wilderness: number,
-      knowledge: number,
-      age: number,
-      owner:  {
-        __typename: "User",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      eventIds: Array< string >,
-      status: CatStatus,
-      createdAt: string,
-      updatedAt: string,
-    } >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateUserMutationVariables = {
-  input: UpdateUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type UpdateUserMutation = {
-  updateUser:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    cats:  Array< {
-      __typename: "Cat",
-      id: string,
-      name: string,
-      imgUrl: string,
-      health: number,
-      wilderness: number,
-      knowledge: number,
-      age: number,
-      owner:  {
-        __typename: "User",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      eventIds: Array< string >,
-      status: CatStatus,
-      createdAt: string,
-      updatedAt: string,
-    } >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteUserMutationVariables = {
-  input: DeleteUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type DeleteUserMutation = {
-  deleteUser:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    cats:  Array< {
-      __typename: "Cat",
-      id: string,
-      name: string,
-      imgUrl: string,
-      health: number,
-      wilderness: number,
-      knowledge: number,
-      age: number,
-      owner:  {
-        __typename: "User",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      eventIds: Array< string >,
-      status: CatStatus,
-      createdAt: string,
-      updatedAt: string,
-    } >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -553,6 +524,63 @@ export type DeleteEventMutation = {
   } | null,
 };
 
+export type GetUserQueryVariables = {
+  id: string,
+};
+
+export type GetUserQuery = {
+  getUser:  {
+    __typename: "User",
+    id: string,
+    name: string,
+    cats:  {
+      __typename: "ModelCatConnection",
+      items:  Array< {
+        __typename: "Cat",
+        id: string,
+        name: string,
+        imgUrl: string,
+        health: number,
+        wilderness: number,
+        knowledge: number,
+        age: number,
+        userID: string,
+        eventIds: Array< string >,
+        status: CatStatus,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListUsersQueryVariables = {
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListUsersQuery = {
+  listUsers:  {
+    __typename: "ModelUserConnection",
+    items:  Array< {
+      __typename: "User",
+      id: string,
+      name: string,
+      cats:  {
+        __typename: "ModelCatConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type GetCatQueryVariables = {
   id: string,
 };
@@ -567,27 +595,18 @@ export type GetCatQuery = {
     wilderness: number,
     knowledge: number,
     age: number,
-    owner:  {
+    userID: string,
+    user:  {
       __typename: "User",
       id: string,
       name: string,
-      cats:  Array< {
-        __typename: "Cat",
-        id: string,
-        name: string,
-        imgUrl: string,
-        health: number,
-        wilderness: number,
-        knowledge: number,
-        age: number,
-        eventIds: Array< string >,
-        status: CatStatus,
-        createdAt: string,
-        updatedAt: string,
-      } >,
+      cats:  {
+        __typename: "ModelCatConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     eventIds: Array< string >,
     status: CatStatus,
     createdAt: string,
@@ -613,84 +632,16 @@ export type ListCatsQuery = {
       wilderness: number,
       knowledge: number,
       age: number,
-      owner:  {
+      userID: string,
+      user:  {
         __typename: "User",
         id: string,
         name: string,
         createdAt: string,
         updatedAt: string,
-      },
+      } | null,
       eventIds: Array< string >,
       status: CatStatus,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetUserQueryVariables = {
-  id: string,
-};
-
-export type GetUserQuery = {
-  getUser:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    cats:  Array< {
-      __typename: "Cat",
-      id: string,
-      name: string,
-      imgUrl: string,
-      health: number,
-      wilderness: number,
-      knowledge: number,
-      age: number,
-      owner:  {
-        __typename: "User",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      eventIds: Array< string >,
-      status: CatStatus,
-      createdAt: string,
-      updatedAt: string,
-    } >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListUsersQueryVariables = {
-  filter?: ModelUserFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListUsersQuery = {
-  listUsers:  {
-    __typename: "ModelUserConnection",
-    items:  Array< {
-      __typename: "User",
-      id: string,
-      name: string,
-      cats:  Array< {
-        __typename: "Cat",
-        id: string,
-        name: string,
-        imgUrl: string,
-        health: number,
-        wilderness: number,
-        knowledge: number,
-        age: number,
-        eventIds: Array< string >,
-        status: CatStatus,
-        createdAt: string,
-        updatedAt: string,
-      } >,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -760,6 +711,93 @@ export type ListEventsQuery = {
   } | null,
 };
 
+export type OnCreateUserSubscription = {
+  onCreateUser:  {
+    __typename: "User",
+    id: string,
+    name: string,
+    cats:  {
+      __typename: "ModelCatConnection",
+      items:  Array< {
+        __typename: "Cat",
+        id: string,
+        name: string,
+        imgUrl: string,
+        health: number,
+        wilderness: number,
+        knowledge: number,
+        age: number,
+        userID: string,
+        eventIds: Array< string >,
+        status: CatStatus,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateUserSubscription = {
+  onUpdateUser:  {
+    __typename: "User",
+    id: string,
+    name: string,
+    cats:  {
+      __typename: "ModelCatConnection",
+      items:  Array< {
+        __typename: "Cat",
+        id: string,
+        name: string,
+        imgUrl: string,
+        health: number,
+        wilderness: number,
+        knowledge: number,
+        age: number,
+        userID: string,
+        eventIds: Array< string >,
+        status: CatStatus,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteUserSubscription = {
+  onDeleteUser:  {
+    __typename: "User",
+    id: string,
+    name: string,
+    cats:  {
+      __typename: "ModelCatConnection",
+      items:  Array< {
+        __typename: "Cat",
+        id: string,
+        name: string,
+        imgUrl: string,
+        health: number,
+        wilderness: number,
+        knowledge: number,
+        age: number,
+        userID: string,
+        eventIds: Array< string >,
+        status: CatStatus,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type OnCreateCatSubscription = {
   onCreateCat:  {
     __typename: "Cat",
@@ -770,27 +808,18 @@ export type OnCreateCatSubscription = {
     wilderness: number,
     knowledge: number,
     age: number,
-    owner:  {
+    userID: string,
+    user:  {
       __typename: "User",
       id: string,
       name: string,
-      cats:  Array< {
-        __typename: "Cat",
-        id: string,
-        name: string,
-        imgUrl: string,
-        health: number,
-        wilderness: number,
-        knowledge: number,
-        age: number,
-        eventIds: Array< string >,
-        status: CatStatus,
-        createdAt: string,
-        updatedAt: string,
-      } >,
+      cats:  {
+        __typename: "ModelCatConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     eventIds: Array< string >,
     status: CatStatus,
     createdAt: string,
@@ -808,27 +837,18 @@ export type OnUpdateCatSubscription = {
     wilderness: number,
     knowledge: number,
     age: number,
-    owner:  {
+    userID: string,
+    user:  {
       __typename: "User",
       id: string,
       name: string,
-      cats:  Array< {
-        __typename: "Cat",
-        id: string,
-        name: string,
-        imgUrl: string,
-        health: number,
-        wilderness: number,
-        knowledge: number,
-        age: number,
-        eventIds: Array< string >,
-        status: CatStatus,
-        createdAt: string,
-        updatedAt: string,
-      } >,
+      cats:  {
+        __typename: "ModelCatConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     eventIds: Array< string >,
     status: CatStatus,
     createdAt: string,
@@ -846,122 +866,20 @@ export type OnDeleteCatSubscription = {
     wilderness: number,
     knowledge: number,
     age: number,
-    owner:  {
+    userID: string,
+    user:  {
       __typename: "User",
       id: string,
       name: string,
-      cats:  Array< {
-        __typename: "Cat",
-        id: string,
-        name: string,
-        imgUrl: string,
-        health: number,
-        wilderness: number,
-        knowledge: number,
-        age: number,
-        eventIds: Array< string >,
-        status: CatStatus,
-        createdAt: string,
-        updatedAt: string,
-      } >,
+      cats:  {
+        __typename: "ModelCatConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     eventIds: Array< string >,
     status: CatStatus,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreateUserSubscription = {
-  onCreateUser:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    cats:  Array< {
-      __typename: "Cat",
-      id: string,
-      name: string,
-      imgUrl: string,
-      health: number,
-      wilderness: number,
-      knowledge: number,
-      age: number,
-      owner:  {
-        __typename: "User",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      eventIds: Array< string >,
-      status: CatStatus,
-      createdAt: string,
-      updatedAt: string,
-    } >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateUserSubscription = {
-  onUpdateUser:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    cats:  Array< {
-      __typename: "Cat",
-      id: string,
-      name: string,
-      imgUrl: string,
-      health: number,
-      wilderness: number,
-      knowledge: number,
-      age: number,
-      owner:  {
-        __typename: "User",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      eventIds: Array< string >,
-      status: CatStatus,
-      createdAt: string,
-      updatedAt: string,
-    } >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteUserSubscription = {
-  onDeleteUser:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    cats:  Array< {
-      __typename: "Cat",
-      id: string,
-      name: string,
-      imgUrl: string,
-      health: number,
-      wilderness: number,
-      knowledge: number,
-      age: number,
-      owner:  {
-        __typename: "User",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      eventIds: Array< string >,
-      status: CatStatus,
-      createdAt: string,
-      updatedAt: string,
-    } >,
     createdAt: string,
     updatedAt: string,
   } | null,

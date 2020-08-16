@@ -1,6 +1,6 @@
 projects:
-  catdailyapi:
-    schemaPath: amplify/backend/api/catdailyapi/build/schema.graphql
+  catapi:
+    schemaPath: amplify/backend/api/catapi/build/schema.graphql
     includes:
       - src/graphql/**/*.ts
     excludes:

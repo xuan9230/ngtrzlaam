@@ -2,6 +2,53 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      name
+      cats {
+        items {
+          id
+          name
+          imgUrl
+          health
+          wilderness
+          knowledge
+          age
+          userID
+          eventIds
+          status
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        cats {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getCat = /* GraphQL */ `
   query GetCat($id: ID!) {
     getCat(id: $id) {
@@ -12,21 +59,12 @@ export const getCat = /* GraphQL */ `
       wilderness
       knowledge
       age
-      owner {
+      userID
+      user {
         id
         name
         cats {
-          id
-          name
-          imgUrl
-          health
-          wilderness
-          knowledge
-          age
-          eventIds
-          status
-          createdAt
-          updatedAt
+          nextToken
         }
         createdAt
         updatedAt
@@ -53,7 +91,8 @@ export const listCats = /* GraphQL */ `
         wilderness
         knowledge
         age
-        owner {
+        userID
+        user {
           id
           name
           createdAt
@@ -61,65 +100,6 @@ export const listCats = /* GraphQL */ `
         }
         eventIds
         status
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
-      id
-      name
-      cats {
-        id
-        name
-        imgUrl
-        health
-        wilderness
-        knowledge
-        age
-        owner {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        eventIds
-        status
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        cats {
-          id
-          name
-          imgUrl
-          health
-          wilderness
-          knowledge
-          age
-          eventIds
-          status
-          createdAt
-          updatedAt
-        }
         createdAt
         updatedAt
       }

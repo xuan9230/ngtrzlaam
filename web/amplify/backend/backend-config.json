@@ -1,6 +1,6 @@
 {
 	"api": {
-		"catdailyapi": {
+		"catapi": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
