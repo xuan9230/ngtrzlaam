@@ -1,5 +1,5 @@
 overwrite: true
-schema: "schema.graphql"
+schema: "amplify/backend/api/catapi/build/schema.graphql"
 documents: "./src/**/*.tsx"
 generates:
   src/generated/graphql.ts:

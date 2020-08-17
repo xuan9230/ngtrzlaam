@@ -1,15 +1,11 @@
 import React from "react";
-// import Amplify from "aws-amplify";
 import { ApolloProvider } from "@apollo/client";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 
 import Router from "./Router";
-import { apolloClient } from "./apollo";
+import apolloClient from "./apollo";
 import { DeckProvider } from "./providers/DeckProvider";
-// import awsExports from "./aws-exports";
-
-// Amplify.configure(awsExports);
 
 const theme = createMuiTheme({
   palette: {

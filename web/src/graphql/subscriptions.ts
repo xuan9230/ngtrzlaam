@@ -168,8 +168,8 @@ export const onCreateEvent = /* GraphQL */ `
   subscription OnCreateEvent {
     onCreateEvent {
       id
-      imgUrl
       status
+      imgUrl
       title
       content
       result
@@ -190,8 +190,8 @@ export const onUpdateEvent = /* GraphQL */ `
   subscription OnUpdateEvent {
     onUpdateEvent {
       id
-      imgUrl
       status
+      imgUrl
       title
       content
       result
@@ -212,8 +212,8 @@ export const onDeleteEvent = /* GraphQL */ `
   subscription OnDeleteEvent {
     onDeleteEvent {
       id
-      imgUrl
       status
+      imgUrl
       title
       content
       result

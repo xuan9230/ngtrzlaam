@@ -111,8 +111,8 @@ export const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
     getEvent(id: $id) {
       id
-      imgUrl
       status
+      imgUrl
       title
       content
       result
@@ -138,8 +138,84 @@ export const listEvents = /* GraphQL */ `
     listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        imgUrl
         status
+        imgUrl
+        title
+        content
+        result
+        yesEffects {
+          key
+          delta
+        }
+        noEffects {
+          key
+          delta
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const catsByUser = /* GraphQL */ `
+  query CatsByUser(
+    $userID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelCatFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    catsByUser(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        imgUrl
+        health
+        wilderness
+        knowledge
+        age
+        userID
+        user {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        eventIds
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const eventsByStatus = /* GraphQL */ `
+  query EventsByStatus(
+    $status: CatStatus
+    $sortDirection: ModelSortDirection
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    eventsByStatus(
+      status: $status
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        status
+        imgUrl
         title
         content
         result

@@ -18,8 +18,8 @@ type Cat {
   wilderness: Int!
   knowledge: Int!
   age: Int!
-  owner: User!
-  # Events the cat has triggered
+  userID: ID!
+  user: User
   eventIds: [ID!]!
   status: CatStatus!
 }
