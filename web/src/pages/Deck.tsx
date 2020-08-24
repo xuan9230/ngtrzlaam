@@ -8,16 +8,13 @@ import { LinearProgress } from "@material-ui/core";
 import CatAttributesArea from "./CatAttributesArea";
 import SideDrawer from "../components/SideDrawer";
 
-import {
-  Scalars,
-  GetCatQuery,
-  GetCatQueryVariables,
-} from "../generated/graphql";
+import { Scalars } from "../generated/graphql";
 import EventSection from "./EventSection";
+import { GetCatQuery, GetCatQueryVariables } from "../API";
 
 const CAT_DETAILS_QUERY = gql`
   query getCat($id: ID!) {
-    cat(id: $id) {
+    getCat(id: $id) {
       id
       name
       status
@@ -35,17 +32,19 @@ export default function Deck({ catId }: { catId: Scalars["ID"] }) {
   const [showDrawer, setShowDrawer] = useState(false);
 
   // Fetch cat details
-  const { loading, error, data, fetchMore } = useQuery<
-    GetCatQuery,
-    GetCatQueryVariables
-  >(CAT_DETAILS_QUERY, {
-    variables: {
-      id: catId,
-    },
-  });
+  const { loading, error, data } = useQuery<GetCatQuery, GetCatQueryVariables>(
+    CAT_DETAILS_QUERY,
+    {
+      variables: {
+        id: catId,
+      },
+    }
+  );
+
+  const cat = data?.getCat;
 
   if (error) return <p>Error fetching cat:(</p>;
-  if (!(data && data.cat) || loading) return <LinearProgress />;
+  if (!(data && cat) || loading) return <LinearProgress />;
 
   return (
     <Container>
@@ -55,9 +54,9 @@ export default function Deck({ catId }: { catId: Scalars["ID"] }) {
 
       <SideDrawer open={showDrawer} onClose={() => setShowDrawer(false)} />
 
-      <CatAttributesArea style={{ marginBottom: 16 }} cat={data.cat} />
+      <CatAttributesArea style={{ marginBottom: 16 }} cat={cat} />
 
-      <EventSection cat={data.cat} />
+      <EventSection cat={cat} />
     </Container>
   );
 }

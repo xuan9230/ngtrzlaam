@@ -26,7 +26,6 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "prestart": "yarn codegen",
     "start": "PORT=6021 react-scripts start",
     "codegen": "graphql-codegen --config codegen.yml",
     "build": "react-scripts build",

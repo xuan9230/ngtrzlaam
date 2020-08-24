@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { lighten, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { Cat } from "../generated/graphql";
+import { Cat } from "../baseTypes";
 
 const BorderLinearProgress = withStyles({
   root: {

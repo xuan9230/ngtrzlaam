@@ -6,25 +6,23 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 
-import {
-  User,
-  Cat,
-  GetCatsQuery,
-  GetCatsQueryVariables,
-} from "../generated/graphql";
+import { User, Cat } from "../generated/graphql";
 import List from "../components/List";
 import { useDeck } from "../providers/DeckProvider";
 import actionTypes from "../types/actionTypes";
 import { CardImage } from "../components/EventCard";
 import styled from "styled-components";
+import { CatsByUserQuery, CatsByUserQueryVariables } from "../API";
 
 const CATS_QUERY = gql`
-  query getCats($ownerId: ID!) {
-    cats(ownerId: $ownerId) {
-      id
-      name
-      imgUrl
-      status
+  query catsByUser($userID: ID!) {
+    catsByUser(userID: $userID) {
+      items {
+        id
+        name
+        imgUrl
+        status
+      }
     }
   }
 `;
@@ -32,18 +30,20 @@ const CATS_QUERY = gql`
 export default function CatList() {
   const user: User = JSON.parse(localStorage.getItem("user")!);
   const { loading, error, data } = useQuery<
-    GetCatsQuery,
-    GetCatsQueryVariables
+    CatsByUserQuery,
+    CatsByUserQueryVariables
   >(CATS_QUERY, {
     variables: {
-      ownerId: user.id,
+      userID: user.id,
     },
   });
   const history = useHistory();
   const { dispatch } = useDeck();
 
+  const cats = data?.catsByUser?.items;
+
   if (loading) return <LinearProgress />;
-  if (error || !data) return <p>Error fetching cats:(</p>;
+  if (error || !cats) return <p>Error fetching cats:(</p>;
 
   function renderCat(cat: Cat) {
     return (
@@ -69,7 +69,8 @@ export default function CatList() {
     <List
       style={{ width: "100%" }}
       title="选择猫"
-      records={data.cats}
+      // @ts-ignore
+      records={cats}
       primaryKey="name"
       renderItem={renderCat}
     />
