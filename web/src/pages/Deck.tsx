@@ -23,7 +23,7 @@ const CAT_DETAILS_QUERY = gql`
       wilderness
       knowledge
       age
-      eventIds
+      eventIDs
     }
   }
 `;

@@ -20,7 +20,7 @@ export const createUser = /* GraphQL */ `
           knowledge
           age
           userID
-          eventIds
+          eventIDs
           status
           createdAt
           updatedAt
@@ -50,7 +50,7 @@ export const updateUser = /* GraphQL */ `
           knowledge
           age
           userID
-          eventIds
+          eventIDs
           status
           createdAt
           updatedAt
@@ -80,7 +80,7 @@ export const deleteUser = /* GraphQL */ `
           knowledge
           age
           userID
-          eventIds
+          eventIDs
           status
           createdAt
           updatedAt
@@ -115,7 +115,7 @@ export const createCat = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      eventIds
+      eventIDs
       status
       createdAt
       updatedAt
@@ -145,7 +145,7 @@ export const updateCat = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      eventIds
+      eventIDs
       status
       createdAt
       updatedAt
@@ -175,7 +175,7 @@ export const deleteCat = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      eventIds
+      eventIDs
       status
       createdAt
       updatedAt
@@ -191,8 +191,8 @@ export const createEvent = /* GraphQL */ `
       id
       status
       imgUrl
-      title
       content
+      title
       result
       yesEffects {
         key
@@ -216,8 +216,8 @@ export const updateEvent = /* GraphQL */ `
       id
       status
       imgUrl
-      title
       content
+      title
       result
       yesEffects {
         key
@@ -241,8 +241,8 @@ export const deleteEvent = /* GraphQL */ `
       id
       status
       imgUrl
-      title
       content
+      title
       result
       yesEffects {
         key

@@ -17,7 +17,7 @@ export const getUser = /* GraphQL */ `
           knowledge
           age
           userID
-          eventIds
+          eventIDs
           status
           createdAt
           updatedAt
@@ -69,7 +69,7 @@ export const getCat = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      eventIds
+      eventIDs
       status
       createdAt
       updatedAt
@@ -98,7 +98,7 @@ export const listCats = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        eventIds
+        eventIDs
         status
         createdAt
         updatedAt
@@ -113,8 +113,8 @@ export const getEvent = /* GraphQL */ `
       id
       status
       imgUrl
-      title
       content
+      title
       result
       yesEffects {
         key
@@ -140,8 +140,8 @@ export const listEvents = /* GraphQL */ `
         id
         status
         imgUrl
-        title
         content
+        title
         result
         yesEffects {
           key
@@ -188,7 +188,7 @@ export const catsByUser = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        eventIds
+        eventIDs
         status
         createdAt
         updatedAt
@@ -216,8 +216,8 @@ export const eventsByStatus = /* GraphQL */ `
         id
         status
         imgUrl
-        title
         content
+        title
         result
         yesEffects {
           key

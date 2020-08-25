@@ -13,7 +13,7 @@ enum CatStatus {
 type User @model {
   id: ID!
   name: String!
-  cats: [Cat] @connection(keyName: "byUser", fields: ["id"])
+  cats: [Cat!]! @connection(keyName: "byUser", fields: ["id"])
 }
 
 type Cat
@@ -29,13 +29,13 @@ type Cat
   userID: ID!
   user: User @connection(fields: ["userID"])
   # Events the cat has triggered
-  eventIds: [ID!]!
+  eventIDs: [ID!]!
   status: CatStatus!
 }
 
 type EventEffect {
-  key: CatAttribute
-  delta: Int
+  key: CatAttribute!
+  delta: Int!
 }
 
 type Event
@@ -48,15 +48,15 @@ type Event
   id: ID!
   # Required cat status that this event can happen to
   status: CatStatus!
-  imgUrl: String
-  # Event title
-  title: String
+  imgUrl: String!
   # Event content
-  content: String
+  content: String!
+  # Optoinal Event title
+  title: String
   # Optional result message after user's selection
   result: String
   # Effects when selecting yes
-  yesEffects: [EventEffect]
+  yesEffects: [EventEffect!]!
   # Effects when selecting no
-  noEffects: [EventEffect]
+  noEffects: [EventEffect!]!
 }

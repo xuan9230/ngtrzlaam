@@ -1,20 +1,24 @@
-import { Event, CatStatus, CatAttribute } from "../generated/graphql";
+import { Event, CatStatus } from "../baseTypes";
+import { CatAttribute } from "../API";
 
-const systemEvents: Event[] = [
+const systemEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
   {
     id: "e_1",
+    title: "",
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/1.jpeg",
-    status: CatStatus.InHouse,
+    status: CatStatus.inHouse,
     content: "听闻家中两脚兽的房间传来奇怪的喘息，是否前去观察？",
     result: "本宝宝看到了什么？幼小的心灵受到了震撼",
     yesEffects: [
       {
-        key: CatAttribute.Knowledge,
+        __typename: "EventEffect",
+        key: CatAttribute.knowledge,
         delta: 5,
       },
       {
-        key: CatAttribute.Wilderness,
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
         delta: -5,
       },
     ],
@@ -22,18 +26,21 @@ const systemEvents: Event[] = [
   },
   {
     id: "e_2",
+    title: "",
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/2.png",
-    status: CatStatus.InHouse,
+    status: CatStatus.inHouse,
     content: "在餐桌上发现了火腿。吃？",
     result: "",
     yesEffects: [
       {
-        key: CatAttribute.Health,
+        __typename: "EventEffect",
+        key: CatAttribute.health,
         delta: 8,
       },
       {
-        key: CatAttribute.Wilderness,
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
         delta: 8,
       },
     ],

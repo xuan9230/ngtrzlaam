@@ -27,8 +27,19 @@ const CATS_QUERY = gql`
   }
 `;
 
-export default function CatList() {
-  const user: User = JSON.parse(localStorage.getItem("user")!);
+export default function CatListWrapper() {
+  const user: User | undefined = JSON.parse(localStorage.getItem("user")!);
+  const history = useHistory();
+  if (!user) {
+    history.push("/login");
+    return null;
+  }
+
+  return <CatList user={user} />;
+}
+
+function CatList({ user }: { user: User }) {
+  const history = useHistory();
   const { loading, error, data } = useQuery<
     CatsByUserQuery,
     CatsByUserQueryVariables
@@ -37,7 +48,6 @@ export default function CatList() {
       userID: user.id,
     },
   });
-  const history = useHistory();
   const { dispatch } = useDeck();
 
   const cats = data?.catsByUser?.items;

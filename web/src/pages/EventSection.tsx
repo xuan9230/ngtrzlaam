@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import EventCard from "../components/EventCard";
 
 import systemEvents from "../systemEvents";
-import { Cat, EventEffect } from "../baseTypes";
+import { Cat, Event, EventEffect } from "../baseTypes";
 
 // const EVENTS_QUERY = gql`
 //   query getEvents($catId: ID!) {
@@ -33,13 +33,16 @@ import { Cat, EventEffect } from "../baseTypes";
 //   }
 // `;
 
+const EVENTS_PER_DAY = 5;
+
 const UPDATE_CAT = gql`
-  mutation updateCat($id: ID!, $updates: CatInput) {
-    updateCat(id: $id, updates: $updates) {
+  mutation updateCat($input: UpdateCatInput!) {
+    updateCat(input: $input) {
       id
       health
       wilderness
-      knowledge
+      health
+      eventIDs
     }
   }
 `;
@@ -56,7 +59,27 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   // });
 
   // Update cat
-  const [updateCat, { loading: updateCatLoading }] = useMutation(UPDATE_CAT);
+  const [
+    updateCat,
+    // { loading: updateCatLoading }
+  ] = useMutation(UPDATE_CAT);
+
+  // Get events that the cat hasn't encountered
+  const events = React.useMemo(() => {
+    const _events: Omit<Event, "createdAt" | "updatedAt">[] = [];
+    const catEventIdMap: { [id: string]: boolean } = {};
+    cat.eventIDs.forEach((id) => (catEventIdMap[id] = true));
+    let i = 0;
+
+    while (_events.length < EVENTS_PER_DAY && i < systemEvents.length) {
+      const event = systemEvents[i];
+      if (!catEventIdMap[event.id]) {
+        _events.push(event);
+      }
+      i++;
+    }
+    return _events;
+  }, [cat.eventIDs]);
 
   const catRef = React.useRef(cat);
   catRef.current = cat;
@@ -68,10 +91,10 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
    * Calculate new cat attributes based on event effects
    * And update on the server
    */
-  function handleUpdateCat(eventEffects: EventEffect[]) {
+  function handleUpdateCat(eventId: string, eventEffects: EventEffect[]) {
     // Need to get cat from ref, as the TinderCard reserves obsolete callback
     const { health, wilderness, knowledge } = catRef.current;
-    const updates = {
+    const attributeUpdates: any = {
       health,
       wilderness,
       knowledge,
@@ -81,20 +104,23 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       const { key, delta } = effect;
       if (!key) throw new Error("Event effect must contain attribute key");
 
-      updates[key] = updates[key] + delta;
+      attributeUpdates[key] = attributeUpdates[key] + delta;
     });
 
     updateCat({
       variables: {
-        id: cat.id,
-        updates,
+        input: {
+          id: cat.id,
+          eventIDs: [...cat.eventIDs, eventId],
+          ...attributeUpdates,
+        },
       },
       optimisticResponse: {
         __typename: "Mutation",
         updateCat: {
           id: cat.id,
           __typename: "Cat",
-          ...updates,
+          ...attributeUpdates,
         },
       },
     });
@@ -102,7 +128,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 
   return (
     <CardsContainer>
-      {systemEvents.map((event) => {
+      {events.map((event) => {
         return (
           <EventCard
             key={event.id}

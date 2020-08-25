@@ -20,7 +20,7 @@ type Cat {
   age: Int!
   userID: ID!
   user: User
-  eventIds: [ID!]!
+  eventIDs: [ID!]!
   status: CatStatus!
 }
 
