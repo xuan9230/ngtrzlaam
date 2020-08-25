@@ -11,6 +11,7 @@ import EventCard from "../components/EventCard";
 
 import systemEvents from "../systemEvents";
 import { Cat, Event, EventEffect } from "../baseTypes";
+import { CatStatus } from "../API";
 
 // const EVENTS_QUERY = gql`
 //   query getEvents($catId: ID!) {
@@ -39,9 +40,11 @@ const UPDATE_CAT = gql`
   mutation updateCat($input: UpdateCatInput!) {
     updateCat(input: $input) {
       id
+      age
       health
       wilderness
       health
+      status
       eventIDs
     }
   }
@@ -91,7 +94,11 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
    * Calculate new cat attributes based on event effects
    * And update on the server
    */
-  function handleUpdateCat(eventId: string, eventEffects: EventEffect[]) {
+  function handleUpdateCat(
+    eventId: string,
+    eventEffects: EventEffect[],
+    decision: boolean
+  ) {
     // Need to get cat from ref, as the TinderCard reserves obsolete callback
     const { health, wilderness, knowledge } = catRef.current;
     const attributeUpdates: any = {
@@ -99,28 +106,39 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       wilderness,
       knowledge,
     };
+    let willCatFinish = false;
 
     eventEffects.forEach((effect) => {
       const { key, delta } = effect;
       if (!key) throw new Error("Event effect must contain attribute key");
 
-      attributeUpdates[key] = attributeUpdates[key] + delta;
+      const updatedAttribute =
+        attributeUpdates[key] + (decision ? delta : -delta);
+      attributeUpdates[key] = updatedAttribute;
+
+      if (updatedAttribute > 100 || updatedAttribute < 0) {
+        willCatFinish = true;
+      }
     });
+
+    const updates = {
+      ...attributeUpdates,
+      id: cat.id,
+      eventIDs: [...cat.eventIDs, eventId],
+      age: catRef.current.age + 1,
+    };
+
+    if (willCatFinish) updates.status = CatStatus.finished;
 
     updateCat({
       variables: {
-        input: {
-          id: cat.id,
-          eventIDs: [...cat.eventIDs, eventId],
-          ...attributeUpdates,
-        },
+        input: updates,
       },
       optimisticResponse: {
         __typename: "Mutation",
         updateCat: {
-          id: cat.id,
+          ...updates,
           __typename: "Cat",
-          ...attributeUpdates,
         },
       },
     });
@@ -144,7 +162,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   );
 }
 
-const CardsContainer = styled.div`
+export const CardsContainer = styled.div`
   position: relative;
   width: 100%;
   height: 450px;

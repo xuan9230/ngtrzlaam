@@ -4,14 +4,13 @@
 
 import React from "react";
 
-import { Scalars } from "../generated/graphql";
 import actionTypes from "../types/actionTypes";
 
 type DeckState = {
   /**
    * Currently selected cat ID
    */
-  catId?: Scalars["ID"];
+  catId?: string;
   /**
    * Remaining swipe times for today
    */
@@ -23,7 +22,7 @@ type DeckState = {
  */
 type SetSelectedCatId = {
   type: typeof actionTypes.SET_SELECTED_CAT_ID;
-  catId: Scalars["ID"];
+  catId: string;
 };
 
 type Action = SetSelectedCatId;
@@ -58,7 +57,7 @@ function useDeck() {
 
 function DeckProvider(props: any) {
   const [state, dispatch] = React.useReducer(deckReducer, {
-    remainingSwipes: 3,
+    remainingSwipes: 5,
   });
 
   const value = React.useMemo(() => ({ state, dispatch }), [state]);

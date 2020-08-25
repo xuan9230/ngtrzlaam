@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { lighten, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
+
 import { Cat } from "../baseTypes";
 
 const BorderLinearProgress = withStyles({
@@ -26,6 +28,29 @@ export default function CatAttributesArea({
   style?: any;
   cat: Omit<Cat, "owner">;
 }) {
+  function renderAttribute(label: string, value: number) {
+    return (
+      <Row>
+        <Typography variant="subtitle1">{label}</Typography>
+        {value > 100 || value < 0 ? (
+          <div
+            style={{
+              width: 120,
+              marginLeft: 16,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <SentimentVeryDissatisfiedIcon />
+          </div>
+        ) : (
+          <BorderLinearProgress variant="determinate" value={value} />
+        )}
+      </Row>
+    );
+  }
+
   return (
     <Container style={style}>
       <Row>
@@ -35,18 +60,9 @@ export default function CatAttributesArea({
         <Typography variant="body2">({cat.age} days)</Typography>
       </Row>
 
-      <Row>
-        <Typography variant="subtitle1">健康</Typography>
-        <BorderLinearProgress variant="determinate" value={cat.health} />
-      </Row>
-      <Row>
-        <Typography variant="subtitle1">知识</Typography>
-        <BorderLinearProgress variant="determinate" value={cat.knowledge} />
-      </Row>
-      <Row>
-        <Typography variant="subtitle1">野性</Typography>
-        <BorderLinearProgress variant="determinate" value={cat.wilderness} />
-      </Row>
+      {renderAttribute("健康", cat.health)}
+      {renderAttribute("知识", cat.knowledge)}
+      {renderAttribute("野性", cat.wilderness)}
     </Container>
   );
 }

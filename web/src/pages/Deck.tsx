@@ -8,9 +8,9 @@ import { LinearProgress } from "@material-ui/core";
 import CatAttributesArea from "./CatAttributesArea";
 import SideDrawer from "../components/SideDrawer";
 
-import { Scalars } from "../generated/graphql";
 import EventSection from "./EventSection";
-import { GetCatQuery, GetCatQueryVariables } from "../API";
+import { CatStatus, GetCatQuery, GetCatQueryVariables } from "../API";
+import FinishScene from "./FinishScene";
 
 const CAT_DETAILS_QUERY = gql`
   query getCat($id: ID!) {
@@ -28,7 +28,7 @@ const CAT_DETAILS_QUERY = gql`
   }
 `;
 
-export default function Deck({ catId }: { catId: Scalars["ID"] }) {
+export default function Deck({ catId }: { catId: string }) {
   const [showDrawer, setShowDrawer] = useState(false);
 
   // Fetch cat details
@@ -56,7 +56,11 @@ export default function Deck({ catId }: { catId: Scalars["ID"] }) {
 
       <CatAttributesArea style={{ marginBottom: 16 }} cat={cat} />
 
-      <EventSection cat={cat} />
+      {cat.status === CatStatus.finished ? (
+        <FinishScene cat={cat} />
+      ) : (
+        <EventSection cat={cat} />
+      )}
     </Container>
   );
 }

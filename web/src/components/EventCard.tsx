@@ -16,14 +16,19 @@ export default function EventCard({
   handleUpdateCat,
 }: {
   event: Omit<Event, "createdAt" | "updatedAt">;
-  handleUpdateCat: (eventId: string, eventEffects: EventEffect[]) => void;
+  handleUpdateCat: (
+    eventId: string,
+    eventEffects: EventEffect[],
+    decision: boolean
+  ) => void;
 }) {
   return (
     <StyledCard
       onSwipe={(direction) => {
-        if (direction === "right") handleUpdateCat(event.id, event.yesEffects);
+        if (direction === "right")
+          handleUpdateCat(event.id, event.yesEffects, true);
         else if (direction === "left")
-          handleUpdateCat(event.id, event.noEffects);
+          handleUpdateCat(event.id, event.yesEffects, false);
       }}
     >
       <CardContainer>

@@ -28,7 +28,12 @@ export default function SideDrawer({ open, onClose }: DrawerProps) {
           <ListItemIcon>
             <PetsIcon />
           </ListItemIcon>
-          <ListItemText primary="猫咪列表" />
+          <ListItemText
+            primary="猫咪列表"
+            onClick={() => {
+              history.push("/cats");
+            }}
+          />
         </ListItem>
       </List>
       <Divider />
