@@ -68,10 +68,13 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   ] = useMutation(UPDATE_CAT);
 
   // Get events that the cat hasn't encountered
+  const catRef = React.useRef(cat);
+  catRef.current = cat;
+
   const events = React.useMemo(() => {
     const _events: Omit<Event, "createdAt" | "updatedAt">[] = [];
     const catEventIdMap: { [id: string]: boolean } = {};
-    cat.eventIDs.forEach((id) => (catEventIdMap[id] = true));
+    catRef.current.eventIDs.forEach((id) => (catEventIdMap[id] = true));
     let i = 0;
 
     while (_events.length < EVENTS_PER_DAY && i < systemEvents.length) {
@@ -81,11 +84,9 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       }
       i++;
     }
-    return _events;
-  }, [cat.eventIDs]);
 
-  const catRef = React.useRef(cat);
-  catRef.current = cat;
+    return _events;
+  }, []);
 
   // if (error) return <p>Error fetching events:(</p>;
   // if (fetchEventsLoading || !(data && data.events)) return <LinearProgress />;
@@ -124,7 +125,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     const updates = {
       ...attributeUpdates,
       id: cat.id,
-      eventIDs: [...cat.eventIDs, eventId],
+      eventIDs: [...catRef.current.eventIDs, eventId],
       age: catRef.current.age + 1,
     };
 
