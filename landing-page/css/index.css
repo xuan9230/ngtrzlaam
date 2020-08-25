@@ -30,5 +30,20 @@ body {
 }
 
 #carousel-3 {
-  background-color: #226de2;
+  background-color: rgba(25, 25, 25, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gamebutton {
+  flex: 1 1 auto;
+  margin: 36px;
+  padding: 20px;
+  border: 2px solid #f7f7f7;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  color: #f7f7f7;
 }
