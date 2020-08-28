@@ -30,7 +30,7 @@ export default function UserList() {
 
   return (
     <List
-      title="选择用户"
+      title="选择人类"
       // @ts-ignore
       records={users}
       primaryKey="name"
