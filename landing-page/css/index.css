@@ -29,16 +29,10 @@ body {
   background-color: rgba(25, 25, 25, 1);
 }
 
-#carousel-3 {
-  background-color: rgba(25, 25, 25, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 #gamebutton {
   flex: 1 1 auto;
-  margin: 36px;
+  margin: 42px;
+  margin-top: 320px;
   padding: 20px;
   border: 2px solid #f7f7f7;
   text-align: center;
