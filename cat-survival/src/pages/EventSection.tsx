@@ -6,11 +6,13 @@ import React from "react";
 import styled from "styled-components";
 import { gql, useMutation } from "@apollo/client";
 import Typography from "@material-ui/core/Typography";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
 
 import EventCard from "../components/EventCard";
 
 import systemEvents from "../systemEvents";
-import { Cat, Event, EventEffect } from "../baseTypes";
+import { Cat, Event } from "../baseTypes";
 import { CatStatus } from "../API";
 
 // const EVENTS_QUERY = gql`
@@ -66,6 +68,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     updateCat,
     // { loading: updateCatLoading }
   ] = useMutation(UPDATE_CAT);
+  const [result, setResult] = React.useState<null | string>(null);
 
   // Get events that the cat hasn't encountered
   const catRef = React.useRef(cat);
@@ -96,10 +99,16 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
    * And update on the server
    */
   function handleUpdateCat(
-    eventId: string,
-    eventEffects: EventEffect[],
+    event: Omit<Event, "createdAt" | "updatedAt">,
     decision: boolean
   ) {
+    // Set result if any
+    if (decision && event.result) {
+      setResult(event.result);
+    } else {
+      setResult(null);
+    }
+
     // Need to get cat from ref, as the TinderCard reserves obsolete callback
     const { health, wilderness, knowledge } = catRef.current;
     const attributeUpdates: any = {
@@ -109,7 +118,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     };
     let willCatFinish = false;
 
-    eventEffects.forEach((effect) => {
+    event.yesEffects.forEach((effect) => {
       const { key, delta } = effect;
       if (!key) throw new Error("Event effect must contain attribute key");
 
@@ -125,7 +134,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     const updates = {
       ...attributeUpdates,
       id: cat.id,
-      eventIDs: [...catRef.current.eventIDs, eventId],
+      eventIDs: [...catRef.current.eventIDs, event.id],
       age: catRef.current.age + 1,
     };
 
@@ -145,6 +154,19 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     });
   }
 
+  /**
+   * Render a dialog if the decision incurs a event result
+   */
+  function renderResult() {
+    if (!result) return;
+
+    return (
+      <Dialog onClose={() => setResult(null)} open={!!result}>
+        <DialogTitle>{result}</DialogTitle>
+      </Dialog>
+    );
+  }
+
   return (
     <CardsContainer>
       {events.map((event) => {
@@ -156,6 +178,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
           />
         );
       })}
+      {renderResult()}
       <Typography variant="body1" style={{ marginTop: 56 }}>
         猫累了，明天再来吧
       </Typography>

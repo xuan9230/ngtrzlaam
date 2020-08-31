@@ -107,6 +107,101 @@ const systemEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
     ],
     noEffects: [],
   },
+  {
+    id: "e_6",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_6.jpg",
+    status: CatStatus.inHouse,
+    content: "为了捕鸟，我要练习飞翔。",
+    result: "惨遭失败",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.knowledge,
+        delta: -7,
+      },
+    ],
+    noEffects: [],
+  },
+  {
+    id: "e_7",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_7.jpg",
+    status: CatStatus.inHouse,
+    content: "全家最好的晒太阳点竟是铲屎的的窝。占了？",
+    result: "",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: 3,
+      },
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: 6,
+      },
+    ],
+    noEffects: [],
+  },
+  {
+    id: "e_8",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_8.jpg",
+    status: CatStatus.inHouse,
+    content: "偶尔在铲屎的怀里睡个觉也不错吧？",
+    result: "",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: -15,
+      },
+    ],
+    noEffects: [],
+  },
+  {
+    id: "e_9",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_9.jpg",
+    status: CatStatus.inHouse,
+    content: "作为一只高雅的猫子，艺术也不能放下",
+    result: "",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.knowledge,
+        delta: 9,
+      },
+    ],
+    noEffects: [],
+  },
+  {
+    id: "e_10",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_10.JPG",
+    status: CatStatus.inHouse,
+    content: "铲屎的又傻了，把自己关在水缸里还要痛苦的叫。去救？",
+    result: "自己也落进浴缸，成了落汤猫",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: -7,
+      },
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: 6,
+      },
+    ],
+    noEffects: [],
+  },
 ];
 
 export default systemEvents;

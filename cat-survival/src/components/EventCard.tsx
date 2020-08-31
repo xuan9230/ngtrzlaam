@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
-import { Event, EventEffect } from "../baseTypes";
+import { Event } from "../baseTypes";
 
 // img size: 360 * 280
 
@@ -17,18 +17,15 @@ export default function EventCard({
 }: {
   event: Omit<Event, "createdAt" | "updatedAt">;
   handleUpdateCat: (
-    eventId: string,
-    eventEffects: EventEffect[],
+    event: Omit<Event, "createdAt" | "updatedAt">,
     decision: boolean
   ) => void;
 }) {
   return (
     <StyledCard
       onSwipe={(direction) => {
-        if (direction === "right")
-          handleUpdateCat(event.id, event.yesEffects, true);
-        else if (direction === "left")
-          handleUpdateCat(event.id, event.yesEffects, false);
+        if (direction === "right") handleUpdateCat(event, true);
+        else if (direction === "left") handleUpdateCat(event, false);
       }}
     >
       <CardContainer>
