@@ -8,7 +8,7 @@ const inHouseEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/1.jpeg",
     status: CatStatus.inHouse,
-    content: "听闻家中两脚兽的房间传来奇怪的喘息，是否前去观察？",
+    content: "听闻家中两脚兽的房间传来奇怪的喘息。去观察？",
     result: "本宝宝看到了什么？幼小的心灵受到了震撼",
     yesEffects: [
       {
@@ -186,7 +186,7 @@ const inHouseEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_10.JPG",
     status: CatStatus.inHouse,
-    content: "铲屎的又傻了，把自己关在水缸里还要痛苦的叫。去救？",
+    content: "铲屎的又傻了，把自己关在水缸里还要痛苦的叫。去救吗？",
     result: "自己也落进浴缸，成了落汤猫",
     yesEffects: [
       {
@@ -230,7 +230,7 @@ const inHouseEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_12.jpg",
     status: CatStatus.inHouse,
-    content: "家里来了个美艳小弟，也许可以把它收编进后宫。",
+    content: "家里来了个美艳小弟，要把它收编进后宫吗？",
     result: "惨遭小弟暴打",
     yesEffects: [
       {
@@ -252,7 +252,7 @@ const inHouseEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_13.jpg",
     status: CatStatus.inHouse,
-    content: "铲屎的胆敢抢我的王座时，必须给他一点厉害康康",
+    content: "铲屎的胆敢抢我的王座，要给他一点厉害康康吗？",
     result: "惨遭铲屎官高速旋转",
     yesEffects: [
       {
@@ -274,7 +274,7 @@ const inHouseEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/e_14.jpg",
     status: CatStatus.inHouse,
-    content: "学习如何与铲屎的工作时和谐共处",
+    content: "要学习如何与铲屎的工作时和谐共处吗？",
     result: "",
     yesEffects: [
       {
