@@ -17,7 +17,7 @@ export default function CatAttributesArea({ cat }: { cat: Cat }) {
         {value > 100 || value < 0 ? (
           <div
             style={{
-              width: 96,
+              width: 88,
               marginLeft: 16,
               display: "flex",
               alignItems: "center",
