@@ -17,8 +17,8 @@ type User @model {
 }
 
 type Cat
-  @model
-  @key(name: "byUser", fields: ["userID"], queryField: "catsByUser") {
+@model
+@key(name: "byUser", fields: ["userID"], queryField: "catsByUser") {
   id: ID!
   name: String!
   imgUrl: String!
@@ -34,20 +34,23 @@ type Cat
 }
 
 type EventEffect {
+  # Which attribute to update
   key: CatAttribute!
+  # Delta of update
   delta: Int!
 }
 
 type Event
-  @model
-  @key(
-    name: "eventsByStatus"
-    fields: ["status"]
-    queryField: "eventsByStatus"
-  ) {
+@model
+@key(name: "eventsByStatus", fields: ["status"], queryField: "eventsByStatus") {
   id: ID!
+  # Determines if this event is a child event. Child event must be encountered after the parent event
+  isChildEvent: Boolean
+  # Its child event id if exists
+  childEventID: ID
   # Required cat status that this event can happen to
   status: CatStatus!
+  # image for this event
   imgUrl: String!
   # Event content
   content: String!
@@ -58,5 +61,7 @@ type Event
   # Effects when selecting yes
   yesEffects: [EventEffect!]!
   # Effects when selecting no
-  noEffects: [EventEffect!]!
+  noEffects: [EventEffect!]
+  # If exists, the cat will enter this new status by selecting yes
+  newStatus: CatStatus
 }

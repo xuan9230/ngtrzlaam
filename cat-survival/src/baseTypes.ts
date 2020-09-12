@@ -1,4 +1,7 @@
-import { CatAttribute, GetCatQuery, GetEventQuery } from "./API";
+import { CatAttribute, GetCatQuery, GetEventQuery, GetUserQuery } from "./API";
+
+export interface User
+  extends Omit<Exclude<GetUserQuery["getUser"], null>, "__typename"> {}
 
 export interface Cat
   extends Omit<Exclude<GetCatQuery["getCat"], null>, "__typename"> {}

@@ -6,7 +6,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 
-import { User, Cat } from "../generated/graphql";
+import { User, Cat } from "../baseTypes";
 import List from "../components/List";
 import { useDeck } from "../providers/DeckProvider";
 import actionTypes from "../types/actionTypes";

@@ -118,12 +118,18 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     };
     let willCatFinish = false;
 
-    event.yesEffects.forEach((effect) => {
+    const resultEffects = event.noEffects
+      ? event.noEffects
+      : event.yesEffects.map((effect) => ({
+          ...effect,
+          delta: -effect.delta,
+        }));
+
+    resultEffects.forEach((effect) => {
       const { key, delta } = effect;
       if (!key) throw new Error("Event effect must contain attribute key");
 
-      const updatedAttribute =
-        attributeUpdates[key] + (decision ? delta : -delta);
+      const updatedAttribute = attributeUpdates[key] + delta;
       attributeUpdates[key] = updatedAttribute;
 
       if (updatedAttribute > 100 || updatedAttribute < 0) {

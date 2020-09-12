@@ -111,6 +111,8 @@ export const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
     getEvent(id: $id) {
       id
+      isChildEvent
+      childEventID
       status
       imgUrl
       content
@@ -124,6 +126,7 @@ export const getEvent = /* GraphQL */ `
         key
         delta
       }
+      newStatus
       createdAt
       updatedAt
     }
@@ -138,6 +141,8 @@ export const listEvents = /* GraphQL */ `
     listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        isChildEvent
+        childEventID
         status
         imgUrl
         content
@@ -151,6 +156,7 @@ export const listEvents = /* GraphQL */ `
           key
           delta
         }
+        newStatus
         createdAt
         updatedAt
       }
@@ -214,6 +220,8 @@ export const eventsByStatus = /* GraphQL */ `
     ) {
       items {
         id
+        isChildEvent
+        childEventID
         status
         imgUrl
         content
@@ -227,6 +235,7 @@ export const eventsByStatus = /* GraphQL */ `
           key
           delta
         }
+        newStatus
         createdAt
         updatedAt
       }

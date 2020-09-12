@@ -168,6 +168,8 @@ export const onCreateEvent = /* GraphQL */ `
   subscription OnCreateEvent {
     onCreateEvent {
       id
+      isChildEvent
+      childEventID
       status
       imgUrl
       content
@@ -181,6 +183,7 @@ export const onCreateEvent = /* GraphQL */ `
         key
         delta
       }
+      newStatus
       createdAt
       updatedAt
     }
@@ -190,6 +193,8 @@ export const onUpdateEvent = /* GraphQL */ `
   subscription OnUpdateEvent {
     onUpdateEvent {
       id
+      isChildEvent
+      childEventID
       status
       imgUrl
       content
@@ -203,6 +208,7 @@ export const onUpdateEvent = /* GraphQL */ `
         key
         delta
       }
+      newStatus
       createdAt
       updatedAt
     }
@@ -212,6 +218,8 @@ export const onDeleteEvent = /* GraphQL */ `
   subscription OnDeleteEvent {
     onDeleteEvent {
       id
+      isChildEvent
+      childEventID
       status
       imgUrl
       content
@@ -225,6 +233,7 @@ export const onDeleteEvent = /* GraphQL */ `
         key
         delta
       }
+      newStatus
       createdAt
       updatedAt
     }

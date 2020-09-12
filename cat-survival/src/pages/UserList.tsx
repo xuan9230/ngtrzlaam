@@ -6,7 +6,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 import List from "../components/List";
 import { ListUsersQuery } from "../API";
-import { User } from "../generated/graphql";
+import { User } from "../baseTypes";
 
 const USERS_QUERY = gql`
   query listUsers {

@@ -1,8 +1,0 @@
-overwrite: true
-schema: "amplify/backend/api/catapi/build/schema.graphql"
-documents: "./src/**/*.tsx"
-generates:
-  src/generated/graphql.ts:
-    plugins:
-      - "typescript"
-      - "typescript-operations"

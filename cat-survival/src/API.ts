@@ -150,13 +150,16 @@ export type DeleteCatInput = {
 
 export type CreateEventInput = {
   id?: string | null,
+  isChildEvent?: boolean | null,
+  childEventID?: string | null,
   status: CatStatus,
   imgUrl: string,
   content: string,
   title?: string | null,
   result?: string | null,
   yesEffects: Array< EventEffectInput >,
-  noEffects: Array< EventEffectInput >,
+  noEffects?: Array< EventEffectInput > | null,
+  newStatus?: CatStatus | null,
 };
 
 export type EventEffectInput = {
@@ -172,18 +175,30 @@ export enum CatAttribute {
 
 
 export type ModelEventConditionInput = {
+  isChildEvent?: ModelBooleanInput | null,
+  childEventID?: ModelIDInput | null,
   status?: ModelCatStatusInput | null,
   imgUrl?: ModelStringInput | null,
   content?: ModelStringInput | null,
   title?: ModelStringInput | null,
   result?: ModelStringInput | null,
+  newStatus?: ModelCatStatusInput | null,
   and?: Array< ModelEventConditionInput | null > | null,
   or?: Array< ModelEventConditionInput | null > | null,
   not?: ModelEventConditionInput | null,
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type UpdateEventInput = {
   id: string,
+  isChildEvent?: boolean | null,
+  childEventID?: string | null,
   status?: CatStatus | null,
   imgUrl?: string | null,
   content?: string | null,
@@ -191,6 +206,7 @@ export type UpdateEventInput = {
   result?: string | null,
   yesEffects?: Array< EventEffectInput > | null,
   noEffects?: Array< EventEffectInput > | null,
+  newStatus?: CatStatus | null,
 };
 
 export type DeleteEventInput = {
@@ -223,11 +239,14 @@ export type ModelCatFilterInput = {
 
 export type ModelEventFilterInput = {
   id?: ModelIDInput | null,
+  isChildEvent?: ModelBooleanInput | null,
+  childEventID?: ModelIDInput | null,
   status?: ModelCatStatusInput | null,
   imgUrl?: ModelStringInput | null,
   content?: ModelStringInput | null,
   title?: ModelStringInput | null,
   result?: ModelStringInput | null,
+  newStatus?: ModelCatStatusInput | null,
   and?: Array< ModelEventFilterInput | null > | null,
   or?: Array< ModelEventFilterInput | null > | null,
   not?: ModelEventFilterInput | null,
@@ -452,6 +471,8 @@ export type CreateEventMutation = {
   createEvent:  {
     __typename: "Event",
     id: string,
+    isChildEvent: boolean | null,
+    childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
     content: string,
@@ -466,7 +487,8 @@ export type CreateEventMutation = {
       __typename: "EventEffect",
       key: CatAttribute,
       delta: number,
-    } >,
+    } > | null,
+    newStatus: CatStatus | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -481,6 +503,8 @@ export type UpdateEventMutation = {
   updateEvent:  {
     __typename: "Event",
     id: string,
+    isChildEvent: boolean | null,
+    childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
     content: string,
@@ -495,7 +519,8 @@ export type UpdateEventMutation = {
       __typename: "EventEffect",
       key: CatAttribute,
       delta: number,
-    } >,
+    } > | null,
+    newStatus: CatStatus | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -510,6 +535,8 @@ export type DeleteEventMutation = {
   deleteEvent:  {
     __typename: "Event",
     id: string,
+    isChildEvent: boolean | null,
+    childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
     content: string,
@@ -524,7 +551,8 @@ export type DeleteEventMutation = {
       __typename: "EventEffect",
       key: CatAttribute,
       delta: number,
-    } >,
+    } > | null,
+    newStatus: CatStatus | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -663,6 +691,8 @@ export type GetEventQuery = {
   getEvent:  {
     __typename: "Event",
     id: string,
+    isChildEvent: boolean | null,
+    childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
     content: string,
@@ -677,7 +707,8 @@ export type GetEventQuery = {
       __typename: "EventEffect",
       key: CatAttribute,
       delta: number,
-    } >,
+    } > | null,
+    newStatus: CatStatus | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -695,6 +726,8 @@ export type ListEventsQuery = {
     items:  Array< {
       __typename: "Event",
       id: string,
+      isChildEvent: boolean | null,
+      childEventID: string | null,
       status: CatStatus,
       imgUrl: string,
       content: string,
@@ -709,7 +742,8 @@ export type ListEventsQuery = {
         __typename: "EventEffect",
         key: CatAttribute,
         delta: number,
-      } >,
+      } > | null,
+      newStatus: CatStatus | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -768,6 +802,8 @@ export type EventsByStatusQuery = {
     items:  Array< {
       __typename: "Event",
       id: string,
+      isChildEvent: boolean | null,
+      childEventID: string | null,
       status: CatStatus,
       imgUrl: string,
       content: string,
@@ -782,7 +818,8 @@ export type EventsByStatusQuery = {
         __typename: "EventEffect",
         key: CatAttribute,
         delta: number,
-      } >,
+      } > | null,
+      newStatus: CatStatus | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -968,6 +1005,8 @@ export type OnCreateEventSubscription = {
   onCreateEvent:  {
     __typename: "Event",
     id: string,
+    isChildEvent: boolean | null,
+    childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
     content: string,
@@ -982,7 +1021,8 @@ export type OnCreateEventSubscription = {
       __typename: "EventEffect",
       key: CatAttribute,
       delta: number,
-    } >,
+    } > | null,
+    newStatus: CatStatus | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -992,6 +1032,8 @@ export type OnUpdateEventSubscription = {
   onUpdateEvent:  {
     __typename: "Event",
     id: string,
+    isChildEvent: boolean | null,
+    childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
     content: string,
@@ -1006,7 +1048,8 @@ export type OnUpdateEventSubscription = {
       __typename: "EventEffect",
       key: CatAttribute,
       delta: number,
-    } >,
+    } > | null,
+    newStatus: CatStatus | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1016,6 +1059,8 @@ export type OnDeleteEventSubscription = {
   onDeleteEvent:  {
     __typename: "Event",
     id: string,
+    isChildEvent: boolean | null,
+    childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
     content: string,
@@ -1030,7 +1075,8 @@ export type OnDeleteEventSubscription = {
       __typename: "EventEffect",
       key: CatAttribute,
       delta: number,
-    } >,
+    } > | null,
+    newStatus: CatStatus | null,
     createdAt: string,
     updatedAt: string,
   } | null,

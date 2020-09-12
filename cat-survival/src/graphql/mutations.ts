@@ -189,6 +189,8 @@ export const createEvent = /* GraphQL */ `
   ) {
     createEvent(input: $input, condition: $condition) {
       id
+      isChildEvent
+      childEventID
       status
       imgUrl
       content
@@ -202,6 +204,7 @@ export const createEvent = /* GraphQL */ `
         key
         delta
       }
+      newStatus
       createdAt
       updatedAt
     }
@@ -214,6 +217,8 @@ export const updateEvent = /* GraphQL */ `
   ) {
     updateEvent(input: $input, condition: $condition) {
       id
+      isChildEvent
+      childEventID
       status
       imgUrl
       content
@@ -227,6 +232,7 @@ export const updateEvent = /* GraphQL */ `
         key
         delta
       }
+      newStatus
       createdAt
       updatedAt
     }
@@ -239,6 +245,8 @@ export const deleteEvent = /* GraphQL */ `
   ) {
     deleteEvent(input: $input, condition: $condition) {
       id
+      isChildEvent
+      childEventID
       status
       imgUrl
       content
@@ -252,6 +260,7 @@ export const deleteEvent = /* GraphQL */ `
         key
         delta
       }
+      newStatus
       createdAt
       updatedAt
     }
