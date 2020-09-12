@@ -1,5 +1,4 @@
 import React from "react";
-
 import Typography from "@material-ui/core/Typography";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
 
@@ -7,13 +6,7 @@ import { Cat } from "../baseTypes";
 import { Row, Column } from "../components";
 import VerticalProgressBar from "../components/VerticalProgressBar";
 
-export default function CatAttributesArea({
-  style,
-  cat,
-}: {
-  style?: any;
-  cat: Omit<Cat, "owner">;
-}) {
+export default function CatAttributesArea({ cat }: { cat: Cat }) {
   function renderAttribute(
     label: string,
     value: number,
@@ -24,7 +17,7 @@ export default function CatAttributesArea({
         {value > 100 || value < 0 ? (
           <div
             style={{
-              width: 120,
+              width: 96,
               marginLeft: 16,
               display: "flex",
               alignItems: "center",
@@ -50,7 +43,7 @@ export default function CatAttributesArea({
   return (
     <Row
       style={{
-        ...style,
+        margin: 16,
         justifyContent: "space-evenly",
       }}
     >

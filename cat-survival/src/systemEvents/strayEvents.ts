@@ -1,6 +1,5 @@
 import { Event } from "../baseTypes";
-// import { CatStatus, CatAttribute } from "../API";
 
-const strayEvents: Omit<Event, "createdAt" | "updatedAt">[] = [];
+const strayEvents: Event[] = [];
 
 export default strayEvents;

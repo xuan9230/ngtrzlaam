@@ -1,7 +1,7 @@
 import { Event } from "../baseTypes";
 import { CatStatus, CatAttribute } from "../API";
 
-const inHouseEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
+const inHouseEvents: Event[] = [
   {
     id: "e_1",
     title: "",
@@ -356,6 +356,26 @@ const inHouseEvents: Omit<Event, "createdAt" | "updatedAt">[] = [
     isChildEvent: false,
     childEventID: null,
     newStatus: null,
+  },
+  {
+    id: "ih_16",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_16.jpg",
+    status: CatStatus.inHouse,
+    content: "外面的世界很精彩，我要撕破纱窗吗？",
+    result: "进入新状态：流浪",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: 15,
+      },
+    ],
+    noEffects: [],
+    isChildEvent: false,
+    childEventID: null,
+    newStatus: CatStatus.stray,
   },
 ];
 

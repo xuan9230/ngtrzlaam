@@ -15,11 +15,8 @@ export default function EventCard({
   event,
   handleUpdateCat,
 }: {
-  event: Omit<Event, "createdAt" | "updatedAt">;
-  handleUpdateCat: (
-    event: Omit<Event, "createdAt" | "updatedAt">,
-    decision: boolean
-  ) => void;
+  event: Event;
+  handleUpdateCat: (event: Event, decision: boolean) => void;
 }) {
   return (
     <StyledCard

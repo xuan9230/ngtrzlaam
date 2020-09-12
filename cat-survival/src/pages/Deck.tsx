@@ -7,6 +7,7 @@ import { LinearProgress } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 import CatAttributesArea from "./CatAttributesArea";
+import CatItemsArea from "./CatItemsArea";
 import SideDrawer from "../components/SideDrawer";
 
 import EventSection from "./EventSection";
@@ -43,6 +44,19 @@ export default function Deck({ catId }: { catId: string }) {
     }
   );
 
+  function getStatusLabel(status: CatStatus) {
+    switch (status) {
+      case CatStatus.inHouse:
+        return "居家";
+      case CatStatus.stray:
+        return "流浪";
+      case CatStatus.finished:
+        return "回喵星了";
+      default:
+        return "";
+    }
+  }
+
   const cat = data?.getCat;
 
   if (error) return <p>Error fetching cat:(</p>;
@@ -55,7 +69,9 @@ export default function Deck({ catId }: { catId: string }) {
           <Typography variant="h6" style={{ marginRight: 8 }}>
             {cat.name}
           </Typography>
-          <Typography variant="body2">({cat.age} days)</Typography>
+          <Typography variant="body2">
+            ({cat.age} days, 状态：{getStatusLabel(cat.status)})
+          </Typography>
         </Row>
 
         <MenuButton aria-label="menu" onClick={() => setShowDrawer(true)}>
@@ -65,13 +81,15 @@ export default function Deck({ catId }: { catId: string }) {
 
       <SideDrawer open={showDrawer} onClose={() => setShowDrawer(false)} />
 
-      <CatAttributesArea style={{ margin: 16 }} cat={cat} />
+      <CatAttributesArea cat={cat} />
 
       {cat.status === CatStatus.finished ? (
         <FinishScene cat={cat} />
       ) : (
         <EventSection cat={cat} />
       )}
+
+      <CatItemsArea cat={cat} />
     </Container>
   );
 }

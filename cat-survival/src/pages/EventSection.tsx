@@ -3,6 +3,7 @@
  */
 
 import React from "react";
+import { shuffle } from "lodash-es";
 import styled from "styled-components";
 import { gql, useMutation } from "@apollo/client";
 import Typography from "@material-ui/core/Typography";
@@ -36,8 +37,6 @@ import { CatStatus } from "../API";
 //   }
 // `;
 
-const EVENTS_PER_DAY = 5;
-
 const UPDATE_CAT = gql`
   mutation updateCat($input: UpdateCatInput!) {
     updateCat(input: $input) {
@@ -62,6 +61,8 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   //     catId: cat.id,
   //   },
   // });
+  // if (error) return <p>Error fetching events:(</p>;
+  // if (fetchEventsLoading || !(data && data.events)) return <LinearProgress />;
 
   // Update cat
   const [
@@ -70,39 +71,27 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   ] = useMutation(UPDATE_CAT);
   const [result, setResult] = React.useState<null | string>(null);
 
-  // Get events that the cat hasn't encountered
   const catRef = React.useRef(cat);
   catRef.current = cat;
 
+  // Get events that the cat hasn't encountered
   const events = React.useMemo(() => {
-    const _events: Omit<Event, "createdAt" | "updatedAt">[] = [];
     const catEventIdMap: { [id: string]: boolean } = {};
     catRef.current.eventIDs.forEach((id) => (catEventIdMap[id] = true));
-    let i = 0;
 
-    while (_events.length < EVENTS_PER_DAY && i < systemEvents.length) {
-      const event = systemEvents[i];
-      if (!catEventIdMap[event.id]) {
-        _events.push(event);
-      }
-      i++;
-    }
+    const availableEvents = systemEvents[cat.status].filter(
+      (event) => !catEventIdMap[event.id]
+    );
 
-    return _events;
-  }, []);
-
-  // if (error) return <p>Error fetching events:(</p>;
-  // if (fetchEventsLoading || !(data && data.events)) return <LinearProgress />;
+    return shuffle(availableEvents);
+  }, [cat.status]);
 
   /**
    * Calculate new cat attributes based on event effects
    * And update on the server
    */
-  function handleUpdateCat(
-    event: Omit<Event, "createdAt" | "updatedAt">,
-    decision: boolean
-  ) {
-    // Set result if any
+  function handleUpdateCat(event: Event, decision: boolean) {
+    // Set extra result text if exists
     if (decision && event.result) {
       setResult(event.result);
     } else {
@@ -122,12 +111,11 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       ? event.noEffects
       : event.yesEffects.map((effect) => ({
           ...effect,
-          delta: -effect.delta,
+          delta: decision ? effect.delta : -effect.delta,
         }));
 
     resultEffects.forEach((effect) => {
       const { key, delta } = effect;
-      if (!key) throw new Error("Event effect must contain attribute key");
 
       const updatedAttribute = attributeUpdates[key] + delta;
       attributeUpdates[key] = updatedAttribute;
@@ -145,6 +133,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     };
 
     if (willCatFinish) updates.status = CatStatus.finished;
+    else if (event.newStatus) updates.status = event.newStatus;
 
     updateCat({
       variables: {
@@ -195,7 +184,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 export const CardsContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 450px;
+  height: 360px;
   display: flex;
   justify-content: center;
 `;
