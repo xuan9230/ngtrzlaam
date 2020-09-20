@@ -19,6 +19,7 @@ export const getUser = /* GraphQL */ `
           userID
           eventIDs
           status
+          itemNames
           createdAt
           updatedAt
         }
@@ -71,6 +72,7 @@ export const getCat = /* GraphQL */ `
       }
       eventIDs
       status
+      itemNames
       createdAt
       updatedAt
     }
@@ -100,6 +102,7 @@ export const listCats = /* GraphQL */ `
         }
         eventIDs
         status
+        itemNames
         createdAt
         updatedAt
       }
@@ -126,6 +129,7 @@ export const getEvent = /* GraphQL */ `
         key
         delta
       }
+      yesItemName
       newStatus
       createdAt
       updatedAt
@@ -156,6 +160,7 @@ export const listEvents = /* GraphQL */ `
           key
           delta
         }
+        yesItemName
         newStatus
         createdAt
         updatedAt
@@ -196,6 +201,7 @@ export const catsByUser = /* GraphQL */ `
         }
         eventIDs
         status
+        itemNames
         createdAt
         updatedAt
       }
@@ -235,6 +241,7 @@ export const eventsByStatus = /* GraphQL */ `
           key
           delta
         }
+        yesItemName
         newStatus
         createdAt
         updatedAt

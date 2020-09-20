@@ -4,7 +4,7 @@
 
 import React from "react";
 
-import actionTypes from "../types/actionTypes";
+import actionTypes from "./actionTypes";
 
 type DeckState = {
   /**

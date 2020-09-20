@@ -17,3 +17,10 @@ export type EventEffect = {
   key: CatAttribute;
   delta: number;
 };
+
+export type Item = {
+  name: string;
+  description: string;
+  effect: string;
+  imgUrl: string;
+};

@@ -19,6 +19,7 @@ export const onCreateUser = /* GraphQL */ `
           userID
           eventIDs
           status
+          itemNames
           createdAt
           updatedAt
         }
@@ -46,6 +47,7 @@ export const onUpdateUser = /* GraphQL */ `
           userID
           eventIDs
           status
+          itemNames
           createdAt
           updatedAt
         }
@@ -73,6 +75,7 @@ export const onDeleteUser = /* GraphQL */ `
           userID
           eventIDs
           status
+          itemNames
           createdAt
           updatedAt
         }
@@ -105,6 +108,7 @@ export const onCreateCat = /* GraphQL */ `
       }
       eventIDs
       status
+      itemNames
       createdAt
       updatedAt
     }
@@ -132,6 +136,7 @@ export const onUpdateCat = /* GraphQL */ `
       }
       eventIDs
       status
+      itemNames
       createdAt
       updatedAt
     }
@@ -159,6 +164,7 @@ export const onDeleteCat = /* GraphQL */ `
       }
       eventIDs
       status
+      itemNames
       createdAt
       updatedAt
     }
@@ -183,6 +189,7 @@ export const onCreateEvent = /* GraphQL */ `
         key
         delta
       }
+      yesItemName
       newStatus
       createdAt
       updatedAt
@@ -208,6 +215,7 @@ export const onUpdateEvent = /* GraphQL */ `
         key
         delta
       }
+      yesItemName
       newStatus
       createdAt
       updatedAt
@@ -233,6 +241,7 @@ export const onDeleteEvent = /* GraphQL */ `
         key
         delta
       }
+      yesItemName
       newStatus
       createdAt
       updatedAt

@@ -3,14 +3,39 @@ import styled from "styled-components";
 
 export default function VerticalProgressBar({
   progress,
-  backgroundColor,
 }: {
   progress: number;
-  backgroundColor: string;
 }) {
+  let isFinished = false;
+
+  let _progress = progress;
+  if (_progress > 100) {
+    _progress = 100;
+    isFinished = true;
+  } else if (_progress < 0) {
+    _progress = 0;
+    isFinished = true;
+  }
+
+  const background = isFinished
+    ? `repeating-linear-gradient(
+      45deg,
+      rgba(244,67,54, 0.75),
+      rgba(244,67,54, 0.75) 5px,
+      rgba(244,67,54, 0.5) 5px,
+      rgba(244,67,54, 0.5) 10px
+    )`
+    : `repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.75) 5px,
+    rgba(0, 0, 0, 0.5) 5px,
+    rgba(0, 0, 0, 0.5) 10px
+  )`;
+
   return (
     <Progress>
-      <ProgressBar style={{ height: `${progress}%`, backgroundColor }} />
+      <ProgressBar style={{ height: `${progress}%`, background }} />
     </Progress>
   );
 }
@@ -20,12 +45,11 @@ const Progress = styled.div`
   width: 40px;
   background: #dfe6e9;
   position: relative;
-  border-radius: 0.3em;
+  border-radius: 0.2em;
 `;
 
 const ProgressBar = styled.div`
   transition: height 0.5s;
-  border-radius: 0.3em;
   position: absolute;
   width: 100%;
   bottom: 0;

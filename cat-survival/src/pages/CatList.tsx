@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { User, Cat } from "../baseTypes";
 import List from "../components/List";
 import { useDeck } from "../providers/DeckProvider";
-import actionTypes from "../types/actionTypes";
+import actionTypes from "../providers/actionTypes";
 import { CardImage } from "../components/EventCard";
 import styled from "styled-components";
 import { CatsByUserQuery, CatsByUserQueryVariables } from "../API";

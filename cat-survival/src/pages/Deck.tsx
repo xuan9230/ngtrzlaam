@@ -27,6 +27,7 @@ const CAT_DETAILS_QUERY = gql`
       knowledge
       age
       eventIDs
+      itemNames
     }
   }
 `;
@@ -51,7 +52,7 @@ export default function Deck({ catId }: { catId: string }) {
       case CatStatus.stray:
         return "流浪";
       case CatStatus.finished:
-        return "回喵星了";
+        return "猫没了";
       default:
         return "";
     }

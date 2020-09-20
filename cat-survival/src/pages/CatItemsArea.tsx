@@ -2,27 +2,56 @@ import React from "react";
 import styled from "styled-components";
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
+import CardMedia from "@material-ui/core/CardMedia";
+import Divider from "@material-ui/core/Divider";
 
-import { Cat } from "../baseTypes";
-import { Row } from "../components";
+import { Cat, Item } from "../baseTypes";
+import { Row, Column } from "../components";
+import itemDefinitionMap from "../constants/itemDefinitionMap";
+
+type AnchorElement = HTMLDivElement | null;
 
 export default function CatItemsArea({ cat }: { cat: Cat }) {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
+  const InitialAnchorElArr = [null, null, null, null];
+  const [anchorElArr, setAnchorElArr] = React.useState<AnchorElement[]>(
+    InitialAnchorElArr
+  );
 
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  /**
+   * Item names for the four item slots.
+   * Populate with empty string if no item
+   */
+  const itemNames = React.useMemo(() => {
+    const _names = [...cat.itemNames];
+    for (let i = 0, j = 4 - _names.length; i < j; i++) {
+      _names.push("");
+    }
+    return _names;
+  }, [cat.itemNames]);
 
-  function renderItem(item: any) {
+  function renderItem(itemName: string, index: number) {
+    const item: Item | null = itemDefinitionMap[itemName];
+
+    const key = `item-${index}`;
+    const anchorEl = anchorElArr[index];
+    const open = Boolean(anchorEl);
+
     return (
-      <div>
-        <ItemContainer onClick={(event) => setAnchorEl(event.currentTarget)}>
-          {item}
+      <div key={key}>
+        <ItemContainer
+          onClick={(event) => {
+            const newElArr: AnchorElement[] = [...InitialAnchorElArr];
+            newElArr[index] = event.currentTarget;
+            setAnchorElArr(newElArr);
+          }}
+        >
+          {item && <ItemImage image={item.imgUrl} />}
         </ItemContainer>
         <Popover
-          id={id}
+          id={key}
           open={open}
           anchorEl={anchorEl}
-          onClose={() => setAnchorEl(null)}
+          onClose={() => setAnchorElArr(InitialAnchorElArr)}
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "center",
@@ -32,19 +61,27 @@ export default function CatItemsArea({ cat }: { cat: Cat }) {
             horizontal: "center",
           }}
         >
-          <Typography variant="body1" style={{ margin: 8 }}>
-            无道具
-          </Typography>
+          {item ? (
+            <ItemInfoContainer>
+              <Typography variant="body1">{item.name}</Typography>
+              <Divider style={{ width: "100%", margin: 4 }} />
+              <Typography variant="caption">{item.effect}</Typography>
+              <Typography variant="caption">{item.description}</Typography>
+            </ItemInfoContainer>
+          ) : (
+            <Typography variant="body1" style={{ margin: 8 }}>
+              无道具
+            </Typography>
+          )}
         </Popover>
       </div>
     );
   }
-
-  return <ItemRow>{[null, null, null, null].map(renderItem)}</ItemRow>;
+  return <ItemRow>{itemNames.map(renderItem)}</ItemRow>;
 }
 
 const ItemRow = styled(Row)`
-  margin-top: 24px;
+  margin-top: 48px;
   justify-content: space-evenly;
 `;
 
@@ -54,4 +91,13 @@ const ItemContainer = styled.div`
   border-radius: 3px;
   height: 48px;
   width: 48px;
+`;
+
+const ItemImage = styled(CardMedia)`
+  height: 48px;
+`;
+
+const ItemInfoContainer = styled(Column)`
+  align-items: flex-start;
+  padding: 16px;
 `;

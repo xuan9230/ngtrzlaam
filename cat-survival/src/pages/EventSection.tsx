@@ -43,10 +43,11 @@ const UPDATE_CAT = gql`
       id
       age
       health
+      knowledge
       wilderness
-      health
       status
       eventIDs
+      itemNames
     }
   }
 `;
@@ -65,25 +66,36 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   // if (fetchEventsLoading || !(data && data.events)) return <LinearProgress />;
 
   // Update cat
-  const [
-    updateCat,
-    // { loading: updateCatLoading }
-  ] = useMutation(UPDATE_CAT);
+  const [updateCat] = useMutation(UPDATE_CAT);
   const [result, setResult] = React.useState<null | string>(null);
 
   const catRef = React.useRef(cat);
   catRef.current = cat;
 
-  // Get events that the cat hasn't encountered
-  const events = React.useMemo(() => {
+  // ID of the next event (when then current event has a child event)
+  const [nextEvent, setNextEvent] = React.useState<null | Event>(null);
+
+  const {
+    inidividualEvents, // events that the cat hasn't encountered
+    childEventMap, // child events
+  } = React.useMemo(() => {
     const catEventIdMap: { [id: string]: boolean } = {};
     catRef.current.eventIDs.forEach((id) => (catEventIdMap[id] = true));
 
-    const availableEvents = systemEvents[cat.status].filter(
-      (event) => !catEventIdMap[event.id]
-    );
+    const inidividualEvents: Event[] = [];
+    const childEventMap: {
+      [id: string]: Event;
+    } = {};
 
-    return shuffle(availableEvents);
+    systemEvents[cat.status].forEach((event) => {
+      if (event.isChildEvent) childEventMap[event.id] = event;
+      else if (!catEventIdMap[event.id]) inidividualEvents.push(event);
+    });
+
+    return {
+      inidividualEvents: shuffle(inidividualEvents),
+      childEventMap,
+    };
   }, [cat.status]);
 
   /**
@@ -98,8 +110,9 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       setResult(null);
     }
 
+    // Calculatte attribute updates
     // Need to get cat from ref, as the TinderCard reserves obsolete callback
-    const { health, wilderness, knowledge } = catRef.current;
+    const { health, wilderness, knowledge, itemNames } = catRef.current;
     const attributeUpdates: any = {
       health,
       wilderness,
@@ -107,12 +120,17 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     };
     let willCatFinish = false;
 
-    const resultEffects = event.noEffects
-      ? event.noEffects
-      : event.yesEffects.map((effect) => ({
-          ...effect,
-          delta: decision ? effect.delta : -effect.delta,
-        }));
+    // Get the effects based on user's selection
+    let resultEffects;
+    // When selecting yes
+    if (decision) resultEffects = event.yesEffects;
+    // When selecting no
+    else if (event.noEffects) resultEffects = event.noEffects;
+    else
+      resultEffects = event.yesEffects.map((effect) => ({
+        ...effect,
+        delta: -effect.delta,
+      }));
 
     resultEffects.forEach((effect) => {
       const { key, delta } = effect;
@@ -132,8 +150,17 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       age: catRef.current.age + 1,
     };
 
+    // New Status
     if (willCatFinish) updates.status = CatStatus.finished;
     else if (event.newStatus) updates.status = event.newStatus;
+
+    // New Items
+    if (event.yesItemName)
+      updates.itemNames = [...itemNames, event.yesItemName];
+
+    // Next event
+    if (event.childEventID) setNextEvent(childEventMap[event.childEventID]);
+    else setNextEvent(null);
 
     updateCat({
       variables: {
@@ -162,21 +189,27 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     );
   }
 
+  /**
+   * Render a event card
+   */
+  function renderEvent(event: Event) {
+    return (
+      <EventCard
+        key={event.id}
+        event={event}
+        handleUpdateCat={handleUpdateCat}
+      />
+    );
+  }
+
   return (
     <CardsContainer>
-      {events.map((event) => {
-        return (
-          <EventCard
-            key={event.id}
-            event={event}
-            handleUpdateCat={handleUpdateCat}
-          />
-        );
-      })}
-      {renderResult()}
+      {nextEvent ? renderEvent(nextEvent) : inidividualEvents.map(renderEvent)}
       <Typography variant="body1" style={{ marginTop: 56 }}>
         猫累了，明天再来吧
       </Typography>
+
+      {renderResult()}
     </CardsContainer>
   );
 }
