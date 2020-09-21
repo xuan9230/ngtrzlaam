@@ -3,6 +3,7 @@
  */
 
 import React from "react";
+import { omit } from "lodash-es";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
@@ -89,6 +90,9 @@ export default function FinishScene({ cat }: { cat: Cat }) {
   }, [cat]);
 
   async function handleReincarnateCat() {
+    const updatedHistory = cat.history.map((h) => omit(h, "__typename"));
+    updatedHistory.push(newHistory);
+
     await updateCat({
       variables: {
         input: {
@@ -100,7 +104,7 @@ export default function FinishScene({ cat }: { cat: Cat }) {
           status: CatStatus.inHouse,
           eventIDs: [],
           itemNames: [],
-          history: [...cat.history, newHistory],
+          history: updatedHistory,
         },
       },
     });
