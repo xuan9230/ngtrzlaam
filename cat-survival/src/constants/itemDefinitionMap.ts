@@ -10,6 +10,13 @@ const itemDefinitionMap: {
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/it_1.jpg",
   },
+  月饼券: {
+    name: "月饼券",
+    description: "向网管出示会有意想不到的效果",
+    effect: "脂肪+30%",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/it_2.jpg",
+  },
 };
 
 export default itemDefinitionMap;

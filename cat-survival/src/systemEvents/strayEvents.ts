@@ -129,7 +129,7 @@ const strayEvents: Event[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/st_5.jpg",
     status: CatStatus.stray,
-    content: "为了在这风云变幻的街头生存，要练习个轻功吗？",
+    content: "为了在这风云变幻的街头生存，要练个轻功傍身吗？",
     result: "",
     yesEffects: [
       {
@@ -203,7 +203,7 @@ const strayEvents: Event[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/st_8.jpg",
     status: CatStatus.stray,
-    content: "大黄发动了如来神掌！要反击？",
+    content: "大黄发动了如来神掌！反击吗？",
     result: "",
     yesEffects: [],
     noEffects: [
@@ -307,6 +307,43 @@ const strayEvents: Event[] = [
     isChildEvent: false,
     childEventID: null,
     newStatus: null,
+  },
+  {
+    id: "st_11",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/st_11.jpg",
+    status: CatStatus.stray,
+    content: "偶然路过这个钢铁四脚兽，有种熟悉的令喵怀念的气味……",
+    result: "盘踞在车底等待，成功和铲屎的重逢",
+    yesEffects: [],
+    noEffects: [],
+    yesItemName: null,
+    isChildEvent: false,
+    childEventID: "st_12",
+    newStatus: null,
+  },
+  {
+    id: "st_12",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/st_12.jpg",
+    status: CatStatus.stray,
+    content:
+      "铲屎的很开心，抱着我刚想亲，发现头上的蛛网又把我放下了，不过还是给了好吃的。回家的感觉真好",
+    result: "在后颈发现了：月饼券",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: 10,
+      },
+    ],
+    noEffects: [],
+    yesItemName: "月饼券",
+    isChildEvent: true,
+    childEventID: null,
+    newStatus: CatStatus.inHouse,
   },
 ];
 

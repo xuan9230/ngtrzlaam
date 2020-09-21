@@ -81,7 +81,7 @@ export default function CatItemsArea({ cat }: { cat: Cat }) {
 }
 
 const ItemRow = styled(Row)`
-  margin-top: 48px;
+  margin-top: 32px;
   justify-content: space-evenly;
 `;
 

@@ -24,3 +24,9 @@ export type Item = {
   effect: string;
   imgUrl: string;
 };
+
+export type History = {
+  days: number;
+  reason: CatAttribute;
+  isMaxedOut: boolean;
+};

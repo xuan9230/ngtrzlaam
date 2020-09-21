@@ -16,6 +16,12 @@ type User @model {
   cats: [Cat!]! @connection(keyName: "byUser", fields: ["id"])
 }
 
+type History {
+  days: Int!
+  reason: CatAttribute!
+  isMaxedOut: Boolean!
+}
+
 type Cat
 @model
 @key(name: "byUser", fields: ["userID"], queryField: "catsByUser") {
@@ -32,6 +38,8 @@ type Cat
   eventIDs: [ID!]!
   status: CatStatus!
   itemNames: [String!]!
+  # List of cat's reincarnation history
+  history: [History!]!
 }
 
 type EventEffect {
@@ -46,7 +54,7 @@ type Event
 @key(name: "eventsByStatus", fields: ["status"], queryField: "eventsByStatus") {
   id: ID!
   # Determines if this event is a child event. Child event must be encountered after the parent event
-  isChildEvent: Boolean
+  isChildEvent: Boolean!
   # Its child event id if exists
   childEventID: ID
   # Required cat status that this event can happen to

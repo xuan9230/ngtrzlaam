@@ -82,7 +82,21 @@ export type CreateCatInput = {
   eventIDs: Array< string >,
   status: CatStatus,
   itemNames: Array< string >,
+  history: Array< HistoryInput >,
 };
+
+export type HistoryInput = {
+  days: number,
+  reason: CatAttribute,
+  isMaxedOut: boolean,
+};
+
+export enum CatAttribute {
+  health = "health",
+  wilderness = "wilderness",
+  knowledge = "knowledge",
+}
+
 
 export type ModelCatConditionInput = {
   name?: ModelStringInput | null,
@@ -145,6 +159,7 @@ export type UpdateCatInput = {
   eventIDs?: Array< string > | null,
   status?: CatStatus | null,
   itemNames?: Array< string > | null,
+  history?: Array< HistoryInput > | null,
 };
 
 export type DeleteCatInput = {
@@ -153,7 +168,7 @@ export type DeleteCatInput = {
 
 export type CreateEventInput = {
   id?: string | null,
-  isChildEvent?: boolean | null,
+  isChildEvent: boolean,
   childEventID?: string | null,
   status: CatStatus,
   imgUrl: string,
@@ -170,13 +185,6 @@ export type EventEffectInput = {
   key: CatAttribute,
   delta: number,
 };
-
-export enum CatAttribute {
-  health = "health",
-  wilderness = "wilderness",
-  knowledge = "knowledge",
-}
-
 
 export type ModelEventConditionInput = {
   isChildEvent?: ModelBooleanInput | null,
@@ -401,6 +409,12 @@ export type CreateCatMutation = {
     eventIDs: Array< string >,
     status: CatStatus,
     itemNames: Array< string >,
+    history:  Array< {
+      __typename: "History",
+      days: number,
+      reason: CatAttribute,
+      isMaxedOut: boolean,
+    } >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -436,6 +450,12 @@ export type UpdateCatMutation = {
     eventIDs: Array< string >,
     status: CatStatus,
     itemNames: Array< string >,
+    history:  Array< {
+      __typename: "History",
+      days: number,
+      reason: CatAttribute,
+      isMaxedOut: boolean,
+    } >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -471,6 +491,12 @@ export type DeleteCatMutation = {
     eventIDs: Array< string >,
     status: CatStatus,
     itemNames: Array< string >,
+    history:  Array< {
+      __typename: "History",
+      days: number,
+      reason: CatAttribute,
+      isMaxedOut: boolean,
+    } >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -485,7 +511,7 @@ export type CreateEventMutation = {
   createEvent:  {
     __typename: "Event",
     id: string,
-    isChildEvent: boolean | null,
+    isChildEvent: boolean,
     childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
@@ -518,7 +544,7 @@ export type UpdateEventMutation = {
   updateEvent:  {
     __typename: "Event",
     id: string,
-    isChildEvent: boolean | null,
+    isChildEvent: boolean,
     childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
@@ -551,7 +577,7 @@ export type DeleteEventMutation = {
   deleteEvent:  {
     __typename: "Event",
     id: string,
-    isChildEvent: boolean | null,
+    isChildEvent: boolean,
     childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
@@ -662,6 +688,12 @@ export type GetCatQuery = {
     eventIDs: Array< string >,
     status: CatStatus,
     itemNames: Array< string >,
+    history:  Array< {
+      __typename: "History",
+      days: number,
+      reason: CatAttribute,
+      isMaxedOut: boolean,
+    } >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -696,6 +728,12 @@ export type ListCatsQuery = {
       eventIDs: Array< string >,
       status: CatStatus,
       itemNames: Array< string >,
+      history:  Array< {
+        __typename: "History",
+        days: number,
+        reason: CatAttribute,
+        isMaxedOut: boolean,
+      } >,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -711,7 +749,7 @@ export type GetEventQuery = {
   getEvent:  {
     __typename: "Event",
     id: string,
-    isChildEvent: boolean | null,
+    isChildEvent: boolean,
     childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
@@ -747,7 +785,7 @@ export type ListEventsQuery = {
     items:  Array< {
       __typename: "Event",
       id: string,
-      isChildEvent: boolean | null,
+      isChildEvent: boolean,
       childEventID: string | null,
       status: CatStatus,
       imgUrl: string,
@@ -804,6 +842,12 @@ export type CatsByUserQuery = {
       eventIDs: Array< string >,
       status: CatStatus,
       itemNames: Array< string >,
+      history:  Array< {
+        __typename: "History",
+        days: number,
+        reason: CatAttribute,
+        isMaxedOut: boolean,
+      } >,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -825,7 +869,7 @@ export type EventsByStatusQuery = {
     items:  Array< {
       __typename: "Event",
       id: string,
-      isChildEvent: boolean | null,
+      isChildEvent: boolean,
       childEventID: string | null,
       status: CatStatus,
       imgUrl: string,
@@ -966,6 +1010,12 @@ export type OnCreateCatSubscription = {
     eventIDs: Array< string >,
     status: CatStatus,
     itemNames: Array< string >,
+    history:  Array< {
+      __typename: "History",
+      days: number,
+      reason: CatAttribute,
+      isMaxedOut: boolean,
+    } >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -996,6 +1046,12 @@ export type OnUpdateCatSubscription = {
     eventIDs: Array< string >,
     status: CatStatus,
     itemNames: Array< string >,
+    history:  Array< {
+      __typename: "History",
+      days: number,
+      reason: CatAttribute,
+      isMaxedOut: boolean,
+    } >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1026,6 +1082,12 @@ export type OnDeleteCatSubscription = {
     eventIDs: Array< string >,
     status: CatStatus,
     itemNames: Array< string >,
+    history:  Array< {
+      __typename: "History",
+      days: number,
+      reason: CatAttribute,
+      isMaxedOut: boolean,
+    } >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1035,7 +1097,7 @@ export type OnCreateEventSubscription = {
   onCreateEvent:  {
     __typename: "Event",
     id: string,
-    isChildEvent: boolean | null,
+    isChildEvent: boolean,
     childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
@@ -1063,7 +1125,7 @@ export type OnUpdateEventSubscription = {
   onUpdateEvent:  {
     __typename: "Event",
     id: string,
-    isChildEvent: boolean | null,
+    isChildEvent: boolean,
     childEventID: string | null,
     status: CatStatus,
     imgUrl: string,
@@ -1091,7 +1153,7 @@ export type OnDeleteEventSubscription = {
   onDeleteEvent:  {
     __typename: "Event",
     id: string,
-    isChildEvent: boolean | null,
+    isChildEvent: boolean,
     childEventID: string | null,
     status: CatStatus,
     imgUrl: string,

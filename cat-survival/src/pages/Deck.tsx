@@ -28,6 +28,11 @@ const CAT_DETAILS_QUERY = gql`
       age
       eventIDs
       itemNames
+      history {
+        days
+        reason
+        isMaxedOut
+      }
     }
   }
 `;
@@ -68,7 +73,7 @@ export default function Deck({ catId }: { catId: string }) {
       <Header>
         <Row>
           <Typography variant="h6" style={{ marginRight: 8 }}>
-            {cat.name}
+            {cat.name} {cat.history.length > 0 && `${cat.history.length + 1}世`}
           </Typography>
           <Typography variant="body2">
             ({cat.age} days, 状态：{getStatusLabel(cat.status)})

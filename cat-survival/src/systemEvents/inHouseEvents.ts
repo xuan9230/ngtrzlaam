@@ -425,6 +425,33 @@ const inHouseEvents: Event[] = [
     childEventID: null,
     newStatus: null,
   },
+  {
+    id: "ih_18",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_18.jpg",
+    status: CatStatus.inHouse,
+    content:
+      "铲屎的搞了个迷宫一样的饭碗，家里怕是快揭不开锅了，想限制我。就这？",
+    result: "",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.knowledge,
+        delta: 10,
+      },
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: -6,
+      },
+    ],
+    noEffects: null,
+    yesItemName: null,
+    isChildEvent: false,
+    childEventID: null,
+    newStatus: null,
+  },
 ];
 
 export default inHouseEvents;

@@ -73,6 +73,11 @@ export const getCat = /* GraphQL */ `
       eventIDs
       status
       itemNames
+      history {
+        days
+        reason
+        isMaxedOut
+      }
       createdAt
       updatedAt
     }
@@ -103,6 +108,11 @@ export const listCats = /* GraphQL */ `
         eventIDs
         status
         itemNames
+        history {
+          days
+          reason
+          isMaxedOut
+        }
         createdAt
         updatedAt
       }
@@ -202,6 +212,11 @@ export const catsByUser = /* GraphQL */ `
         eventIDs
         status
         itemNames
+        history {
+          days
+          reason
+          isMaxedOut
+        }
         createdAt
         updatedAt
       }

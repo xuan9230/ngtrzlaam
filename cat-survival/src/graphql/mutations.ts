@@ -121,6 +121,11 @@ export const createCat = /* GraphQL */ `
       eventIDs
       status
       itemNames
+      history {
+        days
+        reason
+        isMaxedOut
+      }
       createdAt
       updatedAt
     }
@@ -152,6 +157,11 @@ export const updateCat = /* GraphQL */ `
       eventIDs
       status
       itemNames
+      history {
+        days
+        reason
+        isMaxedOut
+      }
       createdAt
       updatedAt
     }
@@ -183,6 +193,11 @@ export const deleteCat = /* GraphQL */ `
       eventIDs
       status
       itemNames
+      history {
+        days
+        reason
+        isMaxedOut
+      }
       createdAt
       updatedAt
     }

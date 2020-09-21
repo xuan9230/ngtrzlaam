@@ -48,6 +48,11 @@ const UPDATE_CAT = gql`
       status
       eventIDs
       itemNames
+      history {
+        days
+        reason
+        isMaxedOut
+      }
     }
   }
 `;
