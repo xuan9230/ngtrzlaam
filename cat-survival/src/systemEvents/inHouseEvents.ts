@@ -399,7 +399,7 @@ const inHouseEvents: Event[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_17.jpg",
     status: CatStatus.inHouse,
-    content: "除了我的绝世美颜，要不要也健个身？",
+    content: "虽然我已经有了绝世美颜，要不要也健个身？",
     result: "",
     yesEffects: [
       {
@@ -429,7 +429,7 @@ const inHouseEvents: Event[] = [
     id: "ih_18",
     title: "",
     imgUrl:
-      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_18.jpg",
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_18.jpeg",
     status: CatStatus.inHouse,
     content:
       "铲屎的搞了个迷宫一样的饭碗，家里怕是快揭不开锅了，想限制我。就这？",

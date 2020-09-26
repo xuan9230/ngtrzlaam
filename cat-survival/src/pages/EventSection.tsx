@@ -15,6 +15,7 @@ import EventCard from "../components/EventCard";
 import systemEvents from "../systemEvents";
 import { Cat, Event } from "../baseTypes";
 import { CatStatus } from "../API";
+import { applyItemToEffects } from "../helpers/item";
 
 // const EVENTS_QUERY = gql`
 //   query getEvents($catId: ID!) {
@@ -137,7 +138,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
         delta: -effect.delta,
       }));
 
-    resultEffects.forEach((effect) => {
+    applyItemToEffects(resultEffects, itemNames).forEach((effect) => {
       const { key, delta } = effect;
 
       const updatedAttribute = attributeUpdates[key] + delta;
