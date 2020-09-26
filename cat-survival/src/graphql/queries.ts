@@ -125,7 +125,8 @@ export const getEvent = /* GraphQL */ `
     getEvent(id: $id) {
       id
       isChildEvent
-      childEventID
+      yesEventID
+      noEventID
       status
       imgUrl
       content
@@ -156,7 +157,8 @@ export const listEvents = /* GraphQL */ `
       items {
         id
         isChildEvent
-        childEventID
+        yesEventID
+        noEventID
         status
         imgUrl
         content
@@ -242,7 +244,8 @@ export const eventsByStatus = /* GraphQL */ `
       items {
         id
         isChildEvent
-        childEventID
+        yesEventID
+        noEventID
         status
         imgUrl
         content

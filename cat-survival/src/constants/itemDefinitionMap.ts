@@ -17,6 +17,13 @@ const itemDefinitionMap: {
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/it_2.jpg",
   },
+  拼图碎片1: {
+    name: "拼图碎片1",
+    description: "不知能拼出什么呢",
+    effect: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/it_3.jpg",
+  },
 };
 
 export default itemDefinitionMap;

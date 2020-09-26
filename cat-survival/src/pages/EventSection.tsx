@@ -78,8 +78,8 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   const catRef = React.useRef(cat);
   catRef.current = cat;
 
-  // ID of the next event (when then current event has a child event)
-  const [nextEvent, setNextEvent] = React.useState<null | Event>(null);
+  // The next event (when then current event has a child event)
+  const [childEvent, setChildEvent] = React.useState<null | Event>(null);
 
   const {
     inidividualEvents, // events that the cat hasn't encountered
@@ -165,8 +165,13 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       updates.itemNames = [...itemNames, event.yesItemName];
 
     // Next event
-    if (event.childEventID) setNextEvent(childEventMap[event.childEventID]);
-    else setNextEvent(null);
+    if (decision) {
+      if (event.yesEventID) setChildEvent(childEventMap[event.yesEventID]);
+      else setChildEvent(null);
+    } else {
+      if (event.noEventID) setChildEvent(childEventMap[event.noEventID]);
+      else setChildEvent(null);
+    }
 
     updateCat({
       variables: {
@@ -199,6 +204,10 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
    * Render a event card
    */
   function renderEvent(event: Event) {
+    const hasEncountered = catRef.current.eventIDs.includes(event.id);
+
+    if (hasEncountered) return null;
+
     return (
       <EventCard
         key={event.id}
@@ -210,9 +219,11 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 
   return (
     <CardsContainer>
-      {nextEvent ? renderEvent(nextEvent) : inidividualEvents.map(renderEvent)}
+      {childEvent
+        ? renderEvent(childEvent)
+        : inidividualEvents.map(renderEvent)}
       <Typography variant="body1" style={{ marginTop: 56 }}>
-        猫累了，明天再来吧
+        猫丝了，明天再来祭拜吧
       </Typography>
 
       {renderResult()}

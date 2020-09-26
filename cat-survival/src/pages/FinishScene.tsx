@@ -13,6 +13,7 @@ import { gql, useMutation } from "@apollo/client";
 import { Cat, History } from "../baseTypes";
 import { CardsContainer } from "./EventSection";
 import { CatAttribute, CatStatus } from "../API";
+import { CardImage } from "../components/EventCard";
 
 const UPDATE_CAT = gql`
   mutation updateCat($input: UpdateCatInput!) {
@@ -113,12 +114,11 @@ export default function FinishScene({ cat }: { cat: Cat }) {
 
   return (
     <Container>
-      <Typography variant="body1">{finishMessage}</Typography>
-      <Button
-        variant="contained"
-        style={{ marginTop: 32 }}
-        onClick={handleReincarnateCat}
-      >
+      <CardImage image="https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/finishScene.jpg" />
+      <div style={{ margin: 16 }}>
+        <Typography variant="body1">{finishMessage}</Typography>
+      </div>
+      <Button variant="contained" onClick={handleReincarnateCat}>
         再来过
       </Button>
     </Container>

@@ -211,7 +211,8 @@ export const createEvent = /* GraphQL */ `
     createEvent(input: $input, condition: $condition) {
       id
       isChildEvent
-      childEventID
+      yesEventID
+      noEventID
       status
       imgUrl
       content
@@ -240,7 +241,8 @@ export const updateEvent = /* GraphQL */ `
     updateEvent(input: $input, condition: $condition) {
       id
       isChildEvent
-      childEventID
+      yesEventID
+      noEventID
       status
       imgUrl
       content
@@ -269,7 +271,8 @@ export const deleteEvent = /* GraphQL */ `
     deleteEvent(input: $input, condition: $condition) {
       id
       isChildEvent
-      childEventID
+      yesEventID
+      noEventID
       status
       imgUrl
       content

@@ -36,7 +36,8 @@ const strayEvents: Event[] = [
     ],
     yesItemName: null,
     isChildEvent: false,
-    childEventID: null,
+    yesEventID: null,
+    noEventID: null,
     newStatus: null,
   },
   {
@@ -62,7 +63,8 @@ const strayEvents: Event[] = [
     noEffects: [],
     yesItemName: null,
     isChildEvent: false,
-    childEventID: null,
+    yesEventID: null,
+    noEventID: null,
     newStatus: null,
   },
   {
@@ -94,7 +96,8 @@ const strayEvents: Event[] = [
     ],
     yesItemName: null,
     isChildEvent: false,
-    childEventID: null,
+    yesEventID: null,
+    noEventID: null,
     newStatus: null,
   },
   {
@@ -120,7 +123,8 @@ const strayEvents: Event[] = [
     noEffects: [],
     yesItemName: null,
     isChildEvent: false,
-    childEventID: null,
+    yesEventID: null,
+    noEventID: null,
     newStatus: null,
   },
   {
@@ -152,7 +156,8 @@ const strayEvents: Event[] = [
     ],
     yesItemName: null,
     isChildEvent: false,
-    childEventID: null,
+    yesEventID: null,
+    noEventID: null,
     newStatus: null,
   },
   {
@@ -164,16 +169,11 @@ const strayEvents: Event[] = [
     content: "隔壁街的大黄凶狠的盯着你，但是这里昨天才被你标记成了自己的地盘。",
     result: "",
     yesEffects: [],
-    noEffects: [
-      {
-        __typename: "EventEffect",
-        key: CatAttribute.wilderness,
-        delta: -14,
-      },
-    ],
+    noEffects: [],
     yesItemName: null,
     isChildEvent: false,
-    childEventID: "st_7",
+    yesEventID: "st_7",
+    noEventID: "st_13",
     newStatus: null,
   },
   {
@@ -182,19 +182,14 @@ const strayEvents: Event[] = [
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/st_7.jpg",
     status: CatStatus.stray,
-    content: "你勇敢地靠近了大黄",
+    content: "靠近，与大黄对峙？",
     result: "",
     yesEffects: [],
-    noEffects: [
-      {
-        __typename: "EventEffect",
-        key: CatAttribute.wilderness,
-        delta: -14,
-      },
-    ],
+    noEffects: [],
     yesItemName: null,
     isChildEvent: true,
-    childEventID: "st_8",
+    yesEventID: "st_8",
+    noEventID: "st_13",
     newStatus: null,
   },
   {
@@ -206,21 +201,11 @@ const strayEvents: Event[] = [
     content: "大黄发动了如来神掌！反击吗？",
     result: "",
     yesEffects: [],
-    noEffects: [
-      {
-        __typename: "EventEffect",
-        key: CatAttribute.health,
-        delta: -8,
-      },
-      {
-        __typename: "EventEffect",
-        key: CatAttribute.wilderness,
-        delta: -14,
-      },
-    ],
+    noEffects: [],
     yesItemName: null,
     isChildEvent: true,
-    childEventID: "st_9",
+    yesEventID: "st_9",
+    noEventID: "st_13",
     newStatus: null,
   },
   {
@@ -258,7 +243,36 @@ const strayEvents: Event[] = [
     ],
     yesItemName: "橘面佛的认可",
     isChildEvent: true,
-    childEventID: null,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: null,
+  },
+  {
+    id: "st_13",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/st_13.jpg",
+    status: CatStatus.stray,
+    content: "向大黄低头，算是躲过了这一遭",
+    result: "",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: -15,
+      },
+    ],
+    noEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: -15,
+      },
+    ],
+    yesItemName: null,
+    isChildEvent: true,
+    yesEventID: null,
+    noEventID: null,
     newStatus: null,
   },
   {
@@ -305,7 +319,8 @@ const strayEvents: Event[] = [
     ],
     yesItemName: null,
     isChildEvent: false,
-    childEventID: null,
+    yesEventID: null,
+    noEventID: null,
     newStatus: null,
   },
   {
@@ -320,7 +335,8 @@ const strayEvents: Event[] = [
     noEffects: [],
     yesItemName: null,
     isChildEvent: false,
-    childEventID: "st_12",
+    yesEventID: "st_12",
+    noEventID: null,
     newStatus: null,
   },
   {
@@ -331,7 +347,7 @@ const strayEvents: Event[] = [
     status: CatStatus.stray,
     content:
       "铲屎的很开心，抱着我刚想亲，发现头上的蛛网又把我放下了，不过还是给了好吃的。回家的感觉真好",
-    result: "在后颈发现了：月饼券",
+    result: "",
     yesEffects: [
       {
         __typename: "EventEffect",
@@ -340,10 +356,34 @@ const strayEvents: Event[] = [
       },
     ],
     noEffects: [],
-    yesItemName: "月饼券",
+    yesItemName: null,
     isChildEvent: true,
-    childEventID: null,
+    yesEventID: null,
+    noEventID: null,
     newStatus: CatStatus.inHouse,
+  },
+  {
+    id: "st_14",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/st_14.jpg",
+    status: CatStatus.stray,
+    content:
+      "在家的时候，翻这个圆形的筒会被铲屎的凶，现在终于有机会了？不过闻起来好臭……",
+    result: "顶着窒息的风险，在桶底发现了奇妙的碎片",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: -12,
+      },
+    ],
+    noEffects: [],
+    yesItemName: "拼图碎片1",
+    isChildEvent: false,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: null,
   },
 ];
 

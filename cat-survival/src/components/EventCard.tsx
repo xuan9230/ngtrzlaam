@@ -50,6 +50,7 @@ const CardContainer = styled(Card)`
 
 export const CardImage = styled(CardMedia)`
   height: 280px;
+  width: 100%;
 `;
 
 const CardInfoContainer = styled(CardContent)`

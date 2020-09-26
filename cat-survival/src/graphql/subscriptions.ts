@@ -190,7 +190,8 @@ export const onCreateEvent = /* GraphQL */ `
     onCreateEvent {
       id
       isChildEvent
-      childEventID
+      yesEventID
+      noEventID
       status
       imgUrl
       content
@@ -216,7 +217,8 @@ export const onUpdateEvent = /* GraphQL */ `
     onUpdateEvent {
       id
       isChildEvent
-      childEventID
+      yesEventID
+      noEventID
       status
       imgUrl
       content
@@ -242,7 +244,8 @@ export const onDeleteEvent = /* GraphQL */ `
     onDeleteEvent {
       id
       isChildEvent
-      childEventID
+      yesEventID
+      noEventID
       status
       imgUrl
       content
