@@ -158,7 +158,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 
     // New Status
     if (willCatFinish) updates.status = CatStatus.finished;
-    else if (event.newStatus) updates.status = event.newStatus;
+    else if (event.newStatus && decision) updates.status = event.newStatus;
 
     // New Items
     if (event.yesItemName)
@@ -208,11 +208,14 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 
     if (hasEncountered) return null;
 
+    const showEffects = catRef.current.itemNames.includes("炫酷眼镜");
+
     return (
       <EventCard
         key={event.id}
         event={event}
         handleUpdateCat={handleUpdateCat}
+        showEffects={showEffects}
       />
     );
   }
@@ -223,7 +226,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
         ? renderEvent(childEvent)
         : inidividualEvents.map(renderEvent)}
       <Typography variant="body1" style={{ marginTop: 56 }}>
-        猫丝了，明天再来祭拜吧
+        网管偷懒了，去催进度吧
       </Typography>
 
       {renderResult()}
@@ -234,7 +237,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 export const CardsContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 360px;
+  height: 376px;
   display: flex;
   justify-content: center;
 `;

@@ -470,34 +470,88 @@ const inHouseEvents: Event[] = [
     noEventID: null,
     newStatus: null,
   },
-  // {
-  //   id: "ih_19",
-  //   title: "",
-  //   imgUrl:
-  //     "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_19.jpg",
-  //   status: CatStatus.inHouse,
-  //   content:
-  //     "铲屎的搞了个迷宫一样的饭碗，家里怕是快揭不开锅了，想限制我。就这？",
-  //   result: "",
-  //   yesEffects: [
-  //     {
-  //       __typename: "EventEffect",
-  //       key: CatAttribute.knowledge,
-  //       delta: 10,
-  //     },
-  //     {
-  //       __typename: "EventEffect",
-  //       key: CatAttribute.health,
-  //       delta: -6,
-  //     },
-  //   ],
-  //   noEffects: null,
-  //   yesItemName: null,
-  //   isChildEvent: false,
-  //   yesEventID: null,
-  // noEventID: null,
-  //   newStatus: null,
-  // }
+  {
+    id: "ih_19",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_19.jpg",
+    status: CatStatus.inHouse,
+    content: "发现一副炫酷的眼镜，要不要试试？",
+    result: "获得道具：炫酷眼镜",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.knowledge,
+        delta: 8,
+      },
+    ],
+    noEffects: [],
+    yesItemName: "炫酷眼镜",
+    isChildEvent: false,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: null,
+  },
+  {
+    id: "ih_20",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_20.jpg",
+    status: CatStatus.inHouse,
+    content: "要洗澡？？？",
+    result: "奇怪的清洁度和免疫力上升了！",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: 9,
+      },
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: -15,
+      },
+    ],
+    noEffects: null,
+    yesItemName: null,
+    isChildEvent: false,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: null,
+  },
+  {
+    id: "ih_21",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_21.jpg",
+    status: CatStatus.inHouse,
+    content: "陪铲屎的玩，也是本喵的职责",
+    result: "",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: -13,
+      },
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.knowledge,
+        delta: 7,
+      },
+    ],
+    noEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: 8,
+      },
+    ],
+    yesItemName: null,
+    isChildEvent: false,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: null,
+  },
 ];
 
 export default inHouseEvents;

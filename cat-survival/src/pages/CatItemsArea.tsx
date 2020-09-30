@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import { Cat, Item } from "../baseTypes";
 import { Row, Column } from "../components";
@@ -96,11 +96,11 @@ export default function CatItemsArea({ cat }: { cat: Cat }) {
               <ItemHeader>
                 <Typography variant="body1">{item.name}</Typography>
                 <IconButton
-                  style={{ padding: 0 }}
+                  style={{ padding: 0, marginLeft: 32 }}
                   aria-label="menu"
                   onClick={() => handleDiscardItem(item.name)}
                 >
-                  <DeleteForeverIcon />
+                  <DeleteIcon />
                 </IconButton>
               </ItemHeader>
 
