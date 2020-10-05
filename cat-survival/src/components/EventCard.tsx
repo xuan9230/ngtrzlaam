@@ -62,10 +62,10 @@ export default function EventCard({
     return (
       <Row style={{ justifyContent: "space-between", marginTop: 8 }}>
         <Column style={{ alignItems: "flex-start" }}>
-          {event.yesEffects.map((effect) => renderEffect(effect, false))}
+          {noEffects.map((effect) => renderEffect(effect, false))}
         </Column>
         <Column style={{ alignItems: "flex-start" }}>
-          {noEffects.map((effect) => renderEffect(effect, true))}
+          {event.yesEffects.map((effect) => renderEffect(effect, true))}
         </Column>
       </Row>
     );
