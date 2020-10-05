@@ -1,5 +1,4 @@
 import React from "react";
-import TinderCard from "react-tinder-card";
 import styled from "styled-components";
 
 import Card from "@material-ui/core/Card";
@@ -15,11 +14,9 @@ import { CatAttribute } from "../API";
 
 export default function EventCard({
   event,
-  handleUpdateCat,
   showEffects,
 }: {
   event: Event;
-  handleUpdateCat: (event: Event, decision: boolean) => void;
   showEffects: boolean;
 }) {
   function renderEffects() {
@@ -44,6 +41,7 @@ export default function EventCard({
 
       return (
         <Typography
+          key={`${isYes}-${effect.key}`}
           variant="caption"
           style={{ color: isYes ? "#beef00" : "#ff1d58" }}
         >
@@ -72,36 +70,24 @@ export default function EventCard({
   }
 
   return (
-    <StyledCard
-      onSwipe={(direction) => {
-        if (direction === "right") handleUpdateCat(event, true);
-        else if (direction === "left") handleUpdateCat(event, false);
-      }}
-    >
-      <CardContainer>
-        <CardImage image={event.imgUrl} />
+    <CardContainer>
+      <CardImage image={event.imgUrl} />
 
-        <CardInfoContainer>
-          {event.title && (
-            <Typography gutterBottom variant="h5" component="h2">
-              {event.title}
-            </Typography>
-          )}
-
-          <Typography variant="body2" color="textSecondary" component="p">
-            {event.content}
+      <CardInfoContainer>
+        {event.title && (
+          <Typography gutterBottom variant="h5" component="h2">
+            {event.title}
           </Typography>
-          {renderEffects()}
-        </CardInfoContainer>
-      </CardContainer>
-    </StyledCard>
+        )}
+
+        <Typography variant="body2" color="textSecondary" component="p">
+          {event.content}
+        </Typography>
+        {renderEffects()}
+      </CardInfoContainer>
+    </CardContainer>
   );
 }
-
-const StyledCard = styled(TinderCard)`
-  position: absolute;
-  width: 100%;
-`;
 
 const CardContainer = styled(Card)`
   align-self: stretch;

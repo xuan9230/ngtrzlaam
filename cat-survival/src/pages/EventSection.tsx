@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 
+import { Swipeable, direction } from "react-deck-swiper";
+
 import EventCard from "../components/EventCard";
 
 import systemEvents from "../systemEvents";
@@ -75,31 +77,43 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   const [updateCat] = useMutation(UPDATE_CAT);
   const [result, setResult] = React.useState<null | string>(null);
 
-  const catRef = React.useRef(cat);
-  catRef.current = cat;
+  // Get events matching current status
+  function getEvents() {
+    const inidividualEvents: Event[] = [];
+
+    const catEventIdMap: { [id: string]: boolean } = {};
+    cat.eventIDs.forEach((id) => (catEventIdMap[id] = true));
+
+    systemEvents[cat.status].forEach((event) => {
+      if (!event.isChildEvent && !catEventIdMap[event.id])
+        inidividualEvents.push(event);
+    });
+
+    return shuffle(inidividualEvents);
+  }
+
+  const [events, setEvents] = React.useState<Event[]>(() => {
+    return getEvents();
+  });
+  React.useEffect(() => {
+    setEvents(getEvents());
+  }, [cat.status]);
 
   // The next event (when then current event has a child event)
   const [childEvent, setChildEvent] = React.useState<null | Event>(null);
 
   const {
-    inidividualEvents, // events that the cat hasn't encountered
     childEventMap, // child events
   } = React.useMemo(() => {
-    const catEventIdMap: { [id: string]: boolean } = {};
-    catRef.current.eventIDs.forEach((id) => (catEventIdMap[id] = true));
-
-    const inidividualEvents: Event[] = [];
     const childEventMap: {
       [id: string]: Event;
     } = {};
 
     systemEvents[cat.status].forEach((event) => {
       if (event.isChildEvent) childEventMap[event.id] = event;
-      else if (!catEventIdMap[event.id]) inidividualEvents.push(event);
     });
 
     return {
-      inidividualEvents: shuffle(inidividualEvents),
       childEventMap,
     };
   }, [cat.status]);
@@ -108,7 +122,9 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
    * Calculate new cat attributes based on event effects
    * And update on the server
    */
-  function handleUpdateCat(event: Event, decision: boolean) {
+  function handleOnSwipe(event: Event, swapDirection: string) {
+    const decision = swapDirection === direction.RIGHT;
+
     // Set extra result text if exists
     if (decision && event.result) {
       setResult(event.result);
@@ -118,7 +134,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 
     // Calculatte attribute updates
     // Need to get cat from ref, as the TinderCard reserves obsolete callback
-    const { health, wilderness, knowledge, itemNames } = catRef.current;
+    const { health, wilderness, knowledge, itemNames } = cat;
     const attributeUpdates: any = {
       health,
       wilderness,
@@ -152,8 +168,8 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
     const updates = {
       ...attributeUpdates,
       id: cat.id,
-      eventIDs: [...catRef.current.eventIDs, event.id],
-      age: catRef.current.age + 1,
+      eventIDs: [...cat.eventIDs, event.id],
+      age: cat.age + 1,
     };
 
     // New Status
@@ -165,13 +181,23 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       updates.itemNames = [...itemNames, event.yesItemName];
 
     // Next event
+    let nextEvent: Event | null = null;
+
     if (decision) {
-      if (event.yesEventID) setChildEvent(childEventMap[event.yesEventID]);
-      else setChildEvent(null);
+      if (event.yesEventID) {
+        nextEvent = childEventMap[event.yesEventID];
+      }
     } else {
-      if (event.noEventID) setChildEvent(childEventMap[event.noEventID]);
-      else setChildEvent(null);
+      if (event.noEventID) {
+        nextEvent = childEventMap[event.noEventID];
+      }
     }
+
+    setChildEvent(nextEvent);
+
+    if (!event.isChildEvent) setEvents(events.slice(1));
+
+    if (!nextEvent) nextEvent = events[1];
 
     updateCat({
       variables: {
@@ -203,31 +229,34 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
   /**
    * Render a event card
    */
-  function renderEvent(event: Event) {
-    const hasEncountered = catRef.current.eventIDs.includes(event.id);
+  function renderEvent() {
+    const event = childEvent || events[0];
+
+    const hasEncountered = cat.eventIDs.includes(event.id);
 
     if (hasEncountered) return null;
 
-    const showEffects = catRef.current.itemNames.includes("炫酷眼镜");
+    const showEffects = cat.itemNames.includes("炫酷眼镜");
 
     return (
-      <EventCard
-        key={event.id}
-        event={event}
-        handleUpdateCat={handleUpdateCat}
-        showEffects={showEffects}
-      />
+      <Swipeable
+        onSwipe={(direction) => handleOnSwipe(event, direction)}
+        fadeThreshold={80}
+      >
+        <EventCard key={event.id} event={event} showEffects={showEffects} />
+      </Swipeable>
     );
   }
 
   return (
     <CardsContainer>
-      {childEvent
-        ? renderEvent(childEvent)
-        : inidividualEvents.map(renderEvent)}
-      <Typography variant="body1" style={{ marginTop: 56 }}>
-        网管偷懒了，去催进度吧
-      </Typography>
+      {events.length > 0 ? (
+        renderEvent()
+      ) : (
+        <Typography variant="body1" style={{ marginTop: 56 }}>
+          网管偷懒了，去催进度吧
+        </Typography>
+      )}
 
       {renderResult()}
     </CardsContainer>

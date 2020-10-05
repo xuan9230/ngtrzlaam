@@ -5,6 +5,7 @@
 import React from "react";
 
 import actionTypes from "./actionTypes";
+import { EventEffect } from "../baseTypes";
 
 type DeckState = {
   /**
@@ -12,20 +13,23 @@ type DeckState = {
    */
   catId?: string;
   /**
-   * Remaining swipe times for today
+   * Effects of the current event
    */
-  remainingSwipes: number;
+  eventEffects: EventEffect[];
 };
 
 /**
  * Actions
  */
-type SetSelectedCatId = {
-  type: typeof actionTypes.SET_SELECTED_CAT_ID;
-  catId: string;
-};
-
-type Action = SetSelectedCatId;
+type Action =
+  | {
+      type: typeof actionTypes.SET_SELECTED_CAT_ID;
+      catId: string;
+    }
+  | {
+      type: typeof actionTypes.SET_EVENT_EFFECTS;
+      eventEffects: EventEffect[];
+    };
 
 interface DeckContextType {
   state: DeckState;
@@ -40,6 +44,11 @@ function deckReducer(state: DeckState, action: Action): DeckState {
       return {
         ...state,
         catId: action.catId,
+      };
+    case actionTypes.SET_EVENT_EFFECTS:
+      return {
+        ...state,
+        eventEffects: action.eventEffects,
       };
     default:
       return state;
@@ -57,7 +66,7 @@ function useDeck() {
 
 function DeckProvider(props: any) {
   const [state, dispatch] = React.useReducer(deckReducer, {
-    remainingSwipes: 5,
+    eventEffects: [],
   });
 
   const value = React.useMemo(() => ({ state, dispatch }), [state]);
