@@ -8785,7 +8785,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.4"
 
-prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8951,13 +8951,6 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-react-deck-swiper@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/react-deck-swiper/-/react-deck-swiper-1.0.9.tgz#b84d6dd92907325f1d2ff549abccba6b7f1f450e"
-  integrity sha512-BaM1fYAkRebHXcs5aeA8gg3LQ2k8f9haTtIdZ42MVoefko0151fujaXaZpdX8ToTnkDvd4T8NvnFXc+te9LE7A==
-  dependencies:
-    react-spring "^8.0.27"
-
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"
@@ -9097,18 +9090,10 @@ react-scripts@3.4.1:
   optionalDependencies:
     fsevents "2.1.2"
 
-react-spring@^8.0.27:
-  version "8.0.27"
-  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-8.0.27.tgz#97d4dee677f41e0b2adcb696f3839680a3aa356a"
-  integrity sha512-nDpWBe3ZVezukNRandTeLSPcwwTMjNVu1IDq9qA/AMiUqHuRN4BeSWvKr3eIxxg1vtiYiOLy4FqdfCP5IoP77g==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    prop-types "^15.5.8"
-
-react-tinder-card@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-tinder-card/-/react-tinder-card-1.2.0.tgz#a0246be105de51154cfea04b5850ff8fea5e953f"
-  integrity sha512-sg2NrBahOcjiVLS1wCJwGkVc8SFScr4xGA6Nr3l+IO29z/ZAERZcqSq9UlAMwOwWKXU1AVZfMyMvhuyNFoK/qg==
+react-tinder-card@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/react-tinder-card/-/react-tinder-card-1.3.1.tgz#6474c542d77481f296e6a8bc3f866b1d680aae6a"
+  integrity sha512-3W4ltSEz44KHqUbds38/dPPkPkSfYdyqVbB9SyV0Lg7juh/BjmIG+YGGrHgxTQhJ5t5RxXUDdIHQ9ewanV4iTg==
   dependencies:
     p-sleep "^1.1.0"
 

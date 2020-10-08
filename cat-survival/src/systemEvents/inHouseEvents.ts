@@ -552,6 +552,56 @@ const inHouseEvents: Event[] = [
     noEventID: null,
     newStatus: null,
   },
+  {
+    id: "ih_22",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_22.jpg",
+    status: CatStatus.inHouse,
+    content: "衣带渐窄终不悔，为罐消得猫憔悴",
+    result: "",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: -14,
+      },
+    ],
+    noEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: -14,
+      },
+    ],
+    yesItemName: null,
+    isChildEvent: false,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: null,
+  },
+  {
+    id: "ih_23",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_23.jpg",
+    status: CatStatus.inHouse,
+    content: "听说把这个东西放在头顶，能向世界发出自己的讯号",
+    result: "",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.knowledge,
+        delta: -12,
+      },
+    ],
+    noEffects: [],
+    yesItemName: null,
+    isChildEvent: false,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: null,
+  },
 ];
 
 export default inHouseEvents;

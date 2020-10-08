@@ -77,6 +77,7 @@ export default function EventCard({
         if (direction === "right") handleUpdateCat(event, true);
         else if (direction === "left") handleUpdateCat(event, false);
       }}
+      preventSwipe={["up", "down"]}
     >
       <CardContainer>
         <CardImage image={event.imgUrl} />
