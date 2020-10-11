@@ -6,10 +6,10 @@ import { Row, Column } from "../components";
 import VerticalProgressBar from "../components/VerticalProgressBar";
 
 export default function CatAttributesArea({ cat }: { cat: Cat }) {
-  function renderAttribute(label: string, value: number) {
+  function renderAttribute(label: string, value: number, color: string) {
     return (
       <Column>
-        <VerticalProgressBar progress={value} />
+        <VerticalProgressBar progress={value} color={color} />
 
         <div style={{ marginTop: 8 }}>
           <Typography variant="subtitle1">{label}</Typography>
@@ -25,9 +25,9 @@ export default function CatAttributesArea({ cat }: { cat: Cat }) {
         justifyContent: "space-evenly",
       }}
     >
-      {renderAttribute("健康", cat.health)}
-      {renderAttribute("知识", cat.knowledge)}
-      {renderAttribute("野性", cat.wilderness)}
+      {renderAttribute("健康", cat.health, "#cc313d")}
+      {renderAttribute("知识", cat.knowledge, "#e5989e")}
+      {renderAttribute("野性", cat.wilderness, "#f7c5cc")}
     </Row>
   );
 }

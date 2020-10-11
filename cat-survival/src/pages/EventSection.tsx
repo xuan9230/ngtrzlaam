@@ -142,7 +142,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
       const { key, delta } = effect;
 
       const updatedAttribute = attributeUpdates[key] + delta;
-      attributeUpdates[key] = updatedAttribute;
+      attributeUpdates[key] = Math.floor(updatedAttribute);
 
       if (updatedAttribute > 100 || updatedAttribute < 0) {
         willCatFinish = true;

@@ -2,6 +2,7 @@ import React from "react";
 import { ApolloProvider } from "@apollo/client";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
 import Router from "./Router";
 import apolloClient from "./apollo";
@@ -9,7 +10,9 @@ import { DeckProvider } from "./providers/DeckProvider";
 
 const theme = createMuiTheme({
   palette: {
-    type: "dark",
+    background: {
+      default: "#EAE7DC",
+    },
   },
 });
 
@@ -19,7 +22,9 @@ function App() {
       <CssBaseline />
       <ApolloProvider client={apolloClient}>
         <DeckProvider>
-          <Router />
+          <Grid>
+            <Router />
+          </Grid>
         </DeckProvider>
       </ApolloProvider>
     </ThemeProvider>

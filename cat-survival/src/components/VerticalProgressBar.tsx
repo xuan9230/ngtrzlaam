@@ -3,35 +3,25 @@ import styled from "styled-components";
 
 export default function VerticalProgressBar({
   progress,
+  color, // hex color string
 }: {
   progress: number;
+  color: string;
 }) {
-  let isFinished = false;
+  const background = React.useMemo(() => {
+    let isFinished = false;
 
-  let _progress = progress;
-  if (_progress > 100) {
-    _progress = 100;
-    isFinished = true;
-  } else if (_progress < 0) {
-    _progress = 0;
-    isFinished = true;
-  }
+    let _progress = progress;
+    if (_progress > 100) {
+      _progress = 100;
+      isFinished = true;
+    } else if (_progress < 0) {
+      _progress = 0;
+      isFinished = true;
+    }
 
-  const background = isFinished
-    ? `repeating-linear-gradient(
-      45deg,
-      rgba(244,67,54, 0.75),
-      rgba(244,67,54, 0.75) 5px,
-      rgba(244,67,54, 0.5) 5px,
-      rgba(244,67,54, 0.5) 10px
-    )`
-    : `repeating-linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0.75) 5px,
-    rgba(0, 0, 0, 0.5) 5px,
-    rgba(0, 0, 0, 0.5) 10px
-  )`;
+    return isFinished ? `rgba(0, 0, 0, 0.5)` : color;
+  }, [color, progress]);
 
   return (
     <Progress>
@@ -43,7 +33,7 @@ export default function VerticalProgressBar({
 const Progress = styled.div`
   height: 120px;
   width: 40px;
-  background: #dfe6e9;
+  background: #e0dccc;
   position: relative;
   border-radius: 0.2em;
 `;
