@@ -18,6 +18,12 @@ export type EventEffect = {
   delta: number;
 };
 
+export type AttributeRequirement = {
+  __typename?: "AttributeRequirement";
+  key: CatAttribute;
+  value: number;
+};
+
 export type Item = {
   name: string;
   description: string;

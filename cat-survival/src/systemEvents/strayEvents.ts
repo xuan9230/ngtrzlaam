@@ -39,6 +39,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_2",
@@ -66,6 +69,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_3",
@@ -99,6 +105,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_4",
@@ -126,6 +135,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_5",
@@ -159,6 +171,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_6",
@@ -175,6 +190,9 @@ const strayEvents: Event[] = [
     yesEventID: "st_7",
     noEventID: "st_13",
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_7",
@@ -191,6 +209,9 @@ const strayEvents: Event[] = [
     yesEventID: "st_8",
     noEventID: "st_13",
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_8",
@@ -207,6 +228,9 @@ const strayEvents: Event[] = [
     yesEventID: "st_9",
     noEventID: "st_13",
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_9",
@@ -246,6 +270,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_13",
@@ -274,6 +301,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_10",
@@ -322,6 +352,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_11",
@@ -338,6 +371,9 @@ const strayEvents: Event[] = [
     yesEventID: "st_12",
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: true,
   },
   {
     id: "st_12",
@@ -361,6 +397,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: CatStatus.inHouse,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
   {
     id: "st_14",
@@ -384,6 +423,9 @@ const strayEvents: Event[] = [
     yesEventID: null,
     noEventID: null,
     newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
   },
 ];
 

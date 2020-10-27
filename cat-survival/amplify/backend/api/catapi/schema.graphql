@@ -49,6 +49,11 @@ type EventEffect {
   delta: Int!
 }
 
+type AttributeRequirement {
+  key: CatAttribute!
+  value: Int!
+}
+
 type Event
   @model
   @key(
@@ -77,8 +82,14 @@ type Event
   yesEffects: [EventEffect!]!
   # Effects when selecting no
   noEffects: [EventEffect!]
+  # Atttributes required to select yes
+  yesRequirements: [AttributeRequirement!]
+  # Atttributes required to select no
+  noRequirements: [AttributeRequirement!]
   # Item name obtained if selecting yes
   yesItemName: String
   # If exists, the cat will enter this new status by selecting yes
   newStatus: CatStatus
+  # Whether this event can occur more than once
+  repeatable: Boolean!
 }

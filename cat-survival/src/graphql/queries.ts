@@ -140,8 +140,17 @@ export const getEvent = /* GraphQL */ `
         key
         delta
       }
+      yesRequirements {
+        key
+        value
+      }
+      noRequirements {
+        key
+        value
+      }
       yesItemName
       newStatus
+      repeatable
       createdAt
       updatedAt
     }
@@ -172,8 +181,17 @@ export const listEvents = /* GraphQL */ `
           key
           delta
         }
+        yesRequirements {
+          key
+          value
+        }
+        noRequirements {
+          key
+          value
+        }
         yesItemName
         newStatus
+        repeatable
         createdAt
         updatedAt
       }
@@ -259,8 +277,17 @@ export const eventsByStatus = /* GraphQL */ `
           key
           delta
         }
+        yesRequirements {
+          key
+          value
+        }
+        noRequirements {
+          key
+          value
+        }
         yesItemName
         newStatus
+        repeatable
         createdAt
         updatedAt
       }

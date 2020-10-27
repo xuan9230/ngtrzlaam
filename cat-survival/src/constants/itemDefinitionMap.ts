@@ -24,6 +24,13 @@ const itemDefinitionMap: {
     imgUrl:
       "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/it_3.jpg",
   },
+  拼图碎片2: {
+    name: "拼图碎片2",
+    description: "不知能拼出什么呢",
+    effect: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/it_3.jpg",
+  },
   炫酷眼镜: {
     name: "炫酷眼镜",
     description: "拨开尘世的迷雾，预知选择的效果",

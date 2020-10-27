@@ -205,8 +205,17 @@ export const onCreateEvent = /* GraphQL */ `
         key
         delta
       }
+      yesRequirements {
+        key
+        value
+      }
+      noRequirements {
+        key
+        value
+      }
       yesItemName
       newStatus
+      repeatable
       createdAt
       updatedAt
     }
@@ -232,8 +241,17 @@ export const onUpdateEvent = /* GraphQL */ `
         key
         delta
       }
+      yesRequirements {
+        key
+        value
+      }
+      noRequirements {
+        key
+        value
+      }
       yesItemName
       newStatus
+      repeatable
       createdAt
       updatedAt
     }
@@ -259,8 +277,17 @@ export const onDeleteEvent = /* GraphQL */ `
         key
         delta
       }
+      yesRequirements {
+        key
+        value
+      }
+      noRequirements {
+        key
+        value
+      }
       yesItemName
       newStatus
+      repeatable
       createdAt
       updatedAt
     }

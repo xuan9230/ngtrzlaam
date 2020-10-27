@@ -47,7 +47,7 @@ export default function FinishScene({ cat }: { cat: Cat }) {
       isMaxedOut: true,
     };
 
-    function getFinishMessage(): string {
+    function getFinishMessage(): string | null {
       if (cat.health > 100) {
         newHistory.reason = CatAttribute.health;
         newHistory.isMaxedOut = true;
@@ -79,7 +79,8 @@ export default function FinishScene({ cat }: { cat: Cat }) {
         newHistory.isMaxedOut = false;
         return "温顺的猫咪只想靠着你呼噜，不想冒险了";
       }
-      throw new Error("No attribute exceeds 100");
+
+      return null;
     }
 
     const finishMessage = getFinishMessage();
@@ -116,8 +117,11 @@ export default function FinishScene({ cat }: { cat: Cat }) {
     <Container>
       <CardImage image="https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/finishScene.jpg" />
       <div style={{ margin: 16 }}>
-        <Typography variant="body1">{finishMessage}</Typography>
+        {finishMessage && (
+          <Typography variant="body1">{finishMessage}</Typography>
+        )}
       </div>
+
       <Button variant="contained" onClick={handleReincarnateCat}>
         再来过
       </Button>

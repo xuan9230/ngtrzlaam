@@ -58,7 +58,7 @@ const UPDATE_CAT = gql`
   }
 `;
 
-export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
+export default function EventSection({ cat }: { cat: Cat }) {
   // TODO - Fetch custom events
   // const { loading: fetchEventsLoading, error, data, fetchMore } = useQuery<
   //   GetEventsQuery,
@@ -80,9 +80,14 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 
   // The next event (when then current event has a child event)
   const [childEvent, setChildEvent] = React.useState<null | Event>(null);
+  // () => {
+  //   const a = systemEvents["inHouse"].find((event) => event.id === "ih_26");
+  //   if (a) return a;
+  //   return null;
+  // }
 
   const {
-    inidividualEvents, // events that the cat hasn't encountered
+    inidividualEvents, // events that the cat hasn't encountered, or are repeatable
     childEventMap, // child events
   } = React.useMemo(() => {
     const catEventIdMap: { [id: string]: boolean } = {};
@@ -95,7 +100,8 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
 
     systemEvents[cat.status].forEach((event) => {
       if (event.isChildEvent) childEventMap[event.id] = event;
-      else if (!catEventIdMap[event.id]) inidividualEvents.push(event);
+      else if (event.repeatable || !catEventIdMap[event.id])
+        inidividualEvents.push(event);
     });
 
     return {
@@ -216,6 +222,7 @@ export default function EventSection({ cat }: { cat: Omit<Cat, "owner"> }) {
         event={event}
         handleUpdateCat={handleUpdateCat}
         showEffects={showEffects}
+        cat={catRef.current}
       />
     );
   }
