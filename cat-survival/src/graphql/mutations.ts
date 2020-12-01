@@ -122,9 +122,10 @@ export const createCat = /* GraphQL */ `
       status
       itemNames
       history {
+        type
         days
-        reason
-        isMaxedOut
+        attribute
+        scene
       }
       createdAt
       updatedAt
@@ -158,9 +159,10 @@ export const updateCat = /* GraphQL */ `
       status
       itemNames
       history {
+        type
         days
-        reason
-        isMaxedOut
+        attribute
+        scene
       }
       createdAt
       updatedAt
@@ -194,9 +196,10 @@ export const deleteCat = /* GraphQL */ `
       status
       itemNames
       history {
+        type
         days
-        reason
-        isMaxedOut
+        attribute
+        scene
       }
       createdAt
       updatedAt
@@ -214,6 +217,7 @@ export const createEvent = /* GraphQL */ `
       yesEventID
       noEventID
       status
+      newStatus
       imgUrl
       content
       title
@@ -235,8 +239,8 @@ export const createEvent = /* GraphQL */ `
         value
       }
       yesItemName
-      newStatus
       repeatable
+      scene
       createdAt
       updatedAt
     }
@@ -253,6 +257,7 @@ export const updateEvent = /* GraphQL */ `
       yesEventID
       noEventID
       status
+      newStatus
       imgUrl
       content
       title
@@ -274,8 +279,8 @@ export const updateEvent = /* GraphQL */ `
         value
       }
       yesItemName
-      newStatus
       repeatable
+      scene
       createdAt
       updatedAt
     }
@@ -292,6 +297,7 @@ export const deleteEvent = /* GraphQL */ `
       yesEventID
       noEventID
       status
+      newStatus
       imgUrl
       content
       title
@@ -313,8 +319,8 @@ export const deleteEvent = /* GraphQL */ `
         value
       }
       yesItemName
-      newStatus
       repeatable
+      scene
       createdAt
       updatedAt
     }

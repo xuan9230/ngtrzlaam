@@ -10,6 +10,13 @@ enum CatStatus {
   finished
 }
 
+# Why a cat's journey has finished
+enum FinishType {
+  attributeHigh
+  attributeLow
+  scene
+}
+
 type User @model {
   id: ID!
   name: String!
@@ -17,9 +24,10 @@ type User @model {
 }
 
 type History {
+  type: FinishType!
   days: Int!
-  reason: CatAttribute!
-  isMaxedOut: Boolean!
+  attribute: CatAttribute
+  scene: String
 }
 
 type Cat
@@ -38,7 +46,7 @@ type Cat
   eventIDs: [ID!]!
   status: CatStatus!
   itemNames: [String!]!
-  # List of cat's reincarnation history
+  # List of cat's finish history
   history: [History!]!
 }
 
@@ -70,6 +78,8 @@ type Event
   noEventID: ID
   # Required cat status that this event can happen to
   status: CatStatus!
+  # If exists, the cat will enter this new status by selecting yes
+  newStatus: CatStatus
   # image for this event
   imgUrl: String!
   # Event content
@@ -80,7 +90,7 @@ type Event
   result: String
   # Effects when selecting yes
   yesEffects: [EventEffect!]!
-  # Effects when selecting no
+  # Effects when selecting no. Optional, if not provided, will be the opposite of yes effects
   noEffects: [EventEffect!]
   # Atttributes required to select yes
   yesRequirements: [AttributeRequirement!]
@@ -88,8 +98,8 @@ type Event
   noRequirements: [AttributeRequirement!]
   # Item name obtained if selecting yes
   yesItemName: String
-  # If exists, the cat will enter this new status by selecting yes
-  newStatus: CatStatus
   # Whether this event can occur more than once
   repeatable: Boolean!
+  # If present, the cat's journey ends with this scene
+  scene: String
 }

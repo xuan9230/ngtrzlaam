@@ -31,6 +31,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_2",
@@ -61,6 +62,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_3",
@@ -91,6 +93,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_4",
@@ -121,6 +124,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_5",
@@ -146,6 +150,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_6",
@@ -171,6 +176,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_7",
@@ -201,6 +207,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_8",
@@ -226,6 +233,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_9",
@@ -251,6 +259,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_10",
@@ -281,6 +290,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_11",
@@ -311,6 +321,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_12",
@@ -341,6 +352,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_13",
@@ -371,6 +383,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "e_14",
@@ -401,6 +414,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_15",
@@ -431,6 +445,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_16",
@@ -456,6 +471,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: true,
+    scene: null,
   },
   {
     id: "ih_17",
@@ -492,6 +508,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_18",
@@ -523,6 +540,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_19",
@@ -548,6 +566,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_20",
@@ -578,6 +597,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_21",
@@ -614,6 +634,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_22",
@@ -645,6 +666,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_23",
@@ -670,6 +692,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_24",
@@ -689,6 +712,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_25",
@@ -708,6 +732,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_26",
@@ -733,6 +758,7 @@ const inHouseEvents: Event[] = [
     ],
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "ih_27",
@@ -753,6 +779,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
 ];
 

@@ -1,4 +1,10 @@
-import { CatAttribute, GetCatQuery, GetEventQuery, GetUserQuery } from "./API";
+import {
+  CatAttribute,
+  FinishType,
+  GetCatQuery,
+  GetEventQuery,
+  GetUserQuery,
+} from "./API";
 
 export interface User
   extends Omit<Exclude<GetUserQuery["getUser"], null>, "__typename"> {}
@@ -32,7 +38,8 @@ export type Item = {
 };
 
 export type History = {
+  type: FinishType;
   days: number;
-  reason: CatAttribute;
-  isMaxedOut: boolean;
+  attribute: CatAttribute | null;
+  scene: string | null;
 };

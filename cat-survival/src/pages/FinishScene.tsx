@@ -12,7 +12,7 @@ import { gql, useMutation } from "@apollo/client";
 
 import { Cat, History } from "../baseTypes";
 import { CardsContainer } from "./EventSection";
-import { CatAttribute, CatStatus } from "../API";
+import { CatAttribute, CatStatus, FinishType } from "../API";
 import { CardImage } from "../components/EventCard";
 
 const UPDATE_CAT = gql`
@@ -43,40 +43,41 @@ export default function FinishScene({ cat }: { cat: Cat }) {
   const { finishMessage, newHistory } = React.useMemo(() => {
     const newHistory: History = {
       days: cat.age,
-      reason: CatAttribute.health,
-      isMaxedOut: true,
+      type: FinishType.attributeHigh, // dummy
+      attribute: null,
+      scene: null,
     };
 
     function getFinishMessage(): string | null {
       if (cat.health > 100) {
-        newHistory.reason = CatAttribute.health;
-        newHistory.isMaxedOut = true;
+        newHistory.type = FinishType.attributeHigh;
+        newHistory.attribute = CatAttribute.health;
         return "猫子心宽体胖，不愿冒险了";
       }
       if (cat.health < 0) {
-        newHistory.reason = CatAttribute.health;
-        newHistory.isMaxedOut = false;
+        newHistory.type = FinishType.attributeLow;
+        newHistory.attribute = CatAttribute.health;
         return "猫生病了，不能冒险了";
       }
       if (cat.knowledge > 100) {
-        newHistory.reason = CatAttribute.knowledge;
-        newHistory.isMaxedOut = true;
+        newHistory.type = FinishType.attributeHigh;
+        newHistory.attribute = CatAttribute.knowledge;
         return "猫获得了太多奇怪的知识，觉醒了，决心争取Catstitutional Rights, 拒绝当你的宠物";
       }
 
       if (cat.knowledge < 0) {
-        newHistory.reason = CatAttribute.knowledge;
-        newHistory.isMaxedOut = false;
+        newHistory.type = FinishType.attributeLow;
+        newHistory.attribute = CatAttribute.knowledge;
         return "笨笨的猫咪并不清楚，这个冒险怎么继续玩下去";
       }
       if (cat.wilderness > 100) {
-        newHistory.reason = CatAttribute.wilderness;
-        newHistory.isMaxedOut = true;
+        newHistory.type = FinishType.attributeHigh;
+        newHistory.attribute = CatAttribute.wilderness;
         return "野性十足的猫逃走了！";
       }
       if (cat.wilderness < 0) {
-        newHistory.reason = CatAttribute.wilderness;
-        newHistory.isMaxedOut = false;
+        newHistory.type = FinishType.attributeLow;
+        newHistory.attribute = CatAttribute.wilderness;
         return "温顺的猫咪只想靠着你呼噜，不想冒险了";
       }
 

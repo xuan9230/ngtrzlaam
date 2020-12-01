@@ -210,9 +210,11 @@ export default function EventSection({ cat }: { cat: Cat }) {
    * Render a event card
    */
   function renderEvent(event: Event) {
-    const hasEncountered = catRef.current.eventIDs.includes(event.id);
+    if (!event.repeatable) {
+      const hasEncountered = catRef.current.eventIDs.includes(event.id);
 
-    if (hasEncountered) return null;
+      if (hasEncountered) return null;
+    }
 
     const showEffects = catRef.current.itemNames.includes("炫酷眼镜");
 

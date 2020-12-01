@@ -42,6 +42,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_2",
@@ -72,6 +73,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_3",
@@ -108,6 +110,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_4",
@@ -138,6 +141,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_5",
@@ -174,6 +178,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_6",
@@ -193,6 +198,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_7",
@@ -212,6 +218,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_8",
@@ -231,6 +238,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_9",
@@ -273,6 +281,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_13",
@@ -304,6 +313,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_10",
@@ -355,6 +365,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_11",
@@ -374,6 +385,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: true,
+    scene: null,
   },
   {
     id: "st_12",
@@ -400,6 +412,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
   },
   {
     id: "st_14",
@@ -426,6 +439,44 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
+    scene: null,
+  },
+  {
+    id: "st_15",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/st_15.jpg",
+    status: CatStatus.stray,
+    content: "玩蛇吗？",
+    result: "蛇怒了，跟蛇以命相博，两败俱伤，幸好它没有毒",
+    yesEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.health,
+        delta: -20,
+      },
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: 20,
+      },
+    ],
+    noEffects: [
+      {
+        __typename: "EventEffect",
+        key: CatAttribute.wilderness,
+        delta: -10,
+      },
+    ],
+    yesItemName: null,
+    isChildEvent: false,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: null,
+    yesRequirements: null,
+    noRequirements: null,
+    repeatable: false,
+    scene: null,
   },
 ];
 
