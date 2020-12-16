@@ -12,7 +12,7 @@ import SideDrawer from "../components/SideDrawer";
 
 import EventSection from "./EventSection";
 import { CatStatus, GetCatQuery, GetCatQueryVariables } from "../API";
-import FinishScene from "./FinishScene";
+import FinishPage from "./FinishPage";
 import { Row } from "../components";
 
 const CAT_DETAILS_QUERY = gql`
@@ -29,9 +29,10 @@ const CAT_DETAILS_QUERY = gql`
       eventIDs
       itemNames
       history {
+        type
         days
-        reason
-        isMaxedOut
+        scene
+        attribute
       }
     }
   }
@@ -90,7 +91,7 @@ export default function Deck({ catId }: { catId: string }) {
       <CatAttributesArea cat={cat} />
 
       {cat.status === CatStatus.finished ? (
-        <FinishScene cat={cat} />
+        <FinishPage cat={cat} />
       ) : (
         <EventSection cat={cat} />
       )}

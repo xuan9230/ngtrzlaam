@@ -15,17 +15,26 @@ type DeckState = {
    * Remaining swipe times for today
    */
   remainingSwipes: number;
+  /**
+   * Ending scene
+   */
+  scene?: string;
 };
 
 /**
  * Actions
  */
-type SetSelectedCatId = {
+type SetSelectedCatIdAction = {
   type: typeof actionTypes.SET_SELECTED_CAT_ID;
   catId: string;
 };
 
-type Action = SetSelectedCatId;
+type SetSceneAction = {
+  type: typeof actionTypes.SET_SCENE;
+  scene: string;
+};
+
+type Action = SetSelectedCatIdAction | SetSceneAction;
 
 interface DeckContextType {
   state: DeckState;
@@ -40,6 +49,11 @@ function deckReducer(state: DeckState, action: Action): DeckState {
       return {
         ...state,
         catId: action.catId,
+      };
+    case actionTypes.SET_SCENE:
+      return {
+        ...state,
+        scene: action.scene,
       };
     default:
       return state;

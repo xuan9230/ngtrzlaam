@@ -3,6 +3,7 @@
  */
 
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { shuffle } from "lodash-es";
 import styled from "styled-components";
 import { gql, useMutation } from "@apollo/client";
@@ -16,6 +17,8 @@ import systemEvents from "../systemEvents";
 import { Cat, Event } from "../baseTypes";
 import { CatStatus } from "../API";
 import { applyItemToEffects } from "../helpers/item";
+import { useDeck } from "../providers/DeckProvider";
+import actionTypes from "../providers/actionTypes";
 
 // const EVENTS_QUERY = gql`
 //   query getEvents($catId: ID!) {
@@ -50,9 +53,10 @@ const UPDATE_CAT = gql`
       eventIDs
       itemNames
       history {
+        type
         days
-        reason
-        isMaxedOut
+        scene
+        attribute
       }
     }
   }
@@ -70,6 +74,10 @@ export default function EventSection({ cat }: { cat: Cat }) {
   // });
   // if (error) return <p>Error fetching events:(</p>;
   // if (fetchEventsLoading || !(data && data.events)) return <LinearProgress />;
+
+  const history = useHistory();
+
+  const { dispatch } = useDeck();
 
   // Update cat
   const [updateCat] = useMutation(UPDATE_CAT);
@@ -191,6 +199,11 @@ export default function EventSection({ cat }: { cat: Cat }) {
         },
       },
     });
+
+    if (willCatFinish && event.scene) {
+      // Cat finishes with a scene
+      dispatch({ type: actionTypes.SET_SCENE, scene: event.scene });
+    }
   }
 
   /**

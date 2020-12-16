@@ -14,6 +14,7 @@ import { Cat, History } from "../baseTypes";
 import { CardsContainer } from "./EventSection";
 import { CatAttribute, CatStatus, FinishType } from "../API";
 import { CardImage } from "../components/EventCard";
+import { useDeck } from "../providers/DeckProvider";
 
 const UPDATE_CAT = gql`
   mutation updateCat($input: UpdateCatInput!) {
@@ -28,15 +29,20 @@ const UPDATE_CAT = gql`
       eventIDs
       itemNames
       history {
+        type
         days
-        reason
-        isMaxedOut
+        scene
+        attribute
       }
     }
   }
 `;
 
-export default function FinishScene({ cat }: { cat: Cat }) {
+export default function FinishPage({ cat }: { cat: Cat }) {
+  const {
+    state: { scene },
+  } = useDeck();
+
   const [updateCat] = useMutation(UPDATE_CAT);
   const history = useHistory();
 
