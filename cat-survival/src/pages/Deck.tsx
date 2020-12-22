@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
 import IconButton from "@material-ui/core/IconButton";
 import DrawerIcon from "@material-ui/icons/Menu";
+import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import { LinearProgress } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
@@ -30,15 +32,13 @@ const CAT_DETAILS_QUERY = gql`
       itemNames
       history {
         type
-        days
-        scene
-        attribute
       }
     }
   }
 `;
 
 export default function Deck({ catId }: { catId: string }) {
+  const history = useHistory();
   const [showDrawer, setShowDrawer] = useState(false);
 
   // Fetch cat details
@@ -97,6 +97,10 @@ export default function Deck({ catId }: { catId: string }) {
       )}
 
       <CatItemsArea cat={cat} />
+
+      <IconButton onClick={() => history.push("/achievements")}>
+        <EmojiEventsIcon />
+      </IconButton>
     </Container>
   );
 }
