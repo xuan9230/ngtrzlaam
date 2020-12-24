@@ -42,7 +42,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_2",
@@ -73,7 +73,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_3",
@@ -110,7 +110,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_4",
@@ -141,7 +141,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_5",
@@ -178,7 +178,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_6",
@@ -198,7 +198,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_7",
@@ -218,7 +218,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_8",
@@ -238,7 +238,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_9",
@@ -281,7 +281,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_13",
@@ -313,7 +313,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_10",
@@ -365,7 +365,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_11",
@@ -385,7 +385,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: true,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_12",
@@ -412,7 +412,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_14",
@@ -439,7 +439,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "st_15",
@@ -476,7 +476,7 @@ const strayEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
 ];
 

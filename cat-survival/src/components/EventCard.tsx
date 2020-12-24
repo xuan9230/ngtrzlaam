@@ -6,6 +6,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
 
 import { Event, EventEffect, AttributeRequirement, Cat } from "../baseTypes";
 import { Row, Column } from "../components/index";
@@ -24,6 +26,8 @@ export default function EventCard({
   showEffects: boolean;
   cat: Cat;
 }) {
+  const [showPreventModal, setShowPreventModal] = React.useState(false);
+
   /**
    * Calculate which directions to prevent swipe based on event requirements
    */
@@ -34,13 +38,23 @@ export default function EventCard({
 
     if (event.yesRequirements) {
       event.yesRequirements.forEach((requirement) => {
-        if (cat[requirement.key] < requirement.value) preventSwipe.add("right");
+        const catAttri = cat[requirement.key];
+        if (
+          (requirement.minimum && catAttri < requirement.minimum) ||
+          (requirement.maximum && catAttri > requirement.maximum)
+        )
+          preventSwipe.add("right");
       });
     }
 
     if (event.noRequirements) {
       event.noRequirements.forEach((requirement) => {
-        if (cat[requirement.key] < requirement.value) preventSwipe.add("left");
+        const catAttri = cat[requirement.key];
+        if (
+          (requirement.minimum && catAttri < requirement.minimum) ||
+          (requirement.maximum && catAttri > requirement.maximum)
+        )
+          preventSwipe.add("left");
       });
     }
 
@@ -54,13 +68,19 @@ export default function EventCard({
     const label = getAttributeLabel(requirement.key);
 
     return (
-      <Typography
-        key={`${requirement.key}-${requirement.value}`}
-        variant="caption"
-        style={{ color: "#ff1d58" }}
-      >
-        需要：{label} {">"} {requirement.value}
-      </Typography>
+      <div key={requirement.key}>
+        {requirement.minimum && (
+          <Typography variant="caption" style={{ color: "#ff1d58" }}>
+            需要：{label} {">"} {requirement.minimum}
+          </Typography>
+        )}
+
+        {requirement.maximum && (
+          <Typography variant="caption" style={{ color: "#ff1d58" }}>
+            需要：{label} {"<"} {requirement.maximum}
+          </Typography>
+        )}
+      </div>
     );
   }
 
@@ -127,31 +147,45 @@ export default function EventCard({
   }
 
   return (
-    <StyledCard
-      onSwipe={(direction) => {
-        if (direction === "right") handleUpdateCat(event, true);
-        else if (direction === "left") handleUpdateCat(event, false);
-      }}
-      preventSwipe={preventSwipe as string[]}
-    >
-      <CardContainer>
-        <CardImage image={event.imgUrl} />
+    <>
+      <StyledCard
+        onSwipe={(direction) => {
+          if (preventSwipe.includes(direction)) {
+            if (direction === "left" || direction === "right")
+              setShowPreventModal(true);
+            return;
+          }
 
-        <CardInfoContainer>
-          {event.title && (
-            <Typography gutterBottom variant="h5" component="h2">
-              {event.title}
+          if (direction === "right") handleUpdateCat(event, true);
+          else if (direction === "left") handleUpdateCat(event, false);
+        }}
+        preventSwipe={preventSwipe as string[]}
+      >
+        <CardContainer>
+          <CardImage image={event.imgUrl} />
+
+          <CardInfoContainer>
+            {event.title && (
+              <Typography gutterBottom variant="h5" component="h2">
+                {event.title}
+              </Typography>
+            )}
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              {event.content}
             </Typography>
-          )}
-
-          <Typography variant="body2" color="textSecondary" component="p">
-            {event.content}
-          </Typography>
-          {renderRequirements()}
-          {showEffects && renderEffects()}
-        </CardInfoContainer>
-      </CardContainer>
-    </StyledCard>
+            {renderRequirements()}
+            {showEffects && renderEffects()}
+          </CardInfoContainer>
+        </CardContainer>
+      </StyledCard>
+      <Dialog
+        onClose={() => setShowPreventModal(false)}
+        open={showPreventModal}
+      >
+        <DialogTitle>条件未满足，无法选择</DialogTitle>
+      </Dialog>
+    </>
   );
 }
 

@@ -125,7 +125,7 @@ export const createCat = /* GraphQL */ `
         type
         days
         attribute
-        scene
+        sceneId
       }
       createdAt
       updatedAt
@@ -162,7 +162,7 @@ export const updateCat = /* GraphQL */ `
         type
         days
         attribute
-        scene
+        sceneId
       }
       createdAt
       updatedAt
@@ -199,7 +199,7 @@ export const deleteCat = /* GraphQL */ `
         type
         days
         attribute
-        scene
+        sceneId
       }
       createdAt
       updatedAt
@@ -232,15 +232,17 @@ export const createEvent = /* GraphQL */ `
       }
       yesRequirements {
         key
-        value
+        minimum
+        maximum
       }
       noRequirements {
         key
-        value
+        minimum
+        maximum
       }
       yesItemName
       repeatable
-      scene
+      sceneId
       createdAt
       updatedAt
     }
@@ -272,15 +274,17 @@ export const updateEvent = /* GraphQL */ `
       }
       yesRequirements {
         key
-        value
+        minimum
+        maximum
       }
       noRequirements {
         key
-        value
+        minimum
+        maximum
       }
       yesItemName
       repeatable
-      scene
+      sceneId
       createdAt
       updatedAt
     }
@@ -312,15 +316,17 @@ export const deleteEvent = /* GraphQL */ `
       }
       yesRequirements {
         key
-        value
+        minimum
+        maximum
       }
       noRequirements {
         key
-        value
+        minimum
+        maximum
       }
       yesItemName
       repeatable
-      scene
+      sceneId
       createdAt
       updatedAt
     }

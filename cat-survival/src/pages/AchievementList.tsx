@@ -1,12 +1,19 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
 import { LinearProgress } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 import List from "../components/List";
 import { useDeck } from "../providers/DeckProvider";
 import { FinishType, GetCatQuery, GetCatQueryVariables } from "../API";
-import { History } from "../baseTypes";
+import { SceneDefinition } from "../baseTypes";
+import sceneDefinitionMap from "../constants/sceneDefinitionMap";
+import { CardImage } from "../components/EventCard";
 
 const CAT_HISTORIES_QUERY = gql`
   query getCat($id: ID!) {
@@ -15,7 +22,7 @@ const CAT_HISTORIES_QUERY = gql`
       history {
         type
         days
-        scene
+        sceneId
         attribute
       }
     }
@@ -26,8 +33,7 @@ export default function AchievementList() {
   const {
     state: { catId },
   } = useDeck();
-
-  const [sceneName, setSceneName] = React.useState<string | null>(null);
+  const history = useHistory();
 
   const { loading, error, data } = useQuery<GetCatQuery, GetCatQueryVariables>(
     CAT_HISTORIES_QUERY,
@@ -40,25 +46,45 @@ export default function AchievementList() {
 
   const cat = data?.getCat;
 
-  if (error || !cat?.history) return <p>Error fetching cat achievements</p>;
-  if (loading) return <LinearProgress />;
+  const scenes = React.useMemo(() => {
+    if (!cat) return [];
 
-  const scenes = cat.history.filter((his) => his.type === FinishType.scene);
+    let sceneIds: string[] = cat.history
+      .filter((his) => his.type === FinishType.scene)
+      .map((h) => h.sceneId!);
 
-  function renderScene() {
-    return <div>{sceneName}</div>;
+    // @ts-ignore
+    sceneIds = [...new Set(sceneIds)];
+
+    return sceneIds.map((sid) => sceneDefinitionMap[sid]);
+  }, [cat]);
+
+  if (error) return <p>Error fetching cat achievements</p>;
+  if (loading || !cat?.history) return <LinearProgress />;
+
+  function renderScene(scene: SceneDefinition) {
+    return (
+      <Container key={scene.id}>
+        <Typography variant="h6">{scene.name}</Typography>
+        <CardImage image={scene.imgUrl} style={{ margin: 8 }} />
+        <Typography variant="body1">{scene.description}</Typography>
+        <Divider style={{ width: "100%", margin: 16 }} />
+      </Container>
+    );
   }
 
   return (
     <Container>
-      {sceneName && renderScene()}
       <List
         title="成就列表"
         // @ts-ignore
         records={scenes}
-        primaryKey="scene"
-        onClick={(scene: History) => setSceneName(scene.scene)}
+        primaryKey="name"
+        renderItem={renderScene}
       />
+      <IconButton onClick={() => history.push("/deck")}>
+        <CancelIcon />
+      </IconButton>
     </Container>
   );
 }

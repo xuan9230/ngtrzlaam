@@ -55,7 +55,7 @@ const UPDATE_CAT = gql`
       history {
         type
         days
-        scene
+        sceneId
         attribute
       }
     }
@@ -75,8 +75,6 @@ export default function EventSection({ cat }: { cat: Cat }) {
   // if (error) return <p>Error fetching events:(</p>;
   // if (fetchEventsLoading || !(data && data.events)) return <LinearProgress />;
 
-  const history = useHistory();
-
   const { dispatch } = useDeck();
 
   // Update cat
@@ -88,11 +86,12 @@ export default function EventSection({ cat }: { cat: Cat }) {
 
   // The next event (when then current event has a child event)
   const [childEvent, setChildEvent] = React.useState<null | Event>(null);
-  // () => {
-  //   const a = systemEvents["inHouse"].find((event) => event.id === "ih_26");
+  // For debugging - set the next event
+  // const [childEvent, setChildEvent] = React.useState<null | Event>(() => {
+  //   const a = systemEvents["inHouse"].find((event) => event.id === "ih_28");
   //   if (a) return a;
   //   return null;
-  // }
+  // });
 
   const {
     inidividualEvents, // events that the cat hasn't encountered, or are repeatable
@@ -163,6 +162,8 @@ export default function EventSection({ cat }: { cat: Cat }) {
       }
     });
 
+    if (event.sceneId) willCatFinish = true;
+
     const updates = {
       ...attributeUpdates,
       id: cat.id,
@@ -200,9 +201,9 @@ export default function EventSection({ cat }: { cat: Cat }) {
       },
     });
 
-    if (willCatFinish && event.scene) {
+    if (willCatFinish && event.sceneId) {
       // Cat finishes with a scene
-      dispatch({ type: actionTypes.SET_SCENE, scene: event.scene });
+      dispatch({ type: actionTypes.SET_SCENE, sceneId: event.sceneId });
     }
   }
 

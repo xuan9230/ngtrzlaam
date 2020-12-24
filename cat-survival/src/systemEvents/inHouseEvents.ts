@@ -31,7 +31,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_2",
@@ -62,7 +62,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_3",
@@ -93,7 +93,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_4",
@@ -124,7 +124,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_5",
@@ -150,7 +150,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_6",
@@ -176,7 +176,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_7",
@@ -207,7 +207,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_8",
@@ -233,7 +233,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_9",
@@ -259,7 +259,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_10",
@@ -290,7 +290,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_11",
@@ -321,7 +321,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_12",
@@ -352,7 +352,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_13",
@@ -383,7 +383,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "e_14",
@@ -414,7 +414,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_15",
@@ -445,7 +445,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_16",
@@ -471,7 +471,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: true,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_17",
@@ -508,7 +508,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_18",
@@ -540,7 +540,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_19",
@@ -566,7 +566,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_20",
@@ -597,7 +597,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_21",
@@ -634,7 +634,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_22",
@@ -666,7 +666,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_23",
@@ -692,7 +692,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_24",
@@ -712,7 +712,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_25",
@@ -732,7 +732,7 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_26",
@@ -753,12 +753,13 @@ const inHouseEvents: Event[] = [
       {
         __typename: "AttributeRequirement",
         key: CatAttribute.knowledge,
-        value: 60,
+        minimum: 60,
+        maximum: null,
       },
     ],
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
   },
   {
     id: "ih_27",
@@ -779,7 +780,34 @@ const inHouseEvents: Event[] = [
     yesRequirements: null,
     noRequirements: null,
     repeatable: false,
-    scene: null,
+    sceneId: null,
+  },
+  {
+    id: "ih_28",
+    title: "",
+    imgUrl:
+      "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/ih_28.jpg",
+    status: CatStatus.inHouse,
+    content: "铲屎的领回家一只高大的挖煤工，接受它吗？",
+    result: "",
+    yesEffects: [],
+    noEffects: [],
+    yesItemName: null,
+    isChildEvent: true,
+    yesEventID: null,
+    noEventID: null,
+    newStatus: CatStatus.finished,
+    yesRequirements: [
+      {
+        __typename: "AttributeRequirement",
+        key: CatAttribute.wilderness,
+        minimum: null,
+        maximum: 75,
+      },
+    ],
+    noRequirements: null,
+    repeatable: false,
+    sceneId: "sce_1",
   },
 ];
 

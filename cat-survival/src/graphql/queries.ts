@@ -77,7 +77,7 @@ export const getCat = /* GraphQL */ `
         type
         days
         attribute
-        scene
+        sceneId
       }
       createdAt
       updatedAt
@@ -113,7 +113,7 @@ export const listCats = /* GraphQL */ `
           type
           days
           attribute
-          scene
+          sceneId
         }
         createdAt
         updatedAt
@@ -145,15 +145,17 @@ export const getEvent = /* GraphQL */ `
       }
       yesRequirements {
         key
-        value
+        minimum
+        maximum
       }
       noRequirements {
         key
-        value
+        minimum
+        maximum
       }
       yesItemName
       repeatable
-      scene
+      sceneId
       createdAt
       updatedAt
     }
@@ -187,15 +189,17 @@ export const listEvents = /* GraphQL */ `
         }
         yesRequirements {
           key
-          value
+          minimum
+          maximum
         }
         noRequirements {
           key
-          value
+          minimum
+          maximum
         }
         yesItemName
         repeatable
-        scene
+        sceneId
         createdAt
         updatedAt
       }
@@ -240,7 +244,7 @@ export const catsByUser = /* GraphQL */ `
           type
           days
           attribute
-          scene
+          sceneId
         }
         createdAt
         updatedAt
@@ -285,15 +289,17 @@ export const eventsByStatus = /* GraphQL */ `
         }
         yesRequirements {
           key
-          value
+          minimum
+          maximum
         }
         noRequirements {
           key
-          value
+          minimum
+          maximum
         }
         yesItemName
         repeatable
-        scene
+        sceneId
         createdAt
         updatedAt
       }

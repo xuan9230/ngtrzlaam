@@ -27,7 +27,7 @@ type History {
   type: FinishType!
   days: Int!
   attribute: CatAttribute
-  scene: String
+  sceneId: String
 }
 
 type Cat
@@ -59,7 +59,8 @@ type EventEffect {
 
 type AttributeRequirement {
   key: CatAttribute!
-  value: Int!
+  minimum: Int
+  maximum: Int
 }
 
 type Event
@@ -101,5 +102,5 @@ type Event
   # Whether this event can occur more than once
   repeatable: Boolean!
   # If present, the cat's journey ends with this scene
-  scene: String
+  sceneId: String
 }

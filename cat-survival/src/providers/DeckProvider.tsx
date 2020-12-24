@@ -18,7 +18,7 @@ type DeckState = {
   /**
    * Ending scene
    */
-  scene?: string;
+  sceneId?: string;
 };
 
 /**
@@ -31,7 +31,7 @@ type SetSelectedCatIdAction = {
 
 type SetSceneAction = {
   type: typeof actionTypes.SET_SCENE;
-  scene: string;
+  sceneId: string;
 };
 
 type Action = SetSelectedCatIdAction | SetSceneAction;
@@ -53,7 +53,7 @@ function deckReducer(state: DeckState, action: Action): DeckState {
     case actionTypes.SET_SCENE:
       return {
         ...state,
-        scene: action.scene,
+        sceneId: action.sceneId,
       };
     default:
       return state;

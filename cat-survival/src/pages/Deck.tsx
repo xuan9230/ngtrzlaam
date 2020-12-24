@@ -32,6 +32,9 @@ const CAT_DETAILS_QUERY = gql`
       itemNames
       history {
         type
+        attribute
+        days
+        sceneId
       }
     }
   }

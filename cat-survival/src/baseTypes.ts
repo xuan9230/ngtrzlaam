@@ -27,7 +27,8 @@ export type EventEffect = {
 export type AttributeRequirement = {
   __typename?: "AttributeRequirement";
   key: CatAttribute;
-  value: number;
+  minimum: number | null;
+  maximum: number | null;
 };
 
 export type Item = {
@@ -41,5 +42,12 @@ export type History = {
   type: FinishType;
   days: number;
   attribute: CatAttribute | null;
-  scene: string | null;
+  sceneId: string | null;
+};
+
+export type SceneDefinition = {
+  id: string;
+  name: string;
+  description: string;
+  imgUrl: string;
 };

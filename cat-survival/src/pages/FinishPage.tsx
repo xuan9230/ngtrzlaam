@@ -15,6 +15,7 @@ import { CardsContainer } from "./EventSection";
 import { CatAttribute, CatStatus, FinishType } from "../API";
 import { CardImage } from "../components/EventCard";
 import { useDeck } from "../providers/DeckProvider";
+import sceneDefinitionMap from "../constants/sceneDefinitionMap";
 
 const UPDATE_CAT = gql`
   mutation updateCat($input: UpdateCatInput!) {
@@ -31,7 +32,7 @@ const UPDATE_CAT = gql`
       history {
         type
         days
-        scene
+        sceneId
         attribute
       }
     }
@@ -40,8 +41,12 @@ const UPDATE_CAT = gql`
 
 export default function FinishPage({ cat }: { cat: Cat }) {
   const {
-    state: { scene },
+    state: { sceneId },
   } = useDeck();
+
+  const scene = sceneId ? sceneDefinitionMap[sceneId] : null;
+
+  console.log(sceneId, scene);
 
   const [updateCat] = useMutation(UPDATE_CAT);
   const history = useHistory();
@@ -49,12 +54,14 @@ export default function FinishPage({ cat }: { cat: Cat }) {
   const { finishMessage, newHistory } = React.useMemo(() => {
     const newHistory: History = {
       days: cat.age,
-      type: FinishType.attributeHigh, // dummy
+      type: FinishType.scene, // will be changed below if non-scene
       attribute: null,
-      scene: null,
+      sceneId: sceneId || null,
     };
 
     function getFinishMessage(): string | null {
+      if (scene) return scene.description;
+
       if (cat.health > 100) {
         newHistory.type = FinishType.attributeHigh;
         newHistory.attribute = CatAttribute.health;
@@ -96,7 +103,7 @@ export default function FinishPage({ cat }: { cat: Cat }) {
       finishMessage,
       newHistory,
     };
-  }, [cat]);
+  }, [cat, sceneId, scene]);
 
   async function handleReincarnateCat() {
     const updatedHistory = cat.history.map((h) => omit(h, "__typename"));
@@ -122,7 +129,18 @@ export default function FinishPage({ cat }: { cat: Cat }) {
 
   return (
     <Container>
-      <CardImage image="https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/finishScene.jpg" />
+      <CardImage
+        image={
+          scene
+            ? scene.imgUrl
+            : "https://cat-daily-event-images.s3-ap-southeast-2.amazonaws.com/finishScene.jpg"
+        }
+      />
+      {scene && (
+        <div style={{ marginTop: 16 }}>
+          <Typography variant="body1">{scene.name}</Typography>
+        </div>
+      )}
       <div style={{ margin: 16 }}>
         {finishMessage && (
           <Typography variant="body1">{finishMessage}</Typography>
