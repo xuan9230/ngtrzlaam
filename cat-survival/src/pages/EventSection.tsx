@@ -85,13 +85,13 @@ export default function EventSection({ cat }: { cat: Cat }) {
   catRef.current = cat;
 
   // The next event (when then current event has a child event)
-  // const [childEvent, setChildEvent] = React.useState<null | Event>(null);
+  const [childEvent, setChildEvent] = React.useState<null | Event>(null);
   // For debugging - set the next event
-  const [childEvent, setChildEvent] = React.useState<null | Event>(() => {
-    const a = systemEvents["inHouse"].find((event) => event.id === "ih_29");
-    if (a) return a;
-    return null;
-  });
+  // const [childEvent, setChildEvent] = React.useState<null | Event>(() => {
+  //   const a = systemEvents["inHouse"].find((event) => event.id === "ih_28");
+  //   if (a) return a;
+  //   return null;
+  // });
 
   const {
     inidividualEvents, // events that the cat hasn't encountered, or are repeatable

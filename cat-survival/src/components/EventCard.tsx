@@ -162,19 +162,7 @@ export default function EventCard({
         preventSwipe={preventSwipe as string[]}
       >
         <CardContainer>
-          {event.id === "ih_29" ? (
-            <iframe
-              width="360"
-              height="280"
-              src="https://www.youtube.com/embed/j8aecF5HXm4"
-              // @ts-ignore
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
-          ) : (
-            <CardImage image={event.imgUrl} />
-          )}
+          <CardImage image={event.imgUrl} />
 
           <CardInfoContainer>
             {event.title && (

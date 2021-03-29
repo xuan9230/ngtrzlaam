@@ -809,25 +809,6 @@ const inHouseEvents: Event[] = [
     repeatable: false,
     sceneId: "sce_1",
   },
-  {
-    id: "ih_29",
-    title: "",
-    imgUrl: "https://www.youtube.com/embed/j8aecF5HXm4",
-    status: CatStatus.inHouse,
-    content: "新年快乐!",
-    result: "",
-    yesEffects: [],
-    noEffects: [],
-    yesItemName: null,
-    isChildEvent: false,
-    yesEventID: null,
-    noEventID: null,
-    newStatus: null,
-    yesRequirements: null,
-    noRequirements: null,
-    repeatable: true,
-    sceneId: null,
-  },
 ];
 
 export default inHouseEvents;
