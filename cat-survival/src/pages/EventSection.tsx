@@ -3,7 +3,6 @@
  */
 
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { shuffle } from "lodash-es";
 import styled from "styled-components";
 import { gql, useMutation } from "@apollo/client";

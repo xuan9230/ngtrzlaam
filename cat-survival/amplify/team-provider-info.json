@@ -1,15 +1,15 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-catapi-dev-214214-authRole",
-            "UnauthRoleArn": "arn:aws:iam::119692386170:role/amplify-catapi-dev-214214-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::119692386170:role/amplify-catapi-dev-214214-authRole",
-            "Region": "ap-southeast-2",
-            "DeploymentBucketName": "amplify-catapi-dev-214214-deployment",
-            "UnauthRoleName": "amplify-catapi-dev-214214-unauthRole",
-            "StackName": "amplify-catapi-dev-214214",
-            "StackId": "arn:aws:cloudformation:ap-southeast-2:119692386170:stack/amplify-catapi-dev-214214/88e8e360-dfb5-11ea-9e5a-024c2d31602c",
-            "AmplifyAppId": "d3ppgsw2n2kuhu"
-        }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-catapi-dev-214214-authRole",
+      "UnauthRoleArn": "arn:aws:iam::119692386170:role/amplify-catapi-dev-214214-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::119692386170:role/amplify-catapi-dev-214214-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-catapi-dev-214214-deployment",
+      "UnauthRoleName": "amplify-catapi-dev-214214-unauthRole",
+      "StackName": "amplify-catapi-dev-214214",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:119692386170:stack/amplify-catapi-dev-214214/88e8e360-dfb5-11ea-9e5a-024c2d31602c",
+      "AmplifyAppId": "d3ppgsw2n2kuhu"
     }
+  }
 }

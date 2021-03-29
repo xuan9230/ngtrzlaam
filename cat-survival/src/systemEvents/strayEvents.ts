@@ -411,7 +411,7 @@ const strayEvents: Event[] = [
     newStatus: CatStatus.inHouse,
     yesRequirements: null,
     noRequirements: null,
-    repeatable: false,
+    repeatable: true,
     sceneId: null,
   },
   {
