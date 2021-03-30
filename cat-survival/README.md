@@ -1,8 +1,8 @@
 # Cat Survival Game
 
-Choose a cat to start and swipe left/right to make decisions. The objective is to survive as many days as you can!
+Play the game on your mobile phone: [cat.ngtrzlaam.com](https://cat.ngtrzlaam.com)
 
-Please play the game on your mobile phone.
+Choose a cat to start and swipe left/right to make decisions. The objective is to survive as many days as you can!
 
 ## Tech Stack
 
