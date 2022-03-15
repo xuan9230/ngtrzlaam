@@ -17,7 +17,7 @@
     "aws-appsync-auth-link": "^2.0.2",
     "graphql": "^15.3.0",
     "immer": "^7.0.7",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
